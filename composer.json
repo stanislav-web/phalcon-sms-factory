@@ -23,6 +23,18 @@
     "require" : {
         "php" : ">=5.4.0"
     },
+    "autoload": {
+        "psr-4": {
+            "SMS\\": "src/SMSFactory"
+        },
+        "classmap": ["phpunit/src/SMSFactory"]
+    },
+
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\SMS\\": "phpunit/src/SMSFactory"
+        }
+    },
     "suggest": {
         "stanislav-web/phalcon-translate": "Phalcon Translate Service. Simple way to translate your costom part of templates :-)",
         "stanislav-web/phalcon-searcher": "Phalcon Database Searcher. This is the search service is designed to search multiple SQL tables. Convenient to use autocomplete, search documents, search the whole site.",
