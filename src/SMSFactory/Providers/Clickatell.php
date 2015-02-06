@@ -2,11 +2,11 @@
 namespace SMSFactory\Providers;
 
 use SMSFactory\Aware\ProviderInterface;
-use SMSFactory\Config\BulkSMS as Config;
+use SMSFactory\Config\Clickatell as Config;
 use SMSFactory\Aware\ClientProviders\CurlTrait;
 
 /**
- * Class BulkSMS. BulkSMS Provider
+ * Class Clickatell. Clickatell Provider
  *
  * @since     PHP >=5.4
  * @version   1.0
@@ -15,7 +15,7 @@ use SMSFactory\Aware\ClientProviders\CurlTrait;
  * @package SMSFactory\Providers
  * @subpackage SMSFactory
  */
-class BulkSMS extends Config implements ProviderInterface {
+class Clickatell extends Config implements ProviderInterface {
 
     /**
      * Using Curl client (you can make a change to Stream)
@@ -78,10 +78,10 @@ class BulkSMS extends Config implements ProviderInterface {
     final public function send($message) {
 
         $this->reply = $this->client()->post($this->url, array_merge(
-            $this->config(), [
-                'msisdn'    =>  $this->recipient,   //  SMS Receipient
-                'message'   =>  $message,           //  Message
-            ])
+                $this->config(), [
+                    'to'     =>  $this->recipient,   //  SMS Receipient
+                    'text'   =>  $message,           //  Message
+                ])
         );
 
         return ($this->debug === true) ? $this->reply : $this->reply->body;

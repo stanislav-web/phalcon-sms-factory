@@ -1,6 +1,16 @@
 <?php
 namespace SMSFactory\Aware;
 
+/**
+ * Interface ProviderInterface
+ *
+ * @since     PHP >=5.4
+ * @version   1.0
+ * @author    Stanislav WEB | Lugansk <stanisov@gmail.com>
+ * @copyright Stanislav WEB
+ * @package SMSFactory\Aware
+ * @subpackage SMSFactory
+ */
 interface ProviderInterface {
 
     /**
@@ -12,18 +22,17 @@ interface ProviderInterface {
     public function setRecipient($recipient);
 
     /**
-     * Set message
+     * Send method
      *
      * @param string $message
      * @return void
      */
-    public function setMessage($message);
+    public function send($message);
 
     /**
-     * Final send function
+     * Reply method (after sending)
      *
-     * @param array $params additional parameters
-     * @return void
+     * @return string
      */
-    public function send(array $params = []);
+    public function getReply();
 }

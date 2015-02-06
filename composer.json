@@ -23,13 +23,12 @@
     "require" : {
         "php" : ">=5.4.0"
     },
+    "require-dev": {
+        "phalcon/incubator": "1.3.4"
+    },
     "autoload": {
         "psr-4": {
-            "SMSFactory\\": "src/SMSFactory",
-            "SMSFactory\\Aware\\": "src/SMSFactory/Aware",
-            "SMSFactory\\Aware\\ClientProviders\\": "src/SMSFactory/Aware/ClientProviders",
-            "SMSFactory\\Config\\": "src/SMSFactory/Config",
-            "SMSFactory\\Providers\\": "src/SMSFactory/Providers"
+            "SMSFactory\\": "src/SMSFactory"
         }
     },
     "suggest": {

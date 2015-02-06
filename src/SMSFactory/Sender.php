@@ -3,7 +3,17 @@ namespace SMSFactory;
 use Phalcon\Exception;
 use SMSFactory\Aware\Provider;
 
-class Run extends Provider {
+/**
+ * Class Sender. App entry point
+ *
+ * @since     PHP >=5.4
+ * @version   1.0
+ * @author    Stanislav WEB | Lugansk <stanisov@gmail.com>
+ * @copyright Stanislav WEB
+ * @package SMSFactory
+ * @subpackage SMSFactory
+ */
+class Sender extends Provider {
 
     /**
      * Get SMS provider

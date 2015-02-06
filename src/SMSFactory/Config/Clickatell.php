@@ -6,7 +6,7 @@ use Phalcon\Config;
 use Phalcon\Exception;
 
 /**
- * Class BulkSMS. Configuration for BulkSMS provider
+ * Class Clickatell. Configuration for Clickatell provider
  *
  * @since     PHP >=5.4
  * @version   1.0
@@ -15,21 +15,22 @@ use Phalcon\Exception;
  * @package SMSFactory\Config
  * @subpackage SMSFactory
  */
-class BulkSMS implements ProviderConfig {
+class Clickatell implements ProviderConfig {
 
     /**
      * Connect url
      * @var string $url
      */
-    protected $url = 'http://bulksms.vsms.net:5567/eapi/submission/send_sms/2/2.0';
+    protected $url = 'http://api.clickatell.com/http/sendmsg';
 
     /**
      * Provider config. You may overload this by setter
      * @var array
      */
     private $config = [
-        'username'  => 'SWEB',
-        'password'  => 'QWERTY123',
+        'api_id'    => '3524819',
+        'user'      => 'SWEB-TEST',
+        'password'  => 'JRdaZcAGbaZSgR',
     ];
 
     /**
@@ -46,5 +47,17 @@ class BulkSMS implements ProviderConfig {
         else {
             throw new Exception('Empty provider config');
         }
+    }
+
+    /**
+     * Set provider settings
+     *
+     * @return BulkSMS
+     */
+    public function setProviderConfig(array $config) {
+
+        $this->config = $config;
+
+        return $this;
     }
 }
