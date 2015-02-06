@@ -23,7 +23,7 @@
     "require" : {
         "php" : ">=5.4.0"
     },
-    "require-dev": {
+    "require": {
         "phalcon/incubator": "dev-master"
     },
     "autoload": {
