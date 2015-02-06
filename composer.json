@@ -21,10 +21,11 @@
     }],
 
     "require" : {
-        "php" : ">=5.4.0"
+        "php" : ">=5.4.0",
+        "ext-phalcon": ">=1.3.4"
     },
     "require": {
-        "phalcon/incubator": "dev-master"
+        "phalcon/incubator": "1.3.4"
     },
     "autoload": {
         "psr-4": {
