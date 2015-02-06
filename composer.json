@@ -27,13 +27,6 @@
         "psr-4": {
             "SMS\\": "src/SMSFactory"
         },
-        "classmap": ["phpunit/src/SMSFactory"]
-    },
-
-    "autoload-dev": {
-        "psr-4": {
-            "Test\\SMS\\": "phpunit/src/SMSFactory"
-        }
     },
     "suggest": {
         "stanislav-web/phalcon-translate": "Phalcon Translate Service. Simple way to translate your costom part of templates :-)",
