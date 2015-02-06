@@ -2,19 +2,14 @@
 namespace SMSFactory\Providers;
 
 use SMSFactory\Aware\ProviderInterface;
-use Phalcon\Http\Client\Provider\Curl;
-use SMSFactory\Aware\CurlTrait;
+use SMSFactory\Aware\ClientProviders;
 
 class BulkSMS implements ProviderInterface {
 
-    use CurlTrait;
-
     /**
-     * Url to access to service
-     *
-     * @var string
+     * Using Curl client (you can make a change to Stream)
      */
-    private $url    =   'http://bulksms.vsms.net:5567/eapi/submission/send_sms/2/2.0';
+    use ClientProviders\CurlTrait;
 
     /**
      * Recipient of message
@@ -31,24 +26,12 @@ class BulkSMS implements ProviderInterface {
     private $message  =   '';
 
     /**
-     * You may reconfigure server url from outer call
-     *
-     * @param string $url
-     * @return BulkSMS
-     */
-    public function setUrl($url) {
-        $this->url  =   $url;
-
-        return $this;
-    }
-
-    /**
      * Set the recipient of the message
      *
      * @param int $recipient
      * @return BulkSMS
      */
-    public function setRecipient(int $recipient) {
+    final public function setRecipient($recipient) {
         $this->recipient    =   $recipient;
 
         return $this;
@@ -60,7 +43,7 @@ class BulkSMS implements ProviderInterface {
      * @param string $message
      * @return BulkSMS
      */
-    public function setMessage($message) {
+    final public function setMessage($message) {
         $this->message    =   $message;
 
         return $this;

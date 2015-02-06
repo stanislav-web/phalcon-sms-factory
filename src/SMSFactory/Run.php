@@ -1,23 +1,33 @@
 <?php
 namespace SMSFactory;
-use SMSFactory\Aware\ProviderFactory;
+use Phalcon\Exception;
+use SMSFactory\Aware\Provider;
 
 class Run extends Provider {
 
     /**
      * Get SMS provider
      *
-     * @param string $provider demanded provider
+     * @param string $providerName demanded provider
      *
-     * @uses    ProviderInterface::setUrl()
      * @uses    ProviderInterface::setRecipient()
      * @uses    ProviderInterface::setMessage()
      * @uses    ProviderInterface::send()
      *
-     * @return boolean|void
+     * @throws \Phalcon\Exception
+     * @return mixed
      */
-    final public function call($provider) {
+    final public function call($providerName)
+    {
 
-        return class_exists($provider) === true ? new $provider : 'Fuck';
+        $providerClass = "SMSFactory\\Providers\\$providerName"; // note: no leading backslash
+
+        if(class_exists($providerClass) === true) {
+            return new $providerClass;
+        }
+        else {
+            throw new Exception('Provider ' . $providerName . ' does not exist');
+        }
     }
+
 } 
