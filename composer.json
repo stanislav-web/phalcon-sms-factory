@@ -25,7 +25,11 @@
     },
     "autoload": {
         "psr-4": {
-            "SMSFactory\\": "src/SMSFactory"
+            "SMSFactory\\": "src/SMSFactory",
+            "SMSFactory\\Aware\\": "src/SMSFactory/Aware",
+            "SMSFactory\\Aware\\ClientProviders\\": "src/SMSFactory/Aware/ClientProviders",
+            "SMSFactory\\Config\\": "src/SMSFactory/Config",
+            "SMSFactory\\Providers": "src/SMSFactory/Providers"
         }
     },
     "suggest": {
