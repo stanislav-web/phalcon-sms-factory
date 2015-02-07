@@ -29,7 +29,7 @@ class BulkSMS implements ProviderConfig {
      */
     private $config = [
         'username'  => 'SWEB',
-        'password'  => 'QWERTY123',
+        'password'  => '11111111',
     ];
 
     /**
