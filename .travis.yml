@@ -15,6 +15,6 @@ php:
 before_script:
   - composer self-update
   - phpenv rehash
-  - composer install --no-interaction -o
   - sh ./build/phalcon.sh
-  - php -m | grep -i Phalcon
+  - php -m | grep -i Phalcon  
+  - composer install --no-interaction -o
