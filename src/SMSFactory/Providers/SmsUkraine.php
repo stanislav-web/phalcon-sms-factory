@@ -1,12 +1,13 @@
 <?php
 namespace SMSFactory\Providers;
 
+use Phalcon\Http\Response\Exception;
 use SMSFactory\Aware\ProviderInterface;
-use SMSFactory\Config\BulkSMS as Config;
+use SMSFactory\Config\SmsUkraine as Config;
 use SMSFactory\Aware\ClientProviders\CurlTrait;
 
 /**
- * Class BulkSMS. BulkSMS Provider
+ * Class SmsUkraine. SmsUkraine Provider
  *
  * @since     PHP >=5.4
  * @version   1.0
@@ -14,8 +15,9 @@ use SMSFactory\Aware\ClientProviders\CurlTrait;
  * @copyright Stanislav WEB
  * @package SMSFactory\Providers
  * @subpackage SMSFactory
+ * @see http://smsukraine.com.ua/techdocs/
  */
-class BulkSMS extends Config implements ProviderInterface {
+class SmsUkraine extends Config implements ProviderInterface {
 
     /**
      * Using Curl client (you can make a change to Stream)
@@ -30,17 +32,10 @@ class BulkSMS extends Config implements ProviderInterface {
     private $recipient  =   null;
 
     /**
-     * Server reply message
-     *
-     * @var string
-     */
-    private $reply  =   null;
-
-    /**
      * Get provider configurations
      *
      * @throws \Phalcon\Exception
-     * @return BulkSMSConfig | array
+     * @return \SMSFactory\Config\SmsUkraine | array
      */
     public function config() {
         return $this->getProviderConfig();
@@ -50,7 +45,7 @@ class BulkSMS extends Config implements ProviderInterface {
      * Set the recipient of the message
      *
      * @param int $recipient
-     * @return BulkSMS
+     * @return SmsUkraine
      */
     public function setRecipient($recipient) {
         $this->recipient    =   $recipient;
@@ -59,14 +54,42 @@ class BulkSMS extends Config implements ProviderInterface {
     }
 
     /**
-     * Get server response message
+     * Get server response info
      *
-     * @see  getReply()->header
-     * @see  getReply()->body
-     * @return string
+     * @param \Phalcon\Http\Client\Response $response
+     * @throws \Phalcon\Http\Response\Exception
+     * @return array|string
      */
-    public function getReply() {
-        return $this->reply;
+    public function getResponse(\Phalcon\Http\Client\Response $response) {
+
+        // check response status
+
+        if($response->header->statusCode !== self::SUCCESS_CODE) {
+            throw new Exception('The server is not responding.');
+        }
+
+        // parse json response
+        $isJson = \SMSFactory\Helpers\String::isJson($response->body);
+
+        if($isJson === true) {
+            $respArray = json_decode($response->body, true);
+        }
+        else {
+            // this is not json response, parse as string
+            if(stripos($response->body, 'errors') !== false) {
+                // have an error
+                preg_match('/^([errors]+):(.*)/', $response->body, $matches);
+
+                // if status exist
+                $status = (array_key_exists($matches[0], Config::$statuses))
+                    ? Config::getResponseStatus($matches[0])
+                    : $matches[2];
+            }
+        }
+
+        return ($this->debug === true) ? [
+            $response, (empty($status) === false) ? $status : $respArray
+        ] : (empty($status) === false) ? $status : $respArray;
     }
 
     /**
@@ -77,13 +100,34 @@ class BulkSMS extends Config implements ProviderInterface {
      */
     final public function send($message) {
 
-        $this->reply = $this->client()->{$this->method}($this->url, array_merge(
-            $this->config(), [
-                'msisdn'    =>  $this->recipient,   //  SMS Receipient
+        // send message
+        $response = $this->client()->{self::METHOD}(self::SEND_MESSAGE_URL, array_merge(
+                $this->config(), [
+                'command'   => 'send',
+                'to'        =>  $this->recipient,   //  SMS Receipient
                 'message'   =>  $message,           //  Message
             ])
         );
 
-        return ($this->debug === true) ? $this->reply : $this->reply->body;
+        // return response
+        return $this->getResponse($response);
+    }
+
+    /**
+     * Final check balance function
+     *
+     * @throws \Phalcon\Http\Response\Exception
+     * @return \Phalcon\Http\Client\Response|string|void
+     */
+    final public function balance() {
+
+        // check balance
+        $response = $this->client()->{strtolower(self::METHOD)}(self::GET_BALANCE_URL,  array_merge(
+            $this->config(), [
+            'command'   => 'balance'
+        ]));
+
+        // return response
+        return $this->getResponse($response);
     }
 }

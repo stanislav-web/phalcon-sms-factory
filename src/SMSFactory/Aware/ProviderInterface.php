@@ -14,12 +14,26 @@ namespace SMSFactory\Aware;
 interface ProviderInterface {
 
     /**
+     * Success HTTP code responding
+     * @const 200
+     */
+    const SUCCESS_CODE = 200;
+
+    /**
      * Set the recipient of the message
      *
      * @param int $recipient
      * @return void
      */
     public function setRecipient($recipient);
+
+    /**
+     * Server response method
+     *
+     * @param \Phalcon\Http\Client\Response $response
+     * @return mixed
+     */
+    public function getResponse(\Phalcon\Http\Client\Response $response);
 
     /**
      * Send method
@@ -30,9 +44,9 @@ interface ProviderInterface {
     public function send($message);
 
     /**
-     * Reply method (after sending)
+     * Check balance function
      *
-     * @return string
+     * @return void
      */
-    public function getReply();
+    public function balance();
 }

@@ -6,7 +6,7 @@ use Phalcon\Config;
 use Phalcon\Exception;
 
 /**
- * Class SMSC. Configuration for SMSC provider
+ * Class MessageBird. Configuration for MessageBird provider
  *
  * @since     PHP >=5.4
  * @version   1.0
@@ -15,45 +15,81 @@ use Phalcon\Exception;
  * @package SMSFactory\Config
  * @subpackage SMSFactory
  */
-class SMSC implements ProviderConfig {
+class MessageBird implements ProviderConfig {
 
     /**
-     * Connect url
-     * @var string $url
+     * Send message url
+     *
+     * @const string SEND_MESSAGE_URL
      */
-    protected $url = 'https://smsc.ru/sys/send.php';
+    const SEND_MESSAGE_URL = 'https://rest.messagebird.com/messages';
 
     /**
-     * Provider config. You may overload this by setter
-     * @var array
+     * Get balance url
+     *
+     * @const string GET_BALANCE_URL
      */
-    private $config = [
-        'login'     => 'SWEB',
-        'psw'       => '222222222',
-        'charset'   => 'utf-8',
-        'sender'    => 'Stanislav'
-    ];
+    const GET_BALANCE_URL = 'https://rest.messagebird.com/balance';
 
     /**
      * Request method
      *
-     * @var string
+     * @const string METHOD
      */
-    protected $method = 'post';
+    const METHOD = 'POST';
 
     /**
-     * Get provider settings
+     * Acceptable provider statuses
+     *
+     * @var array $statuses
+     */
+    public static $statuses    =   [
+        '2'   =>  'Request not allowed',
+        '9'   =>  'Missing params',
+        '10'  =>  'Invalid params',
+        '20'  =>  'Not found',
+        '25'  =>  'Not enough balance',
+        '98'  =>  'API not found',
+        '99'  =>  'Internal error',
+    ];
+
+    /**
+     * Provider config. You may overload this by setter
+     *
+     * @access static
+     * @var array
+     */
+    private static $config = [
+        'originator'        => 'Stanislav',
+        'access_key'    =>  'test_UHaeiTLfAe3avOULhawXvn7iR',
+    ];
+
+    /**
+     * Get provider configurations
      *
      * @uses Phalcon\Config
+     * @access static
      * @return void
      */
-    public function getProviderConfig() {
+    public static function getProviderConfig() {
 
-        if(empty($this->config) === false) {
-            return (new Config($this->config))->toArray();
+        if(empty(self::$config) === false) {
+            return (new Config(self::$config))->toArray();
         }
         else {
             throw new Exception('Empty provider config');
         }
+    }
+
+    /**
+     * Get provider response status
+     *
+     * @param int $code
+     * @access static
+     * @return string
+     */
+    public static function getResponseStatus($code) {
+
+        return  self::$statuses[$code];
     }
 }

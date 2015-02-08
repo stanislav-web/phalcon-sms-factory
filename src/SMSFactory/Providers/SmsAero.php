@@ -3,11 +3,11 @@ namespace SMSFactory\Providers;
 
 use Phalcon\Http\Response\Exception;
 use SMSFactory\Aware\ProviderInterface;
-use SMSFactory\Config\SmsUkraine as Config;
+use SMSFactory\Config\SmsAero as Config;
 use SMSFactory\Aware\ClientProviders\CurlTrait;
 
 /**
- * Class SmsUkraine. SmsUkraine Provider
+ * Class SmsAero. SmsAero Provider
  *
  * @since     PHP >=5.4
  * @version   1.0
@@ -15,8 +15,9 @@ use SMSFactory\Aware\ClientProviders\CurlTrait;
  * @copyright Stanislav WEB
  * @package SMSFactory\Providers
  * @subpackage SMSFactory
+ * @see http://smsaero.ru/api/
  */
-class SmsUkraine extends Config implements ProviderInterface {
+class SmsAero extends Config implements ProviderInterface {
 
     /**
      * Using Curl client (you can make a change to Stream)
@@ -34,7 +35,7 @@ class SmsUkraine extends Config implements ProviderInterface {
      * Get provider configurations
      *
      * @throws \Phalcon\Exception
-     * @return \SMSFactory\Config\SmsUkraine | array
+     * @return \SMSFactory\Config\SmsAero | array
      */
     public function config() {
         return $this->getProviderConfig();
@@ -44,7 +45,7 @@ class SmsUkraine extends Config implements ProviderInterface {
      * Set the recipient of the message
      *
      * @param int $recipient
-     * @return SmsUkraine
+     * @return SmsAero
      */
     public function setRecipient($recipient) {
         $this->recipient    =   $recipient;
@@ -74,16 +75,11 @@ class SmsUkraine extends Config implements ProviderInterface {
             $respArray = json_decode($response->body, true);
         }
         else {
-            // this is not json response, parse as string
-            if(stripos($response->body, 'errors') !== false) {
-                // have an error
-                preg_match('/^([errors]+):(.*)/', $response->body, $matches);
 
-                // if status exist
-                $status = (array_key_exists($matches[0], Config::$statuses))
-                    ? Config::getResponseStatus($matches[0])
-                    : $matches[2];
-            }
+            // if status exist
+            $status = (array_key_exists($response->body, Config::$statuses))
+                ? Config::getResponseStatus($response->body)
+                : $response->body;
         }
 
         return ($this->debug === true) ? [
@@ -102,9 +98,8 @@ class SmsUkraine extends Config implements ProviderInterface {
         // send message
         $response = $this->client()->{self::METHOD}(self::SEND_MESSAGE_URL, array_merge(
                 $this->config(), [
-                'command'   => 'send',
-                'to'        =>  $this->recipient,   //  SMS Receipient
-                'message'   =>  $message,           //  Message
+                'to'     =>  $this->recipient,   //  SMS Receipient
+                'text'   =>  $message,           //  Message
             ])
         );
 
@@ -121,10 +116,7 @@ class SmsUkraine extends Config implements ProviderInterface {
     final public function balance() {
 
         // check balance
-        $response = $this->client()->{strtolower(self::METHOD)}(self::GET_BALANCE_URL,  array_merge(
-            $this->config(), [
-            'command'   => 'balance'
-        ]));
+        $response = $this->client()->{strtolower(self::METHOD)}(self::GET_BALANCE_URL, $this->config());
 
         // return response
         return $this->getResponse($response);

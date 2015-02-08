@@ -17,7 +17,17 @@ interface ProviderConfig {
      * Get provider configurations
      *
      * @uses Phalcon\Config
+     * @access static
      * @return void
      */
-    public function getProviderConfig();
+    public static function getProviderConfig();
+
+    /**
+     * Get provider response status
+     *
+     * @param int $status
+     * @access static
+     * @return void
+     */
+    public static function getResponseStatus($status);
 }

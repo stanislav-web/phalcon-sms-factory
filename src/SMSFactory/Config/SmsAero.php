@@ -6,7 +6,7 @@ use Phalcon\Config;
 use Phalcon\Exception;
 
 /**
- * Class SmsUkraine. Configuration for SmsUkraine provider
+ * Class SmsAero. Configuration for SmsAero provider
  *
  * @since     PHP >=5.4
  * @version   1.0
@@ -15,28 +15,28 @@ use Phalcon\Exception;
  * @package SMSFactory\Config
  * @subpackage SMSFactory
  */
-class SmsUkraine implements ProviderConfig {
+class SmsAero implements ProviderConfig {
 
     /**
      * Send message url
      *
      * @const string SEND_MESSAGE_URL
      */
-    const SEND_MESSAGE_URL = 'http://smsukraine.com.ua/api/http.php';
+    const SEND_MESSAGE_URL = 'http://gate.smsaero.ru/send';
 
     /**
      * Get balance url
      *
      * @const string GET_BALANCE_URL
      */
-    const GET_BALANCE_URL = 'http://smsukraine.com.ua/api/json.php';
+    const GET_BALANCE_URL = 'http://gate.smsaero.ru/balance/?answer=json';
 
     /**
      * Request method
      *
      * @const string METHOD
      */
-    const METHOD = 'POST';
+    const METHOD = 'GET';
 
     /**
      * Acceptable provider statuses
@@ -44,26 +44,14 @@ class SmsUkraine implements ProviderConfig {
      * @var array $statuses
      */
     public static $statuses    =   [
-        '100'   =>  'The message is scheduled. Delivery has not yet been initiated.',
-        '101'   =>  'The message is in enroute state.',
-        '102'   =>  'Message is delivered to destination',
-        '103'   =>  'Message validity period has expired.',
-        '104'   =>  'Message has been deleted.',
-        '105'   =>  'Message is undeliverable.',
-        '106'   =>  'Message is in accepted state (i.e. has been manually read on behalf of the subscriber by customer service)',
-        '107'   =>  'Message is in invalid state The message state is unknown.',
-        '108'   =>  'Message is in a rejected state The message has been rejected by a delivery interface.',
-        '109'   =>  'Message discarded',
-        '110'   =>  'Message in process of transferring to mobile network',
-        '200'   =>  'Неизвестная ошибка',
-        '201'   =>  'Неправильный ID сообщения',
-        '202'   =>  'Неправильный идентификатор отправителя',
-        '203'   =>  'Неправильный номер получателя',
-        '204'   =>  'Слишком длинное или пустое сообщение',
-        '205'   =>  'Пользователь отключен',
-        '206'   =>  'Ошибка биллинга',
-        '207'   =>  'Превышение лимита выделенных сообщений',
-        '208'   =>  'Сообщение с указанным ID уже существует',
+        'accepted'   =>  'Сообщение принято сервисом.',
+        'empty field. reject'   =>  'Не все обязательные поля заполнены.',
+        'incorrect user or password. reject'   =>  'Ошибка авторизации',
+        'no credits'   =>  'Недостаточно sms на балансе.',
+        'incorrect sender name. reject'   =>  'Неверная (незарегистрированная) подпись отправителя.',
+        'incorrect destination adress. reject'   =>  'Неверно задан номер телефона (формат 71234567890).',
+        'incorrect date. reject'   =>  'Неправильный формат даты',
+        'in blacklist. reject'   =>  'Телефон находится в черном списке.',
     ];
 
     /**
@@ -73,11 +61,9 @@ class SmsUkraine implements ProviderConfig {
      * @var array
      */
     private static $config = [
-        'from'        => 'SWEB',
-        'login'     => '380954916517',
-        'password'  => '1111111111',
-        'version'  => 'http',
-        'flash'     => 0,
+        'from'          => 'INFORM',
+        'user'          => 'stanisov@gmail.com',
+        'password'      => '96e79218965eb72c92a549dd5a330112',
     ];
 
     /**
