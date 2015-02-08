@@ -128,7 +128,6 @@ Now you can call your created service of sending sms.
     $sms = $this->di->get('SMS');
 
     // send message via SmsAero (available 7 providers)
-
     $response = $sms->call('SmsAero')->setRecipient('NUMBER')->send('MESSAGE'));
 
     // get balance of SmsAero account
@@ -146,20 +145,20 @@ _Currently under TDD_
 ##[Change Log](https://github.com/stanislav-web/phalcon-sms-factory/blob/master/CHANGELOG.md "Change Log")
 
 ## Contributing and development
-I have enclosed instructions API and related classes (https://github.com/stanislav-web/phalcon-sms-factory/blob/master/SMS-factory.uml "Diagram").
+I have enclosed instructions API and related classes [Diagram](https://github.com/stanislav-web/phalcon-sms-factory/blob/master/SMS-Factory.uml "Diagram").
 
 *I am accept bug reports, new feature requests and pull requests in GitHub*.
 
-If you have a question about how to use this service, please see the [README](https://github.com/stanislav-web/phalcon-sms-factory/blob/master/README.md).
+If you have a question about how to use this service, please see this [README](https://github.com/stanislav-web/phalcon-sms-factory/blob/master/README.md).
 
-If you have a change or new feature in mind, please see [README](https://github.com/stanislav-web/phalcon-sms-factory/blob/master/README.md) again and follow *DRI* (development rules interfaces).
+If you have a change or new feature in mind, please see this [README](https://github.com/stanislav-web/phalcon-sms-factory/blob/master/README.md) again and follow *DRI* (development rules interfaces).
 
 **You can add new providers following interfaces:**
-- (https://github.com/stanislav-web/phalcon-sms-factory/blob/master/src/SMSFactory/Aware/ProviderConfigInterface.php "ProviderConfigInterface")
-- (https://github.com/stanislav-web/phalcon-sms-factory/blob/master/src/SMSFactory/Aware/ProviderInterface.php "ProviderInterface")
+- [ProviderConfigInterface](https://github.com/stanislav-web/phalcon-sms-factory/blob/master/src/SMSFactory/Aware/ProviderConfigInterface.php "ProviderConfigInterface")
+- [ProviderInterface](https://github.com/stanislav-web/phalcon-sms-factory/blob/master/src/SMSFactory/Aware/ProviderInterface.php "ProviderInterface")
 **You can add own or choise exists of request's client. Also available:**
-- (https://github.com/stanislav-web/phalcon-sms-factory/blob/master/src/SMSFactory/Aware/ClientProviders/CurlTrait.php "PHP libcurl")
-- (https://github.com/stanislav-web/phalcon-sms-factory/blob/master/src/SMSFactory/Aware/ClientProviders/StreamTrait.php "Stream Socket Client")
+- [PHP libcurl](https://github.com/stanislav-web/phalcon-sms-factory/blob/master/src/SMSFactory/Aware/ClientProviders/CurlTrait.php "PHP libcurl")
+- [Stream Socket Client](https://github.com/stanislav-web/phalcon-sms-factory/blob/master/src/SMSFactory/Aware/ClientProviders/StreamTrait.php "Stream Socket Client")
 
 ##[Issues](https://github.com/stanislav-web/phalcon-sms-factory/issues "Issues")
 
