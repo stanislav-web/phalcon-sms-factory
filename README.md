@@ -1,6 +1,6 @@
 # Multiple gateway SMS Sender factory
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/stanislav-web/Searcher/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/?branch=master) [![Build Status](https://travis-ci.org/stanislav-web/phalcon-sms-factory.svg?branch=master)](https://travis-ci.org/stanislav-web/phalcon-sms-factory) [![Total Downloads](https://poser.pugx.org/stanislav-web/phalcon-sms-factory/downloads.svg)](https://packagist.org/packages/stanislav-web/phalcon-sms-factory) [![Latest Stable Version](https://poser.pugx.org/stanislav-web/phalcon-sms-factory/v/stable.svg)](https://packagist.org/packages/stanislav-web/phalcon-sms-factory)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/stanislav-web/Searcher/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/?branch=master) [![Build Status](https://travis-ci.org/stanislav-web/phalcon-sms-factory.svg?branch=master)](https://travis-ci.org/stanislav-web/phalcon-sms-factory) [![Total Downloads](https://poser.pugx.org/stanislav-web/phalcon-sms-factory/downloads.svg)](https://packagist.org/packages/stanislav-web/phalcon-sms-factory) [![Latest Stable Version](https://poser.pugx.org/stanislav-web/phalcon-sms-factory/v/stable.svg)](https://packagist.org/packages/stanislav-web/phalcon-sms-factory) [![License](https://poser.pugx.org/stanislav-web/phalcon-sms-factory/license.svg)](https://packagist.org/packages/stanislav-web/phalcon-sms-factory)
 
 ## Description
 This service makes SMS through a variety of providers. You can easily implement your own providers using the interface design. _(Currently under TDD)_
@@ -20,7 +20,7 @@ At the moment, provides an interface to send and check your balance for the next
     - Support SMS mass mailing
 
 #### [v 1.2.2-beta] 2015-02-08
-    - **Add view balance**
+    - Add view balance
     - Add development info (API) / UML
     - Reformat to PSR-1/PSR-2
 
