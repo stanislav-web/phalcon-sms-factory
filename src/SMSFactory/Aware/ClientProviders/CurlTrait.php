@@ -26,7 +26,7 @@ trait CurlTrait
      * Setup debug
      *
      * @param boolean $flag
-     * @return Stream
+     * @return CurlTrait
      */
     public function debug($flag)
     {

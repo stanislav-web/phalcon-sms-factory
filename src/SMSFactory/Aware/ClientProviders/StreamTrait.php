@@ -26,7 +26,7 @@ trait StreamTrait
      * Setup debug
      *
      * @param boolean $flag
-     * @return Stream
+     * @return StreamTrait
      */
     public function debug($flag)
     {
