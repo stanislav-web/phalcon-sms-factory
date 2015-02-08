@@ -4,7 +4,8 @@
 
 ## Description
 This service makes SMS through a variety of providers. You can easily implement your own providers using the interface design. _(Currently under TDD)_
-At the moment, provides an interface to send and check your balance for the next SMS providers:
+At the moment, provides an interface to send and check your balance for the next:
+
     - BulkSMS
     - Clickatell
     - MessageBird
