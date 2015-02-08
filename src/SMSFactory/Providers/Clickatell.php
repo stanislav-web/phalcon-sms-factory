@@ -67,7 +67,7 @@ class Clickatell implements ProviderInterface
      *
      * @param \Phalcon\Http\Client\Response $response
      * @throws \Phalcon\Http\Response\Exception
-     * @return array|string
+     * @return string
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
@@ -97,7 +97,7 @@ class Clickatell implements ProviderInterface
      * Final send function
      *
      * @param string $message
-     * @return \Phalcon\Http\Client\Response|string|void
+     * @return string
      */
     final public function send($message)
     {
@@ -117,7 +117,7 @@ class Clickatell implements ProviderInterface
     /**
      * Final check balance function
      *
-     * @return \Phalcon\Http\Client\Response|string|void
+     * @return string
      */
     final public function balance()
     {
