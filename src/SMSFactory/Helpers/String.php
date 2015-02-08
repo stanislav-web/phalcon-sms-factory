@@ -11,7 +11,8 @@ namespace SMSFactory\Helpers;
  * @package SMSFactory\Helpers
  * @subpackage SMSFactory
  */
-class String {
+class String
+{
 
     /**
      * Check if a string is json valid
@@ -19,7 +20,8 @@ class String {
      * @param string $string
      * @return bool
      */
-    public static function isJson($string) {
+    public static function isJson($string)
+    {
 
         return ((is_string($string) === true &&
             (is_object(json_decode($string)) === true ||

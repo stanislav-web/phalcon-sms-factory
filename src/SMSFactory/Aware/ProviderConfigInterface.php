@@ -11,7 +11,8 @@ namespace SMSFactory\Aware;
  * @package SMSFactory\Aware
  * @subpackage SMSFactory
  */
-interface ProviderConfig {
+interface ProviderConfigInterface
+{
 
     /**
      * Default request method

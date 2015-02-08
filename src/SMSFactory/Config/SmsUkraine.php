@@ -1,7 +1,7 @@
 <?php
 namespace SMSFactory\Config;
 
-use SMSFactory\Aware\ProviderConfig;
+use SMSFactory\Aware\ProviderConfigInterface;
 use Phalcon\Exception;
 
 /**
@@ -14,7 +14,8 @@ use Phalcon\Exception;
  * @package SMSFactory\Config
  * @subpackage SMSFactory
  */
-class SmsUkraine implements ProviderConfig {
+class SmsUkraine implements ProviderConfigInterface
+{
 
     /**
      * Message uri
@@ -42,27 +43,27 @@ class SmsUkraine implements ProviderConfig {
      *
      * @var array $statuses
      */
-    public $statuses    =   [
-        '100'   =>  'The message is scheduled. Delivery has not yet been initiated.',
-        '101'   =>  'The message is in enroute state.',
-        '102'   =>  'Message is delivered to destination',
-        '103'   =>  'Message validity period has expired.',
-        '104'   =>  'Message has been deleted.',
-        '105'   =>  'Message is undeliverable.',
-        '106'   =>  'Message is in accepted state (i.e. has been manually read on behalf of the subscriber by customer service)',
-        '107'   =>  'Message is in invalid state The message state is unknown.',
-        '108'   =>  'Message is in a rejected state The message has been rejected by a delivery interface.',
-        '109'   =>  'Message discarded',
-        '110'   =>  'Message in process of transferring to mobile network',
-        '200'   =>  'Неизвестная ошибка',
-        '201'   =>  'Неправильный ID сообщения',
-        '202'   =>  'Неправильный идентификатор отправителя',
-        '203'   =>  'Неправильный номер получателя',
-        '204'   =>  'Слишком длинное или пустое сообщение',
-        '205'   =>  'Пользователь отключен',
-        '206'   =>  'Ошибка биллинга',
-        '207'   =>  'Превышение лимита выделенных сообщений',
-        '208'   =>  'Сообщение с указанным ID уже существует',
+    public $statuses = [
+        '100' => 'The message is scheduled. Delivery has not yet been initiated.',
+        '101' => 'The message is in enroute state.',
+        '102' => 'Message is delivered to destination',
+        '103' => 'Message validity period has expired.',
+        '104' => 'Message has been deleted.',
+        '105' => 'Message is undeliverable.',
+        '106' => 'Message is in accepted state (i.e. has been manually read on behalf of the subscriber by customer service)',
+        '107' => 'Message is in invalid state The message state is unknown.',
+        '108' => 'Message is in a rejected state The message has been rejected by a delivery interface.',
+        '109' => 'Message discarded',
+        '110' => 'Message in process of transferring to mobile network',
+        '200' => 'Неизвестная ошибка',
+        '201' => 'Неправильный ID сообщения',
+        '202' => 'Неправильный идентификатор отправителя',
+        '203' => 'Неправильный номер получателя',
+        '204' => 'Слишком длинное или пустое сообщение',
+        '205' => 'Пользователь отключен',
+        '206' => 'Ошибка биллинга',
+        '207' => 'Превышение лимита выделенных сообщений',
+        '208' => 'Сообщение с указанным ID уже существует',
     ];
 
     /**
@@ -79,9 +80,10 @@ class SmsUkraine implements ProviderConfig {
      * @param array $config
      * @return void
      */
-    public function __construct(array $config) {
+    public function __construct(array $config)
+    {
 
-        $this->config   =   $config;
+        $this->config = $config;
     }
 
     /**
@@ -89,7 +91,8 @@ class SmsUkraine implements ProviderConfig {
      *
      * @return string
      */
-    public function getMessageUri() {
+    public function getMessageUri()
+    {
 
         return (isset($this->config['message_uri']) === true) ? $this->config['message_uri']
             : self::SEND_MESSAGE_URI;
@@ -100,7 +103,8 @@ class SmsUkraine implements ProviderConfig {
      *
      * @return string
      */
-    public function getBalanceUri() {
+    public function getBalanceUri()
+    {
 
         return (isset($this->config['balance_uri']) === true) ? $this->config['balance_uri']
             : self::GET_BALANCE_URI;
@@ -111,7 +115,8 @@ class SmsUkraine implements ProviderConfig {
      *
      * @return string
      */
-    public function getRequestMethod() {
+    public function getRequestMethod()
+    {
 
         return (isset($this->config['request_method']) === true) ? $this->config['request_method']
             : self::REQUEST_METHOD;
@@ -122,12 +127,12 @@ class SmsUkraine implements ProviderConfig {
      *
      * @return void
      */
-    public function getProviderConfig() {
+    public function getProviderConfig()
+    {
 
-        if(empty($this->config) === false) {
+        if (empty($this->config) === false) {
             return $this->config;
-        }
-        else {
+        } else {
             throw new Exception('Empty provider config');
         }
     }
@@ -138,9 +143,10 @@ class SmsUkraine implements ProviderConfig {
      * @param int $code
      * @return string
      */
-    public function getResponseStatus($code) {
+    public function getResponseStatus($code)
+    {
 
-        return  (isset($this->statuses[$code]) === true) ? $this->statuses[$code]
+        return (isset($this->statuses[$code]) === true) ? $this->statuses[$code]
             : 'Unknown provider response error';
     }
 }

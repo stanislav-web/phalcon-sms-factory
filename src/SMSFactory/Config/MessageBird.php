@@ -1,7 +1,7 @@
 <?php
 namespace SMSFactory\Config;
 
-use SMSFactory\Aware\ProviderConfig;
+use SMSFactory\Aware\ProviderConfigInterface;
 use Phalcon\Exception;
 
 /**
@@ -14,7 +14,8 @@ use Phalcon\Exception;
  * @package SMSFactory\Config
  * @subpackage SMSFactory
  */
-class MessageBird implements ProviderConfig {
+class MessageBird implements ProviderConfigInterface
+{
 
     /**
      * Message uri
@@ -35,21 +36,21 @@ class MessageBird implements ProviderConfig {
      *
      * @var array $httpSuccessCode
      */
-    public $httpSuccessCode = [200,201,422];
+    public $httpSuccessCode = [200, 201, 422];
 
     /**
      * Acceptable provider statuses
      *
      * @var array $statuses
      */
-    public $statuses    =   [
-        '2'   =>  'Request not allowed',
-        '9'   =>  'Missing params',
-        '10'  =>  'Invalid params',
-        '20'  =>  'Not found',
-        '25'  =>  'Not enough balance',
-        '98'  =>  'API not found',
-        '99'  =>  'Internal error',
+    public $statuses = [
+        '2' => 'Request not allowed',
+        '9' => 'Missing params',
+        '10' => 'Invalid params',
+        '20' => 'Not found',
+        '25' => 'Not enough balance',
+        '98' => 'API not found',
+        '99' => 'Internal error',
     ];
 
     /**
@@ -66,9 +67,10 @@ class MessageBird implements ProviderConfig {
      * @param array $config
      * @return void
      */
-    public function __construct(array $config) {
+    public function __construct(array $config)
+    {
 
-        $this->config   =   $config;
+        $this->config = $config;
     }
 
     /**
@@ -76,7 +78,8 @@ class MessageBird implements ProviderConfig {
      *
      * @return string
      */
-    public function getMessageUri() {
+    public function getMessageUri()
+    {
 
         return (isset($this->config['message_uri']) === true) ? $this->config['message_uri']
             : self::SEND_MESSAGE_URI;
@@ -87,7 +90,8 @@ class MessageBird implements ProviderConfig {
      *
      * @return string
      */
-    public function getBalanceUri() {
+    public function getBalanceUri()
+    {
 
         return (isset($this->config['balance_uri']) === true) ? $this->config['balance_uri']
             : self::GET_BALANCE_URI;
@@ -98,7 +102,8 @@ class MessageBird implements ProviderConfig {
      *
      * @return string
      */
-    public function getRequestMethod() {
+    public function getRequestMethod()
+    {
 
         return (isset($this->config['request_method']) === true) ? $this->config['request_method']
             : self::REQUEST_METHOD;
@@ -109,12 +114,12 @@ class MessageBird implements ProviderConfig {
      *
      * @return void
      */
-    public function getProviderConfig() {
+    public function getProviderConfig()
+    {
 
-        if(empty($this->config) === false) {
+        if (empty($this->config) === false) {
             return $this->config;
-        }
-        else {
+        } else {
             throw new Exception('Empty provider config');
         }
     }
@@ -125,9 +130,10 @@ class MessageBird implements ProviderConfig {
      * @param int $code
      * @return string
      */
-    public function getResponseStatus($code) {
+    public function getResponseStatus($code)
+    {
 
-        return  (isset($this->statuses[$code]) === true) ? $this->statuses[$code]
+        return (isset($this->statuses[$code]) === true) ? $this->statuses[$code]
             : 'Unknown provider response error';
     }
 }

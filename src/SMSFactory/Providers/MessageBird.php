@@ -16,7 +16,8 @@ use SMSFactory\Aware\ClientProviders\CurlTrait;
  * @subpackage SMSFactory
  * @see https://www.messagebird.com/en/developers
  */
-class MessageBird implements ProviderInterface {
+class MessageBird implements ProviderInterface
+{
 
     /**
      * Using Curl client (you can make a change to Stream)
@@ -28,7 +29,7 @@ class MessageBird implements ProviderInterface {
      *
      * @var null|int
      */
-    private $recipient  =   null;
+    private $recipient = null;
 
     /**
      * Provider config object
@@ -42,9 +43,10 @@ class MessageBird implements ProviderInterface {
      *
      * @param \SMSFactory\Config\MessageBird $config
      */
-    public function __construct(\SMSFactory\Config\MessageBird $config) {
+    public function __construct(\SMSFactory\Config\MessageBird $config)
+    {
 
-        $this->config   =   $config;
+        $this->config = $config;
     }
 
     /**
@@ -53,8 +55,9 @@ class MessageBird implements ProviderInterface {
      * @param int $recipient
      * @return MessageBird
      */
-    public function setRecipient($recipient) {
-        $this->recipient    =   $recipient;
+    public function setRecipient($recipient)
+    {
+        $this->recipient = $recipient;
 
         return $this;
     }
@@ -66,22 +69,23 @@ class MessageBird implements ProviderInterface {
      * @throws \Phalcon\Http\Response\Exception
      * @return array|string
      */
-    public function getResponse(\Phalcon\Http\Client\Response $response) {
+    public function getResponse(\Phalcon\Http\Client\Response $response)
+    {
 
         // check response status
-        if(in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new Exception('The server is not responding: '.$response->header->statusMessage);
+        if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
+            throw new Exception('The server is not responding: ' . $response->header->statusMessage);
         }
 
         // parse json response
         $respArray = json_decode($response->body, true);
-        $status =   null;
+        $status = null;
 
-        if(isset($respArray['errors']) === true) {
+        if (isset($respArray['errors']) === true) {
 
             // if status exist.
             $status = (array_key_exists($respArray['errors'][0]['code'], $this->config->statuses))
-                ? $this->config->getResponseStatus($respArray['errors'][0]['code']).' '.$respArray['errors'][0]['description']
+                ? $this->config->getResponseStatus($respArray['errors'][0]['code']) . ' ' . $respArray['errors'][0]['description']
                 : '';
         }
 
@@ -96,13 +100,14 @@ class MessageBird implements ProviderInterface {
      * @param string $message
      * @return \Phalcon\Http\Client\Response|string|void
      */
-    final public function send($message) {
+    final public function send($message)
+    {
 
         // send message
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
                 $this->config->getProviderConfig(), [
-                    'recipients'     =>  $this->recipient,      //  SMS Recipient
-                    'body'           =>  $message,   //  Message
+                'recipients' => $this->recipient,      //  SMS Recipient
+                'body' => $message,   //  Message
             ])
         );
 
@@ -116,7 +121,8 @@ class MessageBird implements ProviderInterface {
      * @throws \Phalcon\Http\Response\Exception
      * @return \Phalcon\Http\Client\Response|string|void
      */
-    final public function balance() {
+    final public function balance()
+    {
 
         // check balance
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getBalanceUri(),

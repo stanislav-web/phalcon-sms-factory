@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>PHP</ID>
+  <OriginalElement>\SMSFactory\Sender</OriginalElement>
+  <nodes>
+    <node x="1656.0" y="268.0">\SMSFactory\Providers\SMSC</node>
+    <node x="828.0" y="268.0">\SMSFactory\Providers\MessageBird</node>
+    <node x="0.0" y="646.0">\SMSFactory\Sender</node>
+    <node x="1380.0" y="268.0">\SMSFactory\Providers\SmsAero</node>
+    <node x="276.0" y="268.0">\SMSFactory\Providers\Nexmo</node>
+    <node x="0.0" y="268.0">\SMSFactory\Providers\SmsUkraine</node>
+    <node x="559.0" y="515.0">\SMSFactory\Aware\ClientProviders\StreamTrait</node>
+    <node x="699.25" y="0.0">\SMSFactory\Aware\ProviderInterface</node>
+    <node x="203.0" y="515.0">\SMSFactory\Aware\ProviderConfigInterface</node>
+    <node x="1104.0" y="268.0">\SMSFactory\Providers\BulkSMS</node>
+    <node x="552.0" y="268.0">\SMSFactory\Providers\Clickatell</node>
+    <node x="995.25" y="11.5">\SMSFactory\Aware\ClientProviders\CurlTrait</node>
+    <node x="10.0" y="515.0">\SMSFactory\Aware\Provider</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="\SMSFactory\Providers\SMSC" target="\SMSFactory\Aware\ClientProviders\CurlTrait">
+      <point x="64.0" y="-101.0" />
+      <point x="1848.0" y="148.0" />
+      <point x="1142.892857142857" y="148.0" />
+      <point x="68.14285714285711" y="52.5" />
+    </edge>
+    <edge source="\SMSFactory\Providers\Nexmo" target="\SMSFactory\Aware\ProviderInterface">
+      <point x="-64.0" y="-101.0" />
+      <point x="340.0" y="198.0" />
+      <point x="758.3928571428571" y="198.0" />
+      <point x="-78.85714285714289" y="64.0" />
+    </edge>
+    <edge source="\SMSFactory\Sender" target="\SMSFactory\Aware\Provider">
+      <point x="0.0" y="-53.0" />
+      <point x="0.0" y="40.5" />
+    </edge>
+    <edge source="\SMSFactory\Providers\SmsAero" target="\SMSFactory\Aware\ClientProviders\CurlTrait">
+      <point x="64.0" y="-101.0" />
+      <point x="1572.0" y="168.0" />
+      <point x="1120.1785714285713" y="168.0" />
+      <point x="45.4285714285714" y="52.5" />
+    </edge>
+    <edge source="\SMSFactory\Providers\SmsUkraine" target="\SMSFactory\Aware\ProviderInterface">
+      <point x="-64.0" y="-101.0" />
+      <point x="64.0" y="188.0" />
+      <point x="718.9642857142858" y="188.0" />
+      <point x="-118.28571428571428" y="64.0" />
+    </edge>
+    <edge source="\SMSFactory\Providers\MessageBird" target="\SMSFactory\Aware\ProviderInterface">
+      <point x="-64.0" y="-101.0" />
+      <point x="892.0" y="208.0" />
+      <point x="837.25" y="208.0" />
+      <point x="0.0" y="64.0" />
+    </edge>
+    <edge source="\SMSFactory\Providers\Clickatell" target="\SMSFactory\Aware\ClientProviders\CurlTrait">
+      <point x="64.0" y="-101.0" />
+      <point x="744.0" y="238.0" />
+      <point x="1052.0357142857142" y="238.0" />
+      <point x="-22.714285714285722" y="52.5" />
+    </edge>
+    <edge source="\SMSFactory\Providers\Nexmo" target="\SMSFactory\Aware\ClientProviders\CurlTrait">
+      <point x="64.0" y="-101.0" />
+      <point x="468.0" y="228.0" />
+      <point x="1029.3214285714284" y="228.0" />
+      <point x="-45.428571428571445" y="52.5" />
+    </edge>
+    <edge source="\SMSFactory\Providers\MessageBird" target="\SMSFactory\Aware\ClientProviders\CurlTrait">
+      <point x="64.0" y="-101.0" />
+      <point x="1020.0" y="248.0" />
+      <point x="1074.75" y="248.0" />
+      <point x="-1.4210854715202004E-14" y="52.5" />
+    </edge>
+    <edge source="\SMSFactory\Providers\SMSC" target="\SMSFactory\Aware\ProviderInterface">
+      <point x="-64.0" y="-101.0" />
+      <point x="1720.0" y="158.0" />
+      <point x="955.5357142857142" y="158.0" />
+      <point x="118.28571428571422" y="64.0" />
+    </edge>
+    <edge source="\SMSFactory\Providers\SmsAero" target="\SMSFactory\Aware\ProviderInterface">
+      <point x="-64.0" y="-101.0" />
+      <point x="1444.0" y="178.0" />
+      <point x="916.1071428571428" y="178.0" />
+      <point x="78.85714285714278" y="64.0" />
+    </edge>
+    <edge source="\SMSFactory\Providers\BulkSMS" target="\SMSFactory\Aware\ProviderInterface">
+      <point x="-64.0" y="-101.0" />
+      <point x="1168.0" y="198.0" />
+      <point x="876.6785714285713" y="198.0" />
+      <point x="39.42857142857139" y="64.0" />
+    </edge>
+    <edge source="\SMSFactory\Providers\BulkSMS" target="\SMSFactory\Aware\ClientProviders\CurlTrait">
+      <point x="64.0" y="-101.0" />
+      <point x="1296.0" y="188.0" />
+      <point x="1097.4642857142858" y="188.0" />
+      <point x="22.714285714285694" y="52.5" />
+    </edge>
+    <edge source="\SMSFactory\Providers\Clickatell" target="\SMSFactory\Aware\ProviderInterface">
+      <point x="-64.0" y="-101.0" />
+      <point x="616.0" y="208.0" />
+      <point x="797.8214285714286" y="208.0" />
+      <point x="-39.428571428571445" y="64.0" />
+    </edge>
+    <edge source="\SMSFactory\Providers\SmsUkraine" target="\SMSFactory\Aware\ClientProviders\CurlTrait">
+      <point x="64.0" y="-101.0" />
+      <point x="192.0" y="218.0" />
+      <point x="1006.6071428571429" y="218.0" />
+      <point x="-68.14285714285714" y="52.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.4880952380952381" x="956.0" y="356.4634146341464" />
+  <SelectedNodes>
+    <node>\SMSFactory\Aware\ProviderConfigInterface</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constants</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

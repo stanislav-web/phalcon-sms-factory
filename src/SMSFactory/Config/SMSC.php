@@ -1,7 +1,7 @@
 <?php
 namespace SMSFactory\Config;
 
-use SMSFactory\Aware\ProviderConfig;
+use SMSFactory\Aware\ProviderConfigInterface;
 use Phalcon\Exception;
 
 /**
@@ -14,7 +14,8 @@ use Phalcon\Exception;
  * @package SMSFactory\Config
  * @subpackage SMSFactory
  */
-class SMSC implements ProviderConfig {
+class SMSC implements ProviderConfigInterface
+{
 
     /**
      * Message uri
@@ -42,16 +43,16 @@ class SMSC implements ProviderConfig {
      *
      * @var array $statuses
      */
-    public $statuses    =   [
-        '1'   => 'Ошибка в параметрах.',
-        '2'   => 'Неверный логин или пароль.',
-        '3'   => 'Недостаточно средств на счете Клиента.',
-        '4'   => 'IP-адрес временно заблокирован из-за частых ошибок в запросах.',
-        '5'   => 'Неверный формат даты.',
-        '6'   => 'Сообщение запрещено (по тексту или по имени отправителя).',
-        '7'   => 'Неверный формат номера телефона.',
-        '8'   => 'Сообщение на указанный номер не может быть доставлено.',
-        '9'   => 'Отправка более одного одинакового запроса на передачу SMS-сообщения либо более пяти одинаковых запросов на получение стоимости сообщения в течение минуты.',
+    public $statuses = [
+        '1' => 'Ошибка в параметрах.',
+        '2' => 'Неверный логин или пароль.',
+        '3' => 'Недостаточно средств на счете Клиента.',
+        '4' => 'IP-адрес временно заблокирован из-за частых ошибок в запросах.',
+        '5' => 'Неверный формат даты.',
+        '6' => 'Сообщение запрещено (по тексту или по имени отправителя).',
+        '7' => 'Неверный формат номера телефона.',
+        '8' => 'Сообщение на указанный номер не может быть доставлено.',
+        '9' => 'Отправка более одного одинакового запроса на передачу SMS-сообщения либо более пяти одинаковых запросов на получение стоимости сообщения в течение минуты.',
     ];
 
     /**
@@ -68,9 +69,10 @@ class SMSC implements ProviderConfig {
      * @param array $config
      * @return void
      */
-    public function __construct(array $config) {
+    public function __construct(array $config)
+    {
 
-        $this->config   =   $config;
+        $this->config = $config;
     }
 
     /**
@@ -78,7 +80,8 @@ class SMSC implements ProviderConfig {
      *
      * @return string
      */
-    public function getMessageUri() {
+    public function getMessageUri()
+    {
 
         return (isset($this->config['message_uri']) === true) ? $this->config['message_uri']
             : self::SEND_MESSAGE_URI;
@@ -89,7 +92,8 @@ class SMSC implements ProviderConfig {
      *
      * @return string
      */
-    public function getBalanceUri() {
+    public function getBalanceUri()
+    {
 
         return (isset($this->config['balance_uri']) === true) ? $this->config['balance_uri']
             : self::GET_BALANCE_URI;
@@ -100,7 +104,8 @@ class SMSC implements ProviderConfig {
      *
      * @return string
      */
-    public function getRequestMethod() {
+    public function getRequestMethod()
+    {
 
         return (isset($this->config['request_method']) === true) ? $this->config['request_method']
             : self::REQUEST_METHOD;
@@ -111,12 +116,12 @@ class SMSC implements ProviderConfig {
      *
      * @return void
      */
-    public function getProviderConfig() {
+    public function getProviderConfig()
+    {
 
-        if(empty($this->config) === false) {
+        if (empty($this->config) === false) {
             return $this->config;
-        }
-        else {
+        } else {
             throw new Exception('Empty provider config');
         }
     }
@@ -127,9 +132,10 @@ class SMSC implements ProviderConfig {
      * @param int $code
      * @return string
      */
-    public function getResponseStatus($code) {
+    public function getResponseStatus($code)
+    {
 
-        return  (isset($this->statuses[$code]) === true) ? $this->statuses[$code]
+        return (isset($this->statuses[$code]) === true) ? $this->statuses[$code]
             : 'Unknown provider response error';
     }
 }

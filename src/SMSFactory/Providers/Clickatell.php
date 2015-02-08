@@ -16,7 +16,8 @@ use SMSFactory\Aware\ClientProviders\CurlTrait;
  * @subpackage SMSFactory
  * @see https://www.clickatell.com/apis-scripts/scripts/php/
  */
-class Clickatell implements ProviderInterface {
+class Clickatell implements ProviderInterface
+{
 
     /**
      * Using Curl client (you can make a change to Stream)
@@ -28,7 +29,7 @@ class Clickatell implements ProviderInterface {
      *
      * @var null|int
      */
-    private $recipient  =   null;
+    private $recipient = null;
 
     /**
      * Provider config object
@@ -42,9 +43,10 @@ class Clickatell implements ProviderInterface {
      *
      * @param \SMSFactory\Config\Clickatell $config
      */
-    public function __construct(\SMSFactory\Config\Clickatell $config) {
+    public function __construct(\SMSFactory\Config\Clickatell $config)
+    {
 
-        $this->config   =   $config;
+        $this->config = $config;
     }
 
     /**
@@ -53,8 +55,9 @@ class Clickatell implements ProviderInterface {
      * @param int $recipient
      * @return Clickatell
      */
-    public function setRecipient($recipient) {
-        $this->recipient    =   $recipient;
+    public function setRecipient($recipient)
+    {
+        $this->recipient = $recipient;
 
         return $this;
     }
@@ -66,15 +69,16 @@ class Clickatell implements ProviderInterface {
      * @throws \Phalcon\Http\Response\Exception
      * @return array|string
      */
-    public function getResponse(\Phalcon\Http\Client\Response $response) {
+    public function getResponse(\Phalcon\Http\Client\Response $response)
+    {
 
         // check response status
-        if(in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new Exception('The server is not responding: '.$response->header->statusMessage);
+        if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
+            throw new Exception('The server is not responding: ' . $response->header->statusMessage);
         }
 
         // get server response status
-        if(stripos($response->body, 'ERR') !== false) {
+        if (stripos($response->body, 'ERR') !== false) {
             // have an error
             preg_match('/(\d{3})/', $response->body, $matches);
 
@@ -95,13 +99,14 @@ class Clickatell implements ProviderInterface {
      * @param string $message
      * @return \Phalcon\Http\Client\Response|string|void
      */
-    final public function send($message) {
+    final public function send($message)
+    {
 
         // send message
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
                 $this->config->getProviderConfig(), [
-                'to'     =>  $this->recipient,      //  SMS Recipient
-                'text'   =>  $message,   //  Message
+                'to' => $this->recipient,      //  SMS Recipient
+                'text' => $message,   //  Message
             ])
         );
 
@@ -114,7 +119,8 @@ class Clickatell implements ProviderInterface {
      *
      * @return \Phalcon\Http\Client\Response|string|void
      */
-    final public function balance() {
+    final public function balance()
+    {
 
         // check balance
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getBalanceUri(),

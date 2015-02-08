@@ -13,7 +13,8 @@ use Phalcon\Http\Client\Provider\Stream;
  * @package SMSFactory\Aware\ClientProviders\StreamTrait
  * @subpackage SMSFactory
  */
-trait StreamTrait {
+trait StreamTrait
+{
 
     /**
      * @var boolean $debug
@@ -27,7 +28,8 @@ trait StreamTrait {
      * @param boolean $flag
      * @return Stream
      */
-    public function debug($flag) {
+    public function debug($flag)
+    {
         $this->debug = (in_array($flag, [true, false])) ? $flag : false;
 
         return $this;
@@ -38,7 +40,8 @@ trait StreamTrait {
      *
      * @return Stream
      */
-    public function client() {
+    public function client()
+    {
         return new Stream();
     }
 }

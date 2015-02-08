@@ -11,7 +11,8 @@ namespace SMSFactory\Aware;
  * @package SMSFactory\Aware
  * @subpackage SMSFactory
  */
-interface ProviderInterface {
+interface ProviderInterface
+{
 
     /**
      * Set the recipient of the message

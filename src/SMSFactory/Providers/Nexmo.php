@@ -16,7 +16,8 @@ use SMSFactory\Aware\ClientProviders\CurlTrait;
  * @subpackage SMSFactory
  * @see https://docs.nexmo.com/index.php/sms-api
  */
-class Nexmo implements ProviderInterface {
+class Nexmo implements ProviderInterface
+{
 
     /**
      * Using Curl client (you can make a change to Stream)
@@ -28,7 +29,7 @@ class Nexmo implements ProviderInterface {
      *
      * @var null|int
      */
-    private $recipient  =   null;
+    private $recipient = null;
 
     /**
      * Provider config object
@@ -42,9 +43,10 @@ class Nexmo implements ProviderInterface {
      *
      * @param \SMSFactory\Config\Nexmo $config
      */
-    public function __construct(\SMSFactory\Config\Nexmo $config) {
+    public function __construct(\SMSFactory\Config\Nexmo $config)
+    {
 
-        $this->config   =   $config;
+        $this->config = $config;
     }
 
     /**
@@ -53,8 +55,9 @@ class Nexmo implements ProviderInterface {
      * @param int $recipient
      * @return Nexmo
      */
-    public function setRecipient($recipient) {
-        $this->recipient    =   $recipient;
+    public function setRecipient($recipient)
+    {
+        $this->recipient = $recipient;
 
         return $this;
     }
@@ -66,17 +69,18 @@ class Nexmo implements ProviderInterface {
      * @throws \Phalcon\Http\Response\Exception
      * @return array|string
      */
-    public function getResponse(\Phalcon\Http\Client\Response $response) {
+    public function getResponse(\Phalcon\Http\Client\Response $response)
+    {
 
         // check response status
-        if(in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new Exception('The server is not responding: '.$response->header->statusMessage);
+        if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
+            throw new Exception('The server is not responding: ' . $response->header->statusMessage);
         }
 
         // parse json response
         $respArray = json_decode($response->body, true);
 
-        if(isset($respArray['messages'][0]['status']) === true) {
+        if (isset($respArray['messages'][0]['status']) === true) {
 
             // if status exist.
             $status = (array_key_exists($respArray['messages'][0]['status'], $this->config->statuses))
@@ -95,13 +99,14 @@ class Nexmo implements ProviderInterface {
      * @param string $message
      * @return \Phalcon\Http\Client\Response|string|void
      */
-    final public function send($message) {
+    final public function send($message)
+    {
 
         // send message
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
                 $this->config->getProviderConfig(), [
-                    'to'     =>  $this->recipient,      //  SMS Recipient
-                    'text'   =>  $message,   //  Message
+                'to' => $this->recipient,      //  SMS Recipient
+                'text' => $message,   //  Message
             ])
         );
 
@@ -115,7 +120,8 @@ class Nexmo implements ProviderInterface {
      * @throws \Phalcon\Http\Response\Exception
      * @return \Phalcon\Http\Client\Response|string|void
      */
-    final public function balance() {
+    final public function balance()
+    {
 
         // check balance
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getBalanceUri(),

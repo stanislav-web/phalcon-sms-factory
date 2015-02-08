@@ -1,7 +1,7 @@
 <?php
 namespace SMSFactory\Config;
 
-use SMSFactory\Aware\ProviderConfig;
+use SMSFactory\Aware\ProviderConfigInterface;
 use Phalcon\Exception;
 
 /**
@@ -14,7 +14,8 @@ use Phalcon\Exception;
  * @package SMSFactory\Config
  * @subpackage SMSFactory
  */
-class BulkSMS implements ProviderConfig {
+class BulkSMS implements ProviderConfigInterface
+{
 
     /**
      * Message uri
@@ -42,17 +43,17 @@ class BulkSMS implements ProviderConfig {
      *
      * @var array $statuses
      */
-    public $statuses    =   [
-        '0'   => 'In progress (a normal message submission, with no error encountered so far).',
-        '1'   => 'Scheduled (see Scheduling below).',
-        '22'  => 'Internal fatal error.',
-        '23'  => 'Authentication failure.',
-        '24'  => 'Data validation failed.',
-        '25'  => 'You do not have sufficient credits.',
-        '26'  => 'Upstream credits not available.',
-        '27'  => 'You have exceeded your daily quota.',
-        '28'  => 'Upstream quota exceeded.',
-        '40'  => 'Temporarily unavailable.',
+    public $statuses = [
+        '0' => 'In progress (a normal message submission, with no error encountered so far).',
+        '1' => 'Scheduled (see Scheduling below).',
+        '22' => 'Internal fatal error.',
+        '23' => 'Authentication failure.',
+        '24' => 'Data validation failed.',
+        '25' => 'You do not have sufficient credits.',
+        '26' => 'Upstream credits not available.',
+        '27' => 'You have exceeded your daily quota.',
+        '28' => 'Upstream quota exceeded.',
+        '40' => 'Temporarily unavailable.',
         '201' => 'Maximum batch size exceeded.',
         '500' => 'Undefined error.'
     ];
@@ -71,9 +72,10 @@ class BulkSMS implements ProviderConfig {
      * @param array $config
      * @return void
      */
-    public function __construct(array $config) {
+    public function __construct(array $config)
+    {
 
-        $this->config   =   $config;
+        $this->config = $config;
     }
 
     /**
@@ -81,7 +83,8 @@ class BulkSMS implements ProviderConfig {
      *
      * @return string
      */
-    public function getMessageUri() {
+    public function getMessageUri()
+    {
 
         return (isset($this->config['message_uri']) === true) ? $this->config['message_uri']
             : self::SEND_MESSAGE_URI;
@@ -92,7 +95,8 @@ class BulkSMS implements ProviderConfig {
      *
      * @return string
      */
-    public function getBalanceUri() {
+    public function getBalanceUri()
+    {
 
         return (isset($this->config['balance_uri']) === true) ? $this->config['balance_uri']
             : self::GET_BALANCE_URI;
@@ -103,7 +107,8 @@ class BulkSMS implements ProviderConfig {
      *
      * @return string
      */
-    public function getRequestMethod() {
+    public function getRequestMethod()
+    {
 
         return (isset($this->config['request_method']) === true) ? $this->config['request_method']
             : self::REQUEST_METHOD;
@@ -114,12 +119,12 @@ class BulkSMS implements ProviderConfig {
      *
      * @return void
      */
-    public function getProviderConfig() {
+    public function getProviderConfig()
+    {
 
-        if(empty($this->config) === false) {
+        if (empty($this->config) === false) {
             return $this->config;
-        }
-        else {
+        } else {
             throw new Exception('Empty provider config');
         }
     }
@@ -130,9 +135,10 @@ class BulkSMS implements ProviderConfig {
      * @param int $code
      * @return string
      */
-    public function getResponseStatus($code) {
+    public function getResponseStatus($code)
+    {
 
-        return  (isset($this->statuses[$code]) === true) ? $this->statuses[$code]
+        return (isset($this->statuses[$code]) === true) ? $this->statuses[$code]
             : 'Unknown provider response error';
     }
 }

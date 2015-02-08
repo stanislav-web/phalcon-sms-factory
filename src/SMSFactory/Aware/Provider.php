@@ -13,7 +13,8 @@ use SMSFactory\Providers;
  * @package SMSFactory\Aware
  * @subpackage SMSFactory
  */
-abstract class Provider {
+abstract class Provider
+{
 
     /**
      * Global app config container
@@ -21,6 +22,7 @@ abstract class Provider {
      * @var \Phalcon\Config $config
      */
     protected $config;
+
     /**
      * Call provider interface
      *

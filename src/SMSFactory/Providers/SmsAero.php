@@ -16,7 +16,8 @@ use SMSFactory\Aware\ClientProviders\CurlTrait;
  * @subpackage SMSFactory
  * @see http://smsaero.ru/api/
  */
-class SmsAero implements ProviderInterface {
+class SmsAero implements ProviderInterface
+{
 
     /**
      * Using Curl client (you can make a change to Stream)
@@ -28,7 +29,7 @@ class SmsAero implements ProviderInterface {
      *
      * @var null|int
      */
-    private $recipient  =   null;
+    private $recipient = null;
 
     /**
      * Provider config object
@@ -42,9 +43,10 @@ class SmsAero implements ProviderInterface {
      *
      * @param \SMSFactory\Config\SmsAero $config
      */
-    public function __construct(\SMSFactory\Config\SmsAero $config) {
+    public function __construct(\SMSFactory\Config\SmsAero $config)
+    {
 
-        $this->config   =   $config;
+        $this->config = $config;
     }
 
     /**
@@ -53,8 +55,9 @@ class SmsAero implements ProviderInterface {
      * @param int $recipient
      * @return SmsAero
      */
-    public function setRecipient($recipient) {
-        $this->recipient    =   $recipient;
+    public function setRecipient($recipient)
+    {
+        $this->recipient = $recipient;
 
         return $this;
     }
@@ -66,20 +69,20 @@ class SmsAero implements ProviderInterface {
      * @throws \Phalcon\Http\Response\Exception
      * @return array|string
      */
-    public function getResponse(\Phalcon\Http\Client\Response $response) {
+    public function getResponse(\Phalcon\Http\Client\Response $response)
+    {
 
         // check response status
-        if(in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new Exception('The server is not responding: '.$response->header->statusMessage);
+        if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
+            throw new Exception('The server is not responding: ' . $response->header->statusMessage);
         }
 
         // parse json response
         $isJson = \SMSFactory\Helpers\String::isJson($response->body);
 
-        if($isJson === true) {
+        if ($isJson === true) {
             $respArray = json_decode($response->body, true);
-        }
-        else {
+        } else {
 
             // if status exist
             $status = (array_key_exists($response->body, $this->config->statuses))
@@ -98,13 +101,14 @@ class SmsAero implements ProviderInterface {
      * @param string $message
      * @return \Phalcon\Http\Client\Response|string|void
      */
-    final public function send($message) {
+    final public function send($message)
+    {
 
         // send message
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
                 $this->config->getProviderConfig(), [
-                'to'     =>  $this->recipient,   //  SMS Receipient
-                'text'   =>  $message,           //  Message
+                'to' => $this->recipient,   //  SMS Receipient
+                'text' => $message,           //  Message
             ])
         );
 
@@ -118,7 +122,8 @@ class SmsAero implements ProviderInterface {
      * @throws \Phalcon\Http\Response\Exception
      * @return \Phalcon\Http\Client\Response|string|void
      */
-    final public function balance() {
+    final public function balance()
+    {
 
         // check balance
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getBalanceUri(),

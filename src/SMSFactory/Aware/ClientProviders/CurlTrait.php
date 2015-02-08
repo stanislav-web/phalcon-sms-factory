@@ -13,7 +13,8 @@ use Phalcon\Http\Client\Provider\Curl;
  * @package SMSFactory\Aware\ClientProviders\CurlTrait
  * @subpackage SMSFactory
  */
-trait CurlTrait {
+trait CurlTrait
+{
 
     /**
      * @var boolean $debug
@@ -27,7 +28,8 @@ trait CurlTrait {
      * @param boolean $flag
      * @return Stream
      */
-    public function debug($flag) {
+    public function debug($flag)
+    {
         $this->debug = (in_array($flag, [true, false])) ? $flag : false;
 
         return $this;
@@ -39,7 +41,8 @@ trait CurlTrait {
      * @access public
      * @return Curl
      */
-    public function client() {
+    public function client()
+    {
         return new Curl();
     }
 }

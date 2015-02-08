@@ -15,19 +15,20 @@ use SMSFactory\Aware\Provider;
  * @package SMSFactory
  * @subpackage SMSFactory
  */
-class Sender extends Provider {
+class Sender extends Provider
+{
 
     /**
      * inject of Phalcon dependency container
      * @param \Phalcon\DI\FactoryDefault $di
      */
-    public function __construct(\Phalcon\DI\FactoryDefault $di) {
+    public function __construct(\Phalcon\DI\FactoryDefault $di)
+    {
 
         // get configuration service
-        if($di->has('config') === true) {
-            $this->config   =   $di->get('config')->sms->toArray();
-        }
-        else {
+        if ($di->has('config') === true) {
+            $this->config = $di->get('config')->sms->toArray();
+        } else {
             throw new ConfigException('Please setup your configuration to $di');
         }
     }
@@ -50,12 +51,11 @@ class Sender extends Provider {
         $configProviderClass = "SMSFactory\\Config\\$providerName"; // note: no leading backslash
         $providerClass = "SMSFactory\\Providers\\$providerName"; // note: no leading backslash
 
-        if(class_exists($providerClass) === true) {
+        if (class_exists($providerClass) === true) {
 
             // inject configurations
             return new $providerClass(new $configProviderClass($this->config[$providerName]));
-        }
-        else {
+        } else {
             throw new Exception('Provider ' . $providerName . ' does not exist');
         }
     }

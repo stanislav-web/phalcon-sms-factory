@@ -16,7 +16,8 @@ use SMSFactory\Aware\ClientProviders\CurlTrait;
  * @subpackage SMSFactory
  * @see http://smsc.ru/api/code/
  */
-class SMSC implements ProviderInterface {
+class SMSC implements ProviderInterface
+{
 
     /**
      * Using Curl client (you can make a change to Stream)
@@ -28,7 +29,7 @@ class SMSC implements ProviderInterface {
      *
      * @var null|int
      */
-    private $recipient  =   null;
+    private $recipient = null;
 
     /**
      * Provider config object
@@ -42,9 +43,10 @@ class SMSC implements ProviderInterface {
      *
      * @param \SMSFactory\Config\SMSC $config
      */
-    public function __construct(\SMSFactory\Config\SMSC $config) {
+    public function __construct(\SMSFactory\Config\SMSC $config)
+    {
 
-        $this->config   =   $config;
+        $this->config = $config;
     }
 
     /**
@@ -53,8 +55,9 @@ class SMSC implements ProviderInterface {
      * @param int $recipient
      * @return SMSC
      */
-    public function setRecipient($recipient) {
-        $this->recipient    =   $recipient;
+    public function setRecipient($recipient)
+    {
+        $this->recipient = $recipient;
 
         return $this;
     }
@@ -66,18 +69,19 @@ class SMSC implements ProviderInterface {
      * @throws \Phalcon\Http\Response\Exception
      * @return array|string
      */
-    public function getResponse(\Phalcon\Http\Client\Response $response) {
+    public function getResponse(\Phalcon\Http\Client\Response $response)
+    {
 
         // check response status
-        if(in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new Exception('The server is not responding: '.$response->header->statusMessage);
+        if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
+            throw new Exception('The server is not responding: ' . $response->header->statusMessage);
         }
 
         // parse json response
         $respArray = json_decode($response->body, true);
-        $status =   null;
+        $status = null;
 
-        if(isset($respArray['error_code']) === true) {
+        if (isset($respArray['error_code']) === true) {
 
             // if status exist.
             $status = (array_key_exists($respArray['error_code'], $this->config->$statuses))
@@ -87,7 +91,7 @@ class SMSC implements ProviderInterface {
 
         return ($this->debug === true) ? [
             $response, ($status === null ? $respArray : $status)
-       ] : ($status === null ? $respArray : $status);
+        ] : ($status === null ? $respArray : $status);
     }
 
     /**
@@ -96,13 +100,14 @@ class SMSC implements ProviderInterface {
      * @param string $message
      * @return \Phalcon\Http\Client\Response|string|void
      */
-    final public function send($message) {
+    final public function send($message)
+    {
 
         // send message
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
                 $this->config->getProviderConfig(), [
-                'phones'    =>  $this->recipient,   //  SMS Receipient
-                'mes'       =>  $message,           //  Message
+                'phones' => $this->recipient,   //  SMS Receipient
+                'mes' => $message,           //  Message
             ])
         );
 
@@ -116,7 +121,8 @@ class SMSC implements ProviderInterface {
      * @throws \Phalcon\Http\Response\Exception
      * @return \Phalcon\Http\Client\Response|string|void
      */
-    final public function balance() {
+    final public function balance()
+    {
 
         // check balance
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getBalanceUri(),

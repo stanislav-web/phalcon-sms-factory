@@ -1,0 +1,51 @@
+# list of scanned file extensions (e.g. php5, phpt...)
+extensions: [php]
+
+# directories and files matching this file mask will not be parsed
+exclude:
+    - api/
+    - phpunit/
+    - build/
+
+# character set of source files; if you use only one across your files, we recommend you name it
+charset: [UTF-8]
+
+# elements with this name prefix will be considered as the "main project" (the rest will be considered as libraries)
+main: ApiGen
+
+# title of generated documentation
+title: Phalcon SMS Factory
+
+# base url used for sitemap (useful for public doc)
+baseUrl: https://github.com/stanislav-web
+
+# the way elements are grouped in menu
+groups: auto # also: namespace, packages, none; auto will detect namespace first, than packages
+
+# include elements marked as @internal/{@internal}
+internal: false
+
+# generate documentation for PHP internal classes
+php: true
+
+# generate highlighted source code for elements
+sourceCode: true
+
+# generate tree view of classes, interfaces, traits and exceptions
+tree: true
+
+# generate documentation for deprecated elements
+deprecated: true
+
+# generate list of tasks with @todo annotation
+todo: true
+
+# add link to ZIP archive of documentation
+download: true
+
+#setup source
+source:
+    - src
+
+# The ultimate directory (you can see the result, the relative path from the directory run apigen)
+destination: ./api
