@@ -4,7 +4,7 @@
     - Support SMS mass mailing
 
 #### [v 1.2.2-beta] 2015-02-08
-    - **Add view balance**
+    - Add view balance
     - Add development info (API) / UML
     - Reformat to PSR-1/PSR-2
 
