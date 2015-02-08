@@ -1,6 +1,6 @@
 {
   "name": "stanislav-web/phalcon-sms-factory",
-  "description": "Phalcon SMS Factory. Provide any SMS services inside your Phalcon's projects",
+  "description": "Multiple gateway SMS Sender factory. Provide any SMS services inside your Phalcon's projects",
   "type": "library",
   "keywords": [
     "phalcon",
