@@ -2,6 +2,7 @@
 namespace SMSFactory;
 
 use Phalcon\Exception;
+use Phalcon\Config\Exception as ConfigException;
 use SMSFactory\Aware\Provider;
 
 /**
@@ -17,12 +18,26 @@ use SMSFactory\Aware\Provider;
 class Sender extends Provider {
 
     /**
+     * inject of Phalcon dependency container
+     * @param \Phalcon\DI\FactoryDefault $di
+     */
+    public function __construct(\Phalcon\DI\FactoryDefault $di) {
+
+        // get configuration service
+        if($di->has('config') === true) {
+            $this->config   =   $di->get('config')->sms->toArray();
+        }
+        else {
+            throw new ConfigException('Please setup your configuration to $di');
+        }
+    }
+
+    /**
      * Get SMS provider
      *
      * @param string $providerName demanded provider
      *
      * @uses    ProviderInterface::setRecipient()
-     * @uses    ProviderInterface::setMessage()
      * @uses    ProviderInterface::send()
      * @uses    ProviderInterface::balance()
      *
@@ -32,10 +47,13 @@ class Sender extends Provider {
     final public function call($providerName)
     {
 
+        $configProviderClass = "SMSFactory\\Config\\$providerName"; // note: no leading backslash
         $providerClass = "SMSFactory\\Providers\\$providerName"; // note: no leading backslash
 
         if(class_exists($providerClass) === true) {
-            return new $providerClass;
+
+            // inject configurations
+            return new $providerClass(new $configProviderClass($this->config[$providerName]));
         }
         else {
             throw new Exception('Provider ' . $providerName . ' does not exist');

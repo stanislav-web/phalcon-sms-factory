@@ -2,7 +2,6 @@
 namespace SMSFactory\Config;
 
 use SMSFactory\Aware\ProviderConfig;
-use Phalcon\Config;
 use Phalcon\Exception;
 
 /**
@@ -18,32 +17,32 @@ use Phalcon\Exception;
 class Nexmo implements ProviderConfig {
 
     /**
-     * Send message url
+     * Send message uri
      *
-     * @const string SEND_MESSAGE_URL
+     * @const string SEND_MESSAGE_URI
      */
-    const SEND_MESSAGE_URL = 'https://rest.nexmo.com/sms/json';
+    const SEND_MESSAGE_URI = 'https://rest.nexmo.com/sms/json';
 
     /**
-     * Get balance url
+     * Get balance uri
      *
-     * @const string GET_BALANCE_URL
+     * @const string GET_BALANCE_URI
      */
-    const GET_BALANCE_URL = 'http://rest.nexmo.com/account/get-balance';
+    const GET_BALANCE_URI = 'http://rest.nexmo.com/account/get-balance';
 
     /**
-     * Request method
+     * Success HTTP codes responding
      *
-     * @const string METHOD
+     * @var array $httpSuccessCode
      */
-    const METHOD = 'GET';
+    public $httpSuccessCode = [200];
 
     /**
      * Acceptable provider statuses
      *
      * @var array $statuses
      */
-    public static $statuses    =   [
+    public $statuses    =   [
         '0'  => 'The message was successfully accepted for delivery by Nexmo',
         '1'  => 'You have exceeded the submission capacity allowed on this account, please back-off and retry',
         '2'  => 'Your request is incomplete and missing some mandatory parameters',
@@ -65,29 +64,66 @@ class Nexmo implements ProviderConfig {
     ];
 
     /**
-     * Provider config. You may overload this by setter
+     * Provider config container
      *
      * @access static
      * @var array
      */
-    private static $config = [
-        'from'      => 'SWEB',
-        'api_key'       => '90c8f84f',
-        'api_secret'  => 'e7e15653',
-        'type'      => 'unicode'
-    ];
+    private $config = [];
+
+    /**
+     * Setup injected configuration
+     *
+     * @param array $config
+     * @return void
+     */
+    public function __construct(array $config) {
+
+        $this->config   =   $config;
+    }
+
+    /**
+     * Get message uri
+     *
+     * @return string
+     */
+    public function getMessageUri() {
+
+        return (isset($this->config['message_uri']) === true) ? $this->config['message_uri']
+            : self::SEND_MESSAGE_URI;
+    }
+
+    /**
+     * Get balance uri
+     *
+     * @return string
+     */
+    public function getBalanceUri() {
+
+        return (isset($this->config['balance_uri']) === true) ? $this->config['balance_uri']
+            : self::GET_BALANCE_URI;
+    }
+
+    /**
+     * Get provider response method
+     *
+     * @return string
+     */
+    public function getRequestMethod() {
+
+        return (isset($this->config['request_method']) === true) ? $this->config['request_method']
+            : self::REQUEST_METHOD;
+    }
 
     /**
      * Get provider configurations
      *
-     * @uses Phalcon\Config
-     * @access static
      * @return void
      */
-    public static function getProviderConfig() {
+    public function getProviderConfig() {
 
-        if(empty(self::$config) === false) {
-            return (new Config(self::$config))->toArray();
+        if(empty($this->config) === false) {
+            return $this->config;
         }
         else {
             throw new Exception('Empty provider config');
@@ -98,11 +134,11 @@ class Nexmo implements ProviderConfig {
      * Get provider response status
      *
      * @param int $code
-     * @access static
      * @return string
      */
-    public static function getResponseStatus($code) {
+    public function getResponseStatus($code) {
 
-        return  self::$statuses[$code];
+        return  (isset($this->statuses[$code]) === true) ? $this->statuses[$code]
+            : 'Unknown provider response error';
     }
 }

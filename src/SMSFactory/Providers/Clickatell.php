@@ -3,7 +3,6 @@ namespace SMSFactory\Providers;
 
 use Phalcon\Http\Response\Exception;
 use SMSFactory\Aware\ProviderInterface;
-use SMSFactory\Config\Clickatell as Config;
 use SMSFactory\Aware\ClientProviders\CurlTrait;
 
 /**
@@ -17,7 +16,7 @@ use SMSFactory\Aware\ClientProviders\CurlTrait;
  * @subpackage SMSFactory
  * @see https://www.clickatell.com/apis-scripts/scripts/php/
  */
-class Clickatell extends Config implements ProviderInterface {
+class Clickatell implements ProviderInterface {
 
     /**
      * Using Curl client (you can make a change to Stream)
@@ -32,13 +31,20 @@ class Clickatell extends Config implements ProviderInterface {
     private $recipient  =   null;
 
     /**
-     * Get provider configurations
+     * Provider config object
      *
-     * @throws \Phalcon\Exception
-     * @return \SMSFactory\Config\Clickatell | array
+     * @var \SMSFactory\Config\Clickatell $config
      */
-    public function config() {
-        return $this->getProviderConfig();
+    private $config;
+
+    /**
+     * Init configuration
+     *
+     * @param \SMSFactory\Config\Clickatell $config
+     */
+    public function __construct(\SMSFactory\Config\Clickatell $config) {
+
+        $this->config   =   $config;
     }
 
     /**
@@ -63,9 +69,8 @@ class Clickatell extends Config implements ProviderInterface {
     public function getResponse(\Phalcon\Http\Client\Response $response) {
 
         // check response status
-
-        if($response->header->statusCode !== self::SUCCESS_CODE) {
-            throw new Exception('The server is not responding.');
+        if(in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
+            throw new Exception('The server is not responding: '.$response->header->statusMessage);
         }
 
         // get server response status
@@ -74,8 +79,8 @@ class Clickatell extends Config implements ProviderInterface {
             preg_match('/(\d{3})/', $response->body, $matches);
 
             // if status exist
-            $status = (array_key_exists($matches[0], Config::$statuses))
-                ? Config::getResponseStatus($matches[0])
+            $status = (array_key_exists($matches[0], $this->config->statuses))
+                ? $this->config->getResponseStatus($matches[0])
                 : '';
         }
 
@@ -93,8 +98,8 @@ class Clickatell extends Config implements ProviderInterface {
     final public function send($message) {
 
         // send message
-        $response = $this->client()->{self::METHOD}(self::SEND_MESSAGE_URL, array_merge(
-            $this->config(), [
+        $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
+                $this->config->getProviderConfig(), [
                 'to'     =>  $this->recipient,      //  SMS Recipient
                 'text'   =>  $message,   //  Message
             ])
@@ -107,13 +112,13 @@ class Clickatell extends Config implements ProviderInterface {
     /**
      * Final check balance function
      *
-     * @throws \Phalcon\Http\Response\Exception
      * @return \Phalcon\Http\Client\Response|string|void
      */
     final public function balance() {
 
         // check balance
-        $response = $this->client()->{strtolower(self::METHOD)}(self::GET_BALANCE_URL,  $this->config());
+        $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getBalanceUri(),
+            $this->config->getProviderConfig());
 
         // return response
         return $this->getResponse($response);

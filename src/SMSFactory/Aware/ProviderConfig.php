@@ -14,20 +14,44 @@ namespace SMSFactory\Aware;
 interface ProviderConfig {
 
     /**
-     * Get provider configurations
+     * Default request method
+     * @const REQUEST_METHOD
+     */
+    const REQUEST_METHOD = 'POST';
+
+    /**
+     * Get request method
      *
-     * @uses Phalcon\Config
-     * @access static
      * @return void
      */
-    public static function getProviderConfig();
+    public function getRequestMethod();
+
+    /**
+     * Get message uri
+     *
+     * @return void
+     */
+    public function getMessageUri();
+
+    /**
+     * Get balance uri
+     *
+     * @return void
+     */
+    public function getBalanceUri();
+
+    /**
+     * Get provider configurations
+     *
+     * @return void
+     */
+    public function getProviderConfig();
 
     /**
      * Get provider response status
      *
      * @param int $status
-     * @access static
      * @return void
      */
-    public static function getResponseStatus($status);
+    public function getResponseStatus($status);
 }

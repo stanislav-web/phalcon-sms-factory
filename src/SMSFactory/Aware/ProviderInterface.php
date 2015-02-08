@@ -14,12 +14,6 @@ namespace SMSFactory\Aware;
 interface ProviderInterface {
 
     /**
-     * Success HTTP code responding
-     * @const 200
-     */
-    const SUCCESS_CODE = 200;
-
-    /**
      * Set the recipient of the message
      *
      * @param int $recipient

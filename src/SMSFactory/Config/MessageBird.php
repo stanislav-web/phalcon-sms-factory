@@ -2,7 +2,6 @@
 namespace SMSFactory\Config;
 
 use SMSFactory\Aware\ProviderConfig;
-use Phalcon\Config;
 use Phalcon\Exception;
 
 /**
@@ -18,32 +17,32 @@ use Phalcon\Exception;
 class MessageBird implements ProviderConfig {
 
     /**
-     * Send message url
+     * Message uri
      *
-     * @const string SEND_MESSAGE_URL
+     * @const string SEND_MESSAGE_URI
      */
-    const SEND_MESSAGE_URL = 'https://rest.messagebird.com/messages';
+    const SEND_MESSAGE_URI = 'https://rest.messagebird.com/messages';
 
     /**
-     * Get balance url
+     * Balance uri
      *
-     * @const string GET_BALANCE_URL
+     * @const string GET_BALANCE_URI
      */
-    const GET_BALANCE_URL = 'https://rest.messagebird.com/balance';
+    const GET_BALANCE_URI = 'https://rest.messagebird.com/balance';
 
     /**
-     * Request method
+     * Success HTTP codes responding
      *
-     * @const string METHOD
+     * @var array $httpSuccessCode
      */
-    const METHOD = 'POST';
+    public $httpSuccessCode = [200,201,422];
 
     /**
      * Acceptable provider statuses
      *
      * @var array $statuses
      */
-    public static $statuses    =   [
+    public $statuses    =   [
         '2'   =>  'Request not allowed',
         '9'   =>  'Missing params',
         '10'  =>  'Invalid params',
@@ -54,27 +53,66 @@ class MessageBird implements ProviderConfig {
     ];
 
     /**
-     * Provider config. You may overload this by setter
+     * Provider config container
      *
      * @access static
      * @var array
      */
-    private static $config = [
-        'originator'        => 'Stanislav',
-        'access_key'    =>  'test_UHaeiTLfAe3avOULhawXvn7iR',
-    ];
+    private $config = [];
+
+    /**
+     * Setup injected configuration
+     *
+     * @param array $config
+     * @return void
+     */
+    public function __construct(array $config) {
+
+        $this->config   =   $config;
+    }
+
+    /**
+     * Get message uri
+     *
+     * @return string
+     */
+    public function getMessageUri() {
+
+        return (isset($this->config['message_uri']) === true) ? $this->config['message_uri']
+            : self::SEND_MESSAGE_URI;
+    }
+
+    /**
+     * Get balance uri
+     *
+     * @return string
+     */
+    public function getBalanceUri() {
+
+        return (isset($this->config['balance_uri']) === true) ? $this->config['balance_uri']
+            : self::GET_BALANCE_URI;
+    }
+
+    /**
+     * Get provider response method
+     *
+     * @return string
+     */
+    public function getRequestMethod() {
+
+        return (isset($this->config['request_method']) === true) ? $this->config['request_method']
+            : self::REQUEST_METHOD;
+    }
 
     /**
      * Get provider configurations
      *
-     * @uses Phalcon\Config
-     * @access static
      * @return void
      */
-    public static function getProviderConfig() {
+    public function getProviderConfig() {
 
-        if(empty(self::$config) === false) {
-            return (new Config(self::$config))->toArray();
+        if(empty($this->config) === false) {
+            return $this->config;
         }
         else {
             throw new Exception('Empty provider config');
@@ -85,11 +123,11 @@ class MessageBird implements ProviderConfig {
      * Get provider response status
      *
      * @param int $code
-     * @access static
      * @return string
      */
-    public static function getResponseStatus($code) {
+    public function getResponseStatus($code) {
 
-        return  self::$statuses[$code];
+        return  (isset($this->statuses[$code]) === true) ? $this->statuses[$code]
+            : 'Unknown provider response error';
     }
 }

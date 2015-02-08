@@ -3,7 +3,6 @@ namespace SMSFactory\Providers;
 
 use Phalcon\Http\Response\Exception;
 use SMSFactory\Aware\ProviderInterface;
-use SMSFactory\Config\SmsAero as Config;
 use SMSFactory\Aware\ClientProviders\CurlTrait;
 
 /**
@@ -17,7 +16,7 @@ use SMSFactory\Aware\ClientProviders\CurlTrait;
  * @subpackage SMSFactory
  * @see http://smsaero.ru/api/
  */
-class SmsAero extends Config implements ProviderInterface {
+class SmsAero implements ProviderInterface {
 
     /**
      * Using Curl client (you can make a change to Stream)
@@ -32,13 +31,20 @@ class SmsAero extends Config implements ProviderInterface {
     private $recipient  =   null;
 
     /**
-     * Get provider configurations
+     * Provider config object
      *
-     * @throws \Phalcon\Exception
-     * @return \SMSFactory\Config\SmsAero | array
+     * @var \SMSFactory\Config\SmsAero $config
      */
-    public function config() {
-        return $this->getProviderConfig();
+    private $config;
+
+    /**
+     * Init configuration
+     *
+     * @param \SMSFactory\Config\SmsAero $config
+     */
+    public function __construct(\SMSFactory\Config\SmsAero $config) {
+
+        $this->config   =   $config;
     }
 
     /**
@@ -63,9 +69,8 @@ class SmsAero extends Config implements ProviderInterface {
     public function getResponse(\Phalcon\Http\Client\Response $response) {
 
         // check response status
-
-        if($response->header->statusCode !== self::SUCCESS_CODE) {
-            throw new Exception('The server is not responding.');
+        if(in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
+            throw new Exception('The server is not responding: '.$response->header->statusMessage);
         }
 
         // parse json response
@@ -77,8 +82,8 @@ class SmsAero extends Config implements ProviderInterface {
         else {
 
             // if status exist
-            $status = (array_key_exists($response->body, Config::$statuses))
-                ? Config::getResponseStatus($response->body)
+            $status = (array_key_exists($response->body, $this->config->statuses))
+                ? $this->config->getResponseStatus($response->body)
                 : $response->body;
         }
 
@@ -96,8 +101,8 @@ class SmsAero extends Config implements ProviderInterface {
     final public function send($message) {
 
         // send message
-        $response = $this->client()->{self::METHOD}(self::SEND_MESSAGE_URL, array_merge(
-                $this->config(), [
+        $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
+                $this->config->getProviderConfig(), [
                 'to'     =>  $this->recipient,   //  SMS Receipient
                 'text'   =>  $message,           //  Message
             ])
@@ -116,7 +121,8 @@ class SmsAero extends Config implements ProviderInterface {
     final public function balance() {
 
         // check balance
-        $response = $this->client()->{strtolower(self::METHOD)}(self::GET_BALANCE_URL, $this->config());
+        $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getBalanceUri(),
+            $this->config->getProviderConfig());
 
         // return response
         return $this->getResponse($response);

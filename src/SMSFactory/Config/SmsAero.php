@@ -2,7 +2,6 @@
 namespace SMSFactory\Config;
 
 use SMSFactory\Aware\ProviderConfig;
-use Phalcon\Config;
 use Phalcon\Exception;
 
 /**
@@ -17,33 +16,34 @@ use Phalcon\Exception;
  */
 class SmsAero implements ProviderConfig {
 
-    /**
-     * Send message url
-     *
-     * @const string SEND_MESSAGE_URL
-     */
-    const SEND_MESSAGE_URL = 'http://gate.smsaero.ru/send';
 
     /**
-     * Get balance url
+     * Message uri
      *
-     * @const string GET_BALANCE_URL
+     * @const string SEND_MESSAGE_URI
      */
-    const GET_BALANCE_URL = 'http://gate.smsaero.ru/balance/?answer=json';
+    const SEND_MESSAGE_URI = 'http://gate.smsaero.ru/send';
 
     /**
-     * Request method
+     * Balance uri
      *
-     * @const string METHOD
+     * @const string GET_BALANCE_URI
      */
-    const METHOD = 'GET';
+    const GET_BALANCE_URI = 'http://gate.smsaero.ru/balance/?answer=json';
+
+    /**
+     * Success HTTP codes responding
+     *
+     * @var array $httpSuccessCode
+     */
+    public $httpSuccessCode = [200];
 
     /**
      * Acceptable provider statuses
      *
      * @var array $statuses
      */
-    public static $statuses    =   [
+    public $statuses    =   [
         'accepted'   =>  'Сообщение принято сервисом.',
         'empty field. reject'   =>  'Не все обязательные поля заполнены.',
         'incorrect user or password. reject'   =>  'Ошибка авторизации',
@@ -55,28 +55,66 @@ class SmsAero implements ProviderConfig {
     ];
 
     /**
-     * Provider config. You may overload this by setter
+     * Provider config container
      *
      * @access static
      * @var array
      */
-    private static $config = [
-        'from'          => 'INFORM',
-        'user'          => 'stanisov@gmail.com',
-        'password'      => '96e79218965eb72c92a549dd5a330112',
-    ];
+    private $config = [];
+
+    /**
+     * Setup injected configuration
+     *
+     * @param array $config
+     * @return void
+     */
+    public function __construct(array $config) {
+
+        $this->config   =   $config;
+    }
+
+    /**
+     * Get message uri
+     *
+     * @return string
+     */
+    public function getMessageUri() {
+
+        return (isset($this->config['message_uri']) === true) ? $this->config['message_uri']
+            : self::SEND_MESSAGE_URI;
+    }
+
+    /**
+     * Get balance uri
+     *
+     * @return string
+     */
+    public function getBalanceUri() {
+
+        return (isset($this->config['balance_uri']) === true) ? $this->config['balance_uri']
+            : self::GET_BALANCE_URI;
+    }
+
+    /**
+     * Get provider response method
+     *
+     * @return string
+     */
+    public function getRequestMethod() {
+
+        return (isset($this->config['request_method']) === true) ? $this->config['request_method']
+            : self::REQUEST_METHOD;
+    }
 
     /**
      * Get provider configurations
      *
-     * @uses Phalcon\Config
-     * @access static
      * @return void
      */
-    public static function getProviderConfig() {
+    public function getProviderConfig() {
 
-        if(empty(self::$config) === false) {
-            return (new Config(self::$config))->toArray();
+        if(empty($this->config) === false) {
+            return $this->config;
         }
         else {
             throw new Exception('Empty provider config');
@@ -87,11 +125,11 @@ class SmsAero implements ProviderConfig {
      * Get provider response status
      *
      * @param int $code
-     * @access static
      * @return string
      */
-    public static function getResponseStatus($code) {
+    public function getResponseStatus($code) {
 
-        return  self::$statuses[$code];
+        return  (isset($this->statuses[$code]) === true) ? $this->statuses[$code]
+            : 'Unknown provider response error';
     }
 }
