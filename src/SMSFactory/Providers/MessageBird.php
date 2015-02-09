@@ -39,6 +39,13 @@ class MessageBird implements ProviderInterface
     private $config;
 
     /**
+     * Response status
+     *
+     * @var boolean|string
+     */
+    private $responseStatus = false;
+
+    /**
      * Init configuration
      *
      * @param \SMSFactory\Config\MessageBird $config
@@ -83,14 +90,14 @@ class MessageBird implements ProviderInterface
         if (isset($respArray['errors']) === true) {
 
             // if status exist.
-            $status = (array_key_exists($respArray['errors'][0]['code'], $this->config->statuses))
+            $this->responseStatus = (array_key_exists($respArray['errors'][0]['code'], $this->config->statuses))
                 ? $this->config->getResponseStatus($respArray['errors'][0]['code']) . ' ' . $respArray['errors'][0]['description']
-                : '';
+                : false;
         }
 
         return ($this->debug === true) ? [
-            $response, (isset($status) === false ? $respArray : $status)
-        ] : (isset($status) === false ? $respArray : $status);
+            $response, ($this->responseStatus === false ? $respArray : $this->responseStatus)
+        ] : ($this->responseStatus === false ? $respArray : $this->responseStatus);
     }
 
     /**

@@ -39,6 +39,13 @@ class Clickatell implements ProviderInterface
     private $config;
 
     /**
+     * Response status
+     *
+     * @var boolean|string
+     */
+    private $responseStatus = false;
+
+    /**
      * Init configuration
      *
      * @param \SMSFactory\Config\Clickatell $config
@@ -83,14 +90,14 @@ class Clickatell implements ProviderInterface
             preg_match('/(\d{3})/', $response->body, $matches);
 
             // if status exist
-            $status = (array_key_exists($matches[0], $this->config->statuses))
+            $this->responseStatus = (array_key_exists($matches[0], $this->config->statuses))
                 ? $this->config->getResponseStatus($matches[0])
-                : '';
+                : false;
         }
 
         return ($this->debug === true) ? [
-            $response, (isset($status) === true) ? $status : $response->body
-        ] : (isset($status) === true) ? $status : $response->body;
+            $response, ($this->responseStatus !== false) ? $this->responseStatus : $response->body
+        ] : ($this->responseStatus !== false) ? $this->responseStatus : $response->body;
     }
 
     /**

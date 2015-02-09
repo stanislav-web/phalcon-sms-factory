@@ -39,6 +39,13 @@ class Nexmo implements ProviderInterface
     private $config;
 
     /**
+     * Response status
+     *
+     * @var boolean|string
+     */
+    private $responseStatus = false;
+
+    /**
      * Init configuration
      *
      * @param \SMSFactory\Config\Nexmo $config
@@ -83,14 +90,14 @@ class Nexmo implements ProviderInterface
         if (isset($respArray['messages'][0]['status']) === true) {
 
             // if status exist.
-            $status = (array_key_exists($respArray['messages'][0]['status'], $this->config->statuses))
+            $this->responseStatus = (array_key_exists($respArray['messages'][0]['status'], $this->config->statuses))
                 ? $this->config->getResponseStatus($respArray['messages'][0]['status'])
-                : '';
+                : false;
         }
 
         return ($this->debug === true) ? [
-            $response, (isset($status) === true) ? $status : json_decode($response->body, true)
-        ] : (isset($status) === true) ? $status : json_decode($response->body, true);
+            $response, ($this->responseStatus === true) ? $this->responseStatus : json_decode($response->body, true)
+        ] : ($this->responseStatus === false) ? json_decode($response->body, true) : $this->responseStatus;
     }
 
     /**

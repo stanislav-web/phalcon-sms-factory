@@ -39,6 +39,13 @@ class SmsUkraine implements ProviderInterface
     private $config;
 
     /**
+     * Response status
+     *
+     * @var boolean|string
+     */
+    private $responseStatus = false;
+
+    /**
      * Init configuration
      *
      * @param \SMSFactory\Config\SmsUkraine $config
@@ -89,15 +96,15 @@ class SmsUkraine implements ProviderInterface
                 preg_match('/^([errors]+):(.*)/', $response->body, $matches);
 
                 // if status exist
-                $status = (array_key_exists($matches[0], $this->config->statuses))
+                $this->responseStatus = (array_key_exists($matches[0], $this->config->statuses))
                     ? $this->config->getResponseStatus($matches[0])
                     : $matches[2];
             }
         }
 
         return ($this->debug === true) ? [
-            $response, (isset($status) === true) ? $status : $respArray
-        ] : (isset($status) === true) ? $status : $respArray;
+            $response, ($this->responseStatus !== false) ? $this->responseStatus : $respArray
+        ] : ($this->responseStatus !== false) ? $this->responseStatus : $respArray;
     }
 
     /**

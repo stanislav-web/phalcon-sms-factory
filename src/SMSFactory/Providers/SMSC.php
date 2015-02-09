@@ -39,6 +39,13 @@ class SMSC implements ProviderInterface
     private $config;
 
     /**
+     * Response status
+     *
+     * @var boolean|string
+     */
+    private $responseStatus = false;
+
+    /**
      * Init configuration
      *
      * @param \SMSFactory\Config\SMSC $config
@@ -83,14 +90,14 @@ class SMSC implements ProviderInterface
         if (isset($respArray['error_code']) === true) {
 
             // if status exist.
-            $status = (array_key_exists($respArray['error_code'], $this->config->$statuses))
+            $this->responseStatus = (array_key_exists($respArray['error_code'], $this->config->statuses))
                 ? $this->config->getResponseStatus($respArray['error_code'])
-                : '';
+                : false;
         }
 
         return ($this->debug === true) ? [
-            $response, (isset($status) === false ? $respArray : $status)
-        ] : (isset($status) === false ? $respArray : $status);
+            $response, ($this->responseStatus === false ? $respArray : $this->responseStatus)
+        ] : ($this->responseStatus === false ? $respArray : $this->responseStatus);
     }
 
     /**

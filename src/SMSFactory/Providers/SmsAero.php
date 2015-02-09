@@ -32,6 +32,13 @@ class SmsAero implements ProviderInterface
     private $recipient = null;
 
     /**
+     * Response status
+     *
+     * @var boolean|string
+     */
+    private $responseStatus = false;
+
+    /**
      * Provider config object
      *
      * @var \SMSFactory\Config\SmsAero $config
@@ -85,14 +92,14 @@ class SmsAero implements ProviderInterface
         } else {
 
             // if status exist
-            $status = (array_key_exists($response->body, $this->config->statuses))
+            $this->responseStatus = (array_key_exists($response->body, $this->config->statuses))
                 ? $this->config->getResponseStatus($response->body)
                 : $response->body;
         }
 
         return ($this->debug === true) ? [
-            $response, (isset($status) === true) ? $status : $respArray
-        ] : (isset($status) === true) ? $status : $respArray;
+            $response, ($this->responseStatus !== false) ? $this->responseStatus : $respArray
+        ] : ($this->responseStatus !== false) ? $this->responseStatus : $respArray;
     }
 
     /**

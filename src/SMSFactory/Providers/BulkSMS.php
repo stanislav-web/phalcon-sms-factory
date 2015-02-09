@@ -39,6 +39,13 @@ class BulkSMS implements ProviderInterface
     private $config;
 
     /**
+     * Response status
+     *
+     * @var boolean|string
+     */
+    private $responseStatus = false;
+
+    /**
      * Init configuration
      *
      * @param \SMSFactory\Config\BulkSMS $config
@@ -81,13 +88,13 @@ class BulkSMS implements ProviderInterface
         $part = explode('|', $response->body);
 
         // if status exist. If response is 0 - that meant OK
-        $status = (array_key_exists($part[0], $this->config->statuses) && $part[0] > 0)
+        $this->responseStatus = (array_key_exists($part[0], $this->config->statuses) && $part[0] > 0)
             ? $this->config->getResponseStatus($part[0])
             : $part[1];
 
         return ($this->debug === true) ? [
-            $response, $status
-        ] : $status;
+            $response, $this->responseStatus
+        ] : $this->responseStatus;
     }
 
     /**
