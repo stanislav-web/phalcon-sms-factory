@@ -85,21 +85,16 @@ class SmsAero implements ProviderInterface
         }
 
         // parse json response
-        $isJson = \SMSFactory\Helpers\String::isJson($response->body);
+        $responseArray = \SMSFactory\Helpers\String::parseJson($response->body);
 
-        if ($isJson === true) {
-            $respArray = json_decode($response->body, true);
-        } else {
-
-            // if status exist
-            $this->responseStatus = (array_key_exists($response->body, $this->config->statuses))
-                ? $this->config->getResponseStatus($response->body)
+        // if status exist
+        $this->responseStatus = (array_key_exists($response->body, $this->config->statuses))
+            ? $this->config->getResponseStatus($response->body)
                 : $response->body;
-        }
 
         return ($this->debug === true) ? [
-            $response, ($this->responseStatus !== false) ? $this->responseStatus : $respArray
-        ] : ($this->responseStatus !== false) ? $this->responseStatus : $respArray;
+            $response, ($this->responseStatus !== false) ? $this->responseStatus : $responseArray
+        ] : ($this->responseStatus !== false) ? $this->responseStatus : $responseArray;
     }
 
     /**

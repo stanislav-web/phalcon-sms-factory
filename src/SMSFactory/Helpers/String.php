@@ -15,16 +15,16 @@ class String
 {
 
     /**
-     * Check if a string is json valid
+     * Check if a string is json valid . Return json
      *
      * @param string $string
-     * @return bool
+     * @return bool|mixed
      */
-    public static function isJson($string)
+    public static function parseJson($string)
     {
 
         return ((is_string($string) === true &&
             (is_object(json_decode($string)) === true ||
-                is_array(json_decode($string)) === true))) ? true : false;
+                is_array(json_decode($string)) === true))) ? json_decode($string, true) : false;
     }
 }

@@ -85,26 +85,22 @@ class SmsUkraine implements ProviderInterface
         }
 
         // parse json response
-        $isJson = \SMSFactory\Helpers\String::isJson($response->body);
+        $responseArray = \SMSFactory\Helpers\String::parseJson($response->body);
 
-        if ($isJson === true) {
-            $respArray = json_decode($response->body, true);
-        } else {
-            // this is not json response, parse as string
-            if (stripos($response->body, 'errors') !== false) {
-                // have an error
-                preg_match('/^([errors]+):(.*)/', $response->body, $matches);
+        // this is not json response, parse as string
+        if (stripos($response->body, 'errors') !== false) {
+            // have an error
+            preg_match('/^([errors]+):(.*)/', $response->body, $matches);
 
-                // if status exist
-                $this->responseStatus = (array_key_exists($matches[0], $this->config->statuses))
-                    ? $this->config->getResponseStatus($matches[0])
+            // if status exist
+            $this->responseStatus = (array_key_exists($matches[0], $this->config->statuses))
+                ? $this->config->getResponseStatus($matches[0])
                     : $matches[2];
-            }
         }
 
         return ($this->debug === true) ? [
-            $response, ($this->responseStatus !== false) ? $this->responseStatus : $respArray
-        ] : ($this->responseStatus !== false) ? $this->responseStatus : $respArray;
+            $response, ($this->responseStatus !== false) ? $this->responseStatus : $responseArray
+        ] : ($this->responseStatus !== false) ? $this->responseStatus : $responseArray;
     }
 
     /**
