@@ -89,8 +89,8 @@ class Nexmo implements ProviderInterface
         }
 
         return ($this->debug === true) ? [
-            $response, (empty($status) === false) ? $status : json_decode($response->body, true)
-        ] : (empty($status) === false) ? $status : json_decode($response->body, true);
+            $response, (isset($status) === true) ? $status : json_decode($response->body, true)
+        ] : (isset($status) === true) ? $status : json_decode($response->body, true);
     }
 
     /**

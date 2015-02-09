@@ -91,8 +91,8 @@ class SmsAero implements ProviderInterface
         }
 
         return ($this->debug === true) ? [
-            $response, (empty($status) === false) ? $status : $respArray
-        ] : (empty($status) === false) ? $status : $respArray;
+            $response, (isset($status) === true) ? $status : $respArray
+        ] : (isset($status) === true) ? $status : $respArray;
     }
 
     /**

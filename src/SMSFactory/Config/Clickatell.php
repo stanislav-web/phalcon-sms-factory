@@ -105,11 +105,9 @@ not valid. ',
      * Setup injected configuration
      *
      * @param array $config
-     * @return void
      */
     public function __construct(array $config)
     {
-
         $this->config = $config;
     }
 

@@ -89,15 +89,15 @@ class Clickatell implements ProviderInterface
         }
 
         return ($this->debug === true) ? [
-            $response, (empty($status) === false) ? $status : $response->body
-        ] : (empty($status) === false) ? $status : $response->body;
+            $response, (isset($status) === true) ? $status : $response->body
+        ] : (isset($status) === true) ? $status : $response->body;
     }
 
     /**
      * Final send function
      *
      * @param string $message
-     * @return array|string
+     * @return string
      */
     final public function send($message)
     {
@@ -117,7 +117,7 @@ class Clickatell implements ProviderInterface
     /**
      * Final check balance function
      *
-     * @return array|string
+     * @return string
      */
     final public function balance()
     {

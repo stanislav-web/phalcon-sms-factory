@@ -79,7 +79,6 @@ class MessageBird implements ProviderInterface
 
         // parse json response
         $respArray = json_decode($response->body, true);
-        $status = null;
 
         if (isset($respArray['errors']) === true) {
 
@@ -90,8 +89,8 @@ class MessageBird implements ProviderInterface
         }
 
         return ($this->debug === true) ? [
-            $response, ($status === null ? $respArray : $status)
-        ] : ($status === null ? $respArray : $status);
+            $response, (isset($status) === false ? $respArray : $status)
+        ] : (isset($status) === false ? $respArray : $status);
     }
 
     /**
