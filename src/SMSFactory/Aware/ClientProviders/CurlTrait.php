@@ -26,7 +26,7 @@ trait CurlTrait
      * Setup debug
      *
      * @param boolean $flag
-     * @return CurlTrait
+     * @return $this
      */
     public function debug($flag)
     {
