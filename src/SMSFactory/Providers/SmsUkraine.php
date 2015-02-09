@@ -104,7 +104,7 @@ class SmsUkraine implements ProviderInterface
      * Final send function
      *
      * @param string $message
-     * @return \Phalcon\Http\Client\Response|string|void
+     * @return array|string
      */
     final public function send($message)
     {
@@ -113,8 +113,8 @@ class SmsUkraine implements ProviderInterface
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
                 $this->config->getProviderConfig(), [
                 'command' => 'send',
-                'to' => $this->recipient,   //  SMS Receipient
-                'message' => $message,           //  Message
+                'to' => $this->recipient, //  SMS Receipient
+                'message' => $message, //  Message
             ])
         );
 
@@ -125,8 +125,7 @@ class SmsUkraine implements ProviderInterface
     /**
      * Final check balance function
      *
-     * @throws \Phalcon\Http\Response\Exception
-     * @return \Phalcon\Http\Client\Response|string|void
+     * @return array|string
      */
     final public function balance()
     {

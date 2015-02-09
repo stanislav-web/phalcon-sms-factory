@@ -125,7 +125,8 @@ class SmsUkraine implements ProviderConfigInterface
     /**
      * Get provider configurations
      *
-     * @return void
+     * @throws \Phalcon\Exception
+     * @return array
      */
     public function getProviderConfig()
     {

@@ -97,7 +97,7 @@ class Nexmo implements ProviderInterface
      * Final send function
      *
      * @param string $message
-     * @return \Phalcon\Http\Client\Response|string|void
+     * @return array|string
      */
     final public function send($message)
     {
@@ -105,8 +105,8 @@ class Nexmo implements ProviderInterface
         // send message
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
                 $this->config->getProviderConfig(), [
-                'to' => $this->recipient,      //  SMS Recipient
-                'text' => $message,   //  Message
+                'to' => $this->recipient, //  SMS Recipient
+                'text' => $message, //  Message
             ])
         );
 
@@ -117,8 +117,7 @@ class Nexmo implements ProviderInterface
     /**
      * Final check balance function
      *
-     * @throws \Phalcon\Http\Response\Exception
-     * @return \Phalcon\Http\Client\Response|string|void
+     * @return array|string
      */
     final public function balance()
     {

@@ -98,7 +98,7 @@ class MessageBird implements ProviderInterface
      * Final send function
      *
      * @param string $message
-     * @return \Phalcon\Http\Client\Response|string|void
+     * @return array|string
      */
     final public function send($message)
     {
@@ -106,8 +106,8 @@ class MessageBird implements ProviderInterface
         // send message
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
                 $this->config->getProviderConfig(), [
-                'recipients' => $this->recipient,      //  SMS Recipient
-                'body' => $message,   //  Message
+                'recipients' => $this->recipient, //  SMS Recipient
+                'body' => $message, //  Message
             ])
         );
 
@@ -118,8 +118,7 @@ class MessageBird implements ProviderInterface
     /**
      * Final check balance function
      *
-     * @throws \Phalcon\Http\Response\Exception
-     * @return \Phalcon\Http\Client\Response|string|void
+     * @return array|string
      */
     final public function balance()
     {

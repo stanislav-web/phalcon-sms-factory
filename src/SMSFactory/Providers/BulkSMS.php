@@ -94,7 +94,7 @@ class BulkSMS implements ProviderInterface
      * Final send function
      *
      * @param string $message
-     * @return \Phalcon\Http\Client\Response|string|void
+     * @return array|string
      */
     final public function send($message)
     {
@@ -102,8 +102,8 @@ class BulkSMS implements ProviderInterface
         // send message
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
                 $this->config->getProviderConfig(), [
-                'msisdn' => $this->recipient,       //  SMS Recipient
-                'message' => $message,    //  Message
+                'msisdn' => $this->recipient, //  SMS Recipient
+                'message' => $message, //  Message
             ])
         );
 
@@ -114,7 +114,7 @@ class BulkSMS implements ProviderInterface
     /**
      * Final check balance function
      *
-     * @return \Phalcon\Http\Client\Response|string|void
+     * @return array|string
      */
     final public function balance()
     {

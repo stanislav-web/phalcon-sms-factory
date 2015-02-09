@@ -43,7 +43,7 @@ class Sender extends Provider
      * @uses    ProviderInterface::balance()
      *
      * @throws \Phalcon\Exception
-     * @return mixed
+     * @return object $providerClass
      */
     final public function call($providerName)
     {
@@ -55,9 +55,10 @@ class Sender extends Provider
 
             // inject configurations
             return new $providerClass(new $configProviderClass($this->config[$providerName]));
+
         } else {
             throw new Exception('Provider ' . $providerName . ' does not exist');
+
         }
     }
-
 } 

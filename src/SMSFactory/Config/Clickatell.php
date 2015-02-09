@@ -152,7 +152,8 @@ not valid. ',
     /**
      * Get provider configurations
      *
-     * @return void
+     * @throws \Phalcon\Exception
+     * @return array
      */
     public function getProviderConfig()
     {
