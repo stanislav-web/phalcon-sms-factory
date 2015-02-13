@@ -20,7 +20,7 @@ interface AdapterAnalyseInterface
      * @param mixed $data
      * @return void
      */
-    public function load($data);
+    public function import($data);
 
     /**
      * Analyse data
@@ -34,6 +34,6 @@ interface AdapterAnalyseInterface
      *
      * @return void
      */
-    public function issue();
+    public function export();
 
 }
