@@ -25,7 +25,9 @@
   ],
   "require": {
     "php": ">=5.4.0",
-    "phalcon/incubator": "1.3.4"
+    "phalcon/incubator": "1.3.4",
+    "faisalman/simple-excel-php" : "dev-master"
+
   },
   "autoload": {
     "psr-4": {
