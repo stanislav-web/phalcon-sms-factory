@@ -1,7 +1,7 @@
 <?php
 namespace SMSFactory\Providers;
 
-use Phalcon\Http\Response\Exception;
+use SMSFactory\Exceptions\BaseException;
 use SMSFactory\Aware\ProviderInterface;
 use SMSFactory\Aware\ClientProviders\CurlTrait;
 
@@ -66,31 +66,28 @@ class Clickatell implements ProviderInterface
      * Get server response info
      *
      * @param \Phalcon\Http\Client\Response $response
-     * @throws \Phalcon\Http\Response\Exception
-     * @return string
+     * @return array|mixed|\Phalcon\Http\Client\Response
+     * @throws BaseException
+     * @throws \Exception
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
 
         // check response status
         if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new Exception('The server is not responding: ' . $response->header->statusMessage);
+            throw new \Exception('The server is not responding: ' . $response->header->statusMessage);
         }
 
         // get server response status
         if (stripos($response->body, 'ERR') !== false) {
-            // have an error
-            preg_match('/(\d{3})/', $response->body, $matches);
 
-            // if status exist
-            $status = (array_key_exists($matches[0], $this->config->statuses))
-                ? $this->config->getResponseStatus($matches[0])
-                : '';
+            // have an error
+            preg_match('/([\d]{3}).\s([a-z\s]+)$/i', $response->body, $matches);
+
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $matches[2]);
         }
 
-        return ($this->debug === true) ? [
-            $response, (empty($status) === false) ? $status : $response->body
-        ] : (empty($status) === false) ? $status : $response->body;
+        return ($this->debug === true) ? [$response->header, $response] : $response;
     }
 
     /**

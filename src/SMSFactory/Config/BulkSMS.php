@@ -7,12 +7,12 @@ use Phalcon\Exception;
 /**
  * Class BulkSMS. Configuration for BulkSMS provider
  *
+ * @package SMSFactory
+ * @subpackage Config
  * @since     PHP >=5.4
  * @version   1.0
  * @author    Stanislav WEB | Lugansk <stanisov@gmail.com>
  * @copyright Stanislav WEB
- * @package SMSFactory\Config
- * @subpackage SMSFactory
  */
 class BulkSMS implements ProviderConfigInterface
 {
@@ -37,26 +37,6 @@ class BulkSMS implements ProviderConfigInterface
      * @var array $httpSuccessCode
      */
     public $httpSuccessCode = [200];
-
-    /**
-     * Acceptable provider statuses
-     *
-     * @var array $statuses
-     */
-    public $statuses = [
-        '0' => 'In progress (a normal message submission, with no error encountered so far).',
-        '1' => 'Scheduled (see Scheduling below).',
-        '22' => 'Internal fatal error.',
-        '23' => 'Authentication failure.',
-        '24' => 'Data validation failed.',
-        '25' => 'You do not have sufficient credits.',
-        '26' => 'Upstream credits not available.',
-        '27' => 'You have exceeded your daily quota.',
-        '28' => 'Upstream quota exceeded.',
-        '40' => 'Temporarily unavailable.',
-        '201' => 'Maximum batch size exceeded.',
-        '500' => 'Undefined error.'
-    ];
 
     /**
      * Provider config container
@@ -127,18 +107,5 @@ class BulkSMS implements ProviderConfigInterface
         } else {
             throw new Exception('Empty provider config');
         }
-    }
-
-    /**
-     * Get provider response status
-     *
-     * @param int $code
-     * @return string
-     */
-    public function getResponseStatus($code)
-    {
-
-        return (isset($this->statuses[$code]) === true) ? $this->statuses[$code]
-            : 'Unknown provider response error';
     }
 }

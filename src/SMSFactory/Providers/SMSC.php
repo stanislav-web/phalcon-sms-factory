@@ -1,9 +1,9 @@
 <?php
 namespace SMSFactory\Providers;
 
-use Phalcon\Http\Response\Exception;
 use SMSFactory\Aware\ProviderInterface;
 use SMSFactory\Aware\ClientProviders\CurlTrait;
+use SMSFactory\Exceptions\BaseException;
 
 /**
  * Class SMSC. SMSC Provider
@@ -74,9 +74,11 @@ class SMSC implements ProviderInterface
 
         // check response status
         if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new Exception('The server is not responding: ' . $response->header->statusMessage);
+            throw new \Exception('The server is not responding: ' . $response->header->statusMessage);
         }
 
+
+        var_dump($response->body); exit;
         // parse json response
         $respArray = json_decode($response->body, true);
         $status = null;

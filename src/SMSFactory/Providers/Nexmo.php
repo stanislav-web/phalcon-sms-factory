@@ -1,9 +1,9 @@
 <?php
 namespace SMSFactory\Providers;
 
-use Phalcon\Http\Response\Exception;
 use SMSFactory\Aware\ProviderInterface;
 use SMSFactory\Aware\ClientProviders\CurlTrait;
+use SMSFactory\Exceptions\BaseException;
 
 /**
  * Class Nexmo. Nexmo Provider
@@ -66,7 +66,7 @@ class Nexmo implements ProviderInterface
      * Get server response info
      *
      * @param \Phalcon\Http\Client\Response $response
-     * @throws \Phalcon\Http\Response\Exception
+     * @throws \Exception
      * @return array|string
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
@@ -74,23 +74,20 @@ class Nexmo implements ProviderInterface
 
         // check response status
         if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new Exception('The server is not responding: ' . $response->header->statusMessage);
+            throw new \Exception('The server is not responding: ' . $response->header->statusMessage);
         }
 
         // parse json response
-        $respArray = json_decode($response->body, true);
 
-        if (isset($respArray['messages'][0]['status']) === true) {
+        $response = json_decode($response->body, true);
 
-            // if status exist.
-            $status = (array_key_exists($respArray['messages'][0]['status'], $this->config->statuses))
-                ? $this->config->getResponseStatus($respArray['messages'][0]['status'])
-                : '';
+        foreach($response['messages'] as $message) {
+            if(isset($message['error-text'])) {
+                throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $message['error-text']);
+            }
         }
 
-        return ($this->debug === true) ? [
-            $response, (empty($status) === false) ? $status : json_decode($response->body, true)
-        ] : (empty($status) === false) ? $status : json_decode($response->body, true);
+        return ($this->debug === true) ? [$response->header, $response] : $response;
     }
 
     /**

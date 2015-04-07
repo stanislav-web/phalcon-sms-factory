@@ -36,22 +36,7 @@ class MessageBird implements ProviderConfigInterface
      *
      * @var array $httpSuccessCode
      */
-    public $httpSuccessCode = [200, 201, 422];
-
-    /**
-     * Acceptable provider statuses
-     *
-     * @var array $statuses
-     */
-    public $statuses = [
-        '2' => 'Request not allowed',
-        '9' => 'Missing params',
-        '10' => 'Invalid params',
-        '20' => 'Not found',
-        '25' => 'Not enough balance',
-        '98' => 'API not found',
-        '99' => 'Internal error',
-    ];
+    public $httpSuccessCode = [200, 201];
 
     /**
      * Provider config container
@@ -80,7 +65,6 @@ class MessageBird implements ProviderConfigInterface
      */
     public function getMessageUri()
     {
-
         return (isset($this->config['message_uri']) === true) ? $this->config['message_uri']
             : self::SEND_MESSAGE_URI;
     }
@@ -122,18 +106,5 @@ class MessageBird implements ProviderConfigInterface
         } else {
             throw new Exception('Empty provider config');
         }
-    }
-
-    /**
-     * Get provider response status
-     *
-     * @param int $code
-     * @return string
-     */
-    public function getResponseStatus($code)
-    {
-
-        return (isset($this->statuses[$code]) === true) ? $this->statuses[$code]
-            : 'Unknown provider response error';
     }
 }

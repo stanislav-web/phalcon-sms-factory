@@ -1,7 +1,7 @@
 <?php
 namespace SMSFactory\Providers;
 
-use Phalcon\Http\Response\Exception;
+use SMSFactory\Exceptions\BaseException;
 use SMSFactory\Aware\ProviderInterface;
 use SMSFactory\Aware\ClientProviders\CurlTrait;
 
@@ -66,32 +66,24 @@ class MessageBird implements ProviderInterface
      * Get server response info
      *
      * @param \Phalcon\Http\Client\Response $response
-     * @throws \Phalcon\Http\Response\Exception
+     * @throws \Exception
      * @return array|string
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
-
         // check response status
         if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new Exception('The server is not responding: ' . $response->header->statusMessage);
+            throw new \Exception('The server is not responding: ' . $response->header->statusMessage, $response->header->statusCode);
         }
 
         // parse json response
-        $respArray = json_decode($response->body, true);
-        $status = null;
+        $response = json_decode($response->body, true);
 
-        if (isset($respArray['errors']) === true) {
-
-            // if status exist.
-            $status = (array_key_exists($respArray['errors'][0]['code'], $this->config->statuses))
-                ? $this->config->getResponseStatus($respArray['errors'][0]['code']) . ' ' . $respArray['errors'][0]['description']
-                : '';
+        if (isset($response['errors']) === true) {
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $response['errors'][0]['description']);
         }
 
-        return ($this->debug === true) ? [
-            $response, ($status === null ? $respArray : $status)
-        ] : ($status === null ? $respArray : $status);
+        return ($this->debug === true) ? [$response->header, $response] : $response;
     }
 
     /**
