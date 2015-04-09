@@ -18,6 +18,11 @@ At the moment, provides an interface to send and check your balance for the next
 
 #### In Future
     - Support SMS mass mailing
+    
+#### [v 1.2.3] 2015-04-11
+
+    - Add single error handler
+    - Tests
 
 #### [v 1.2.2-beta] 2015-02-08
     - **Add view balance**

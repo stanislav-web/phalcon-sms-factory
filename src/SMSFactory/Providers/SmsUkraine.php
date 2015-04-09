@@ -77,29 +77,15 @@ class SmsUkraine implements ProviderInterface
             throw new \Exception('The server is not responding: ' . $response->header->statusMessage);
         }
 
-
-        exit;
-        // parse json response
-        $isJson = \SMSFactory\Helpers\String::isJson($response->body);
-
-        if ($isJson === true) {
-            $respArray = json_decode($response->body, true);
-        } else {
-            // this is not json response, parse as string
-            if (stripos($response->body, 'errors') !== false) {
-                // have an error
-                preg_match('/^([errors]+):(.*)/', $response->body, $matches);
-
-                // if status exist
-                $status = (array_key_exists($matches[0], $this->config->statuses))
-                    ? $this->config->getResponseStatus($matches[0])
-                    : $matches[2];
-            }
+        // this is not json response, parse as string
+        if (stripos($response->body, 'errors') !== false) {
+            // have an error
+            preg_match_all('/errors:([\w].*)/iu', $response->body, $matches);
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), implode('.', $matches[0]));
         }
 
-        return ($this->debug === true) ? [
-            $response, (empty($status) === false) ? $status : $respArray
-        ] : (empty($status) === false) ? $status : $respArray;
+        return ($this->debug === true) ? [$response->header, $response] : $response;
+
     }
 
     /**

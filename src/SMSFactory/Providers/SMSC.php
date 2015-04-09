@@ -71,29 +71,19 @@ class SMSC implements ProviderInterface
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
-
         // check response status
         if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
             throw new \Exception('The server is not responding: ' . $response->header->statusMessage);
         }
 
+        // get server response status
+        $response = json_decode($response->body, true);
 
-        var_dump($response->body); exit;
-        // parse json response
-        $respArray = json_decode($response->body, true);
-        $status = null;
-
-        if (isset($respArray['error_code']) === true) {
-
-            // if status exist.
-            $status = (array_key_exists($respArray['error_code'], $this->config->$statuses))
-                ? $this->config->getResponseStatus($respArray['error_code'])
-                : '';
+        if(isset($response['error_code'])) {
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $response['error']);
         }
 
-        return ($this->debug === true) ? [
-            $response, ($status === null ? $respArray : $status)
-        ] : ($status === null ? $respArray : $status);
+        return ($this->debug === true) ? [$response->header, $response] : $response;
     }
 
     /**

@@ -72,7 +72,6 @@ class BulkSMS implements ProviderInterface
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
-
         // check response status
         if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
             throw new \Exception('The server is not responding: ' . $response->header->statusMessage);

@@ -22,14 +22,14 @@ class SMSC implements ProviderConfigInterface
      *
      * @const string SEND_MESSAGE_URI
      */
-    const SEND_MESSAGE_URI = 'https://smsc.ru/sys/send.php';
+    const SEND_MESSAGE_URI = 'https://smsc.ru/sys/send.php?fmt=3';
 
     /**
      * Balance uri
      *
      * @const string GET_BALANCE_URI
      */
-    const GET_BALANCE_URI = 'https://smsc.ru/sys/balance.php';
+    const GET_BALANCE_URI = 'https://smsc.ru/sys/balance.php?fmt=3';
 
     /**
      * Success HTTP codes responding
@@ -37,23 +37,6 @@ class SMSC implements ProviderConfigInterface
      * @var array $httpSuccessCode
      */
     public $httpSuccessCode = [200];
-
-    /**
-     * Acceptable provider statuses
-     *
-     * @var array $statuses
-     */
-    public $statuses = [
-        '1' => 'Ошибка в параметрах.',
-        '2' => 'Неверный логин или пароль.',
-        '3' => 'Недостаточно средств на счете Клиента.',
-        '4' => 'IP-адрес временно заблокирован из-за частых ошибок в запросах.',
-        '5' => 'Неверный формат даты.',
-        '6' => 'Сообщение запрещено (по тексту или по имени отправителя).',
-        '7' => 'Неверный формат номера телефона.',
-        '8' => 'Сообщение на указанный номер не может быть доставлено.',
-        '9' => 'Отправка более одного одинакового запроса на передачу SMS-сообщения либо более пяти одинаковых запросов на получение стоимости сообщения в течение минуты.',
-    ];
 
     /**
      * Provider config container
@@ -124,18 +107,5 @@ class SMSC implements ProviderConfigInterface
         } else {
             throw new Exception('Empty provider config');
         }
-    }
-
-    /**
-     * Get provider response status
-     *
-     * @param int $code
-     * @return string
-     */
-    public function getResponseStatus($code)
-    {
-
-        return (isset($this->statuses[$code]) === true) ? $this->statuses[$code]
-            : 'Unknown provider response error';
     }
 }

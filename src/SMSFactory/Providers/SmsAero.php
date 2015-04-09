@@ -71,29 +71,16 @@ class SmsAero implements ProviderInterface
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
-
         // check response status
         if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
             throw new \Exception('The server is not responding: ' . $response->header->statusMessage);
         }
 
-        var_dump($response->body); exit;
-        // parse json response
-        $isJson = \SMSFactory\Helpers\String::isJson($response->body);
-
-        if ($isJson === true) {
-            $respArray = json_decode($response->body, true);
-        } else {
-
-            // if status exist
-            $status = (array_key_exists($response->body, $this->config->statuses))
-                ? $this->config->getResponseStatus($response->body)
-                : $response->body;
+        if(stripos($response->body, 'accepted') === false) {
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $response->body);
         }
 
-        return ($this->debug === true) ? [
-            $response, (empty($status) === false) ? $status : $respArray
-        ] : (empty($status) === false) ? $status : $respArray;
+        return ($this->debug === true) ? [$response->header, $response] : $response;
     }
 
     /**

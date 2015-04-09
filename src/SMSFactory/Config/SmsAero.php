@@ -125,17 +125,4 @@ class SmsAero implements ProviderConfigInterface
             throw new Exception('Empty provider config');
         }
     }
-
-    /**
-     * Get provider response status
-     *
-     * @param int $code
-     * @return string
-     */
-    public function getResponseStatus($code)
-    {
-
-        return (isset($this->statuses[$code]) === true) ? $this->statuses[$code]
-            : 'Unknown provider response error';
-    }
 }
