@@ -7,7 +7,6 @@ build:
                 'date.timezone': 'UTC'
         redis: false
         mysql: false
-        postgres: false
 
     dependencies:
 
@@ -37,7 +36,7 @@ tools:
     php_code_coverage: true
 
     php_analyzer:
-        enabled: false
+        enabled: true
         filter:
             excluded_paths: [api/*, build/*, phpunit/*]
         extensions:

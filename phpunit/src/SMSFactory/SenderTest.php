@@ -1,9 +1,10 @@
 <?php
 namespace Test\SMSFactory;
 
+use Phalcon\Config;
+use Phalcon\DI\FactoryDefault;
 use SMSFactory\Sender;
-
-use \Phalcon\DI\FactoryDefault;
+use SMSFactory\Exceptions\BaseException;
 
 /**
  * Class SenderTest
@@ -24,11 +25,11 @@ class SenderTest extends \PHPUnit_Framework_TestCase
     private $di;
 
     /**
-     * Sender class object
+     * Configuration file
      *
-     * @var \SMSFactory\Sender
+     * @var \Phalcon\Config
      */
-    private $sender;
+    private $config;
 
     /**
      * Initialize DI
@@ -37,38 +38,56 @@ class SenderTest extends \PHPUnit_Framework_TestCase
         $this->di = new FactoryDefault();
 
         $this->di->set('config', function() {
-
+            return new Config(
+                require './phpunit/data/config.php'
+            );
         });
     }
-
 
     /**
      * Initialize testing object
      *
-     * @uses \SMSFactory\Sender
+     * @uses Searcher
      * @uses \ReflectionClass
      */
     public function setUp()
     {
-        $this->sender = new Sender(new Di());
+        $this->config = $this->di->get('config');
     }
 
     /**
-     * Kill testing object
+     * Test constructor
      *
-     * @uses Builder
-     */
-    public function tearDown()
-    {
-        $this->builder = null;
-    }
-
-    /**
-     * @covers Searcher\Builder::__construct()
+     * @covers \SMSFactory\Sender::__construct()
      */
     public function testConstructor()
     {
+        new Sender($this->di);
+    }
 
+    /**
+     * Test exceptions
+     *
+     * @covers \SMSFactory\Sender::__construct()
+     * @expectedException     \SMSFactory\Exceptions\BaseException
+     * @expectedExceptionCode 500
+     */
+    public function testException()
+    {
+        $this->di->remove('config');
+        new Sender($this->di);
+    }
+
+    /**
+     * Test exceptions
+     *
+     * @covers \SMSFactory\Sender::__construct()
+     * @expectedException     \SMSFactory\Exceptions\BaseException
+     * @expectedExceptionCode 500
+     */
+    public function testCallException()
+    {
+        $sms = (new Sender($this->di))->call('Undefined');
     }
 }
 

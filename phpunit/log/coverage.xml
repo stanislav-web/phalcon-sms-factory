@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1428782734">
-  <project timestamp="1428782734">
+<coverage generated="1428801309">
+  <project timestamp="1428801309">
     <package name="SMSFactory\Aware\ClientProviders">
       <file name="/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Aware/ClientProviders/CurlTrait.php">
         <class name="CurlTrait" namespace="SMSFactory\Aware\ClientProviders" fullPackage="SMSFactory.SMSFactory" package="SMSFactory" subpackage="SMSFactory">
@@ -220,12 +220,15 @@
     <package name="SMSFactory\Exceptions">
       <file name="/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Exceptions/BaseException.php">
         <class name="BaseException" namespace="SMSFactory\Exceptions" fullPackage="SMSFactory.Exceptions" package="SMSFactory" subpackage="Exceptions">
-          <metrics methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="3" coveredelements="0"/>
+          <metrics methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="0" elements="6" coveredelements="0"/>
         </class>
-        <line num="29" type="method" name="__construct" crap="2" count="0"/>
-        <line num="30" type="stmt" count="0"/>
+        <line num="29" type="method" name="__construct" crap="6" count="0"/>
         <line num="31" type="stmt" count="0"/>
-        <metrics loc="31" ncloc="11" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="3" coveredelements="0"/>
+        <line num="32" type="stmt" count="0"/>
+        <line num="33" type="stmt" count="0"/>
+        <line num="34" type="stmt" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <metrics loc="35" ncloc="15" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="0" elements="6" coveredelements="0"/>
       </file>
     </package>
     <package name="SMSFactory\Providers">
@@ -484,23 +487,23 @@
     <package name="SMSFactory">
       <file name="/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Sender.php">
         <class name="Sender" namespace="SMSFactory" fullPackage="SMSFactory.SMSFactory" package="SMSFactory" subpackage="SMSFactory">
-          <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="0" elements="12" coveredelements="0"/>
+          <metrics methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="5" elements="12" coveredelements="6"/>
         </class>
-        <line num="25" type="method" name="__construct" crap="6" count="0"/>
-        <line num="29" type="stmt" count="0"/>
-        <line num="30" type="stmt" count="0"/>
-        <line num="31" type="stmt" count="0"/>
-        <line num="32" type="stmt" count="0"/>
-        <line num="34" type="stmt" count="0"/>
+        <line num="27" type="method" name="__construct" crap="2" count="3"/>
+        <line num="29" type="stmt" count="3"/>
+        <line num="30" type="stmt" count="2"/>
+        <line num="31" type="stmt" count="2"/>
+        <line num="32" type="stmt" count="1"/>
+        <line num="34" type="stmt" count="2"/>
         <line num="48" type="method" name="call" crap="6" count="0"/>
         <line num="51" type="stmt" count="0"/>
         <line num="52" type="stmt" count="0"/>
         <line num="54" type="stmt" count="0"/>
         <line num="57" type="stmt" count="0"/>
         <line num="59" type="stmt" count="0"/>
-        <metrics loc="62" ncloc="28" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="0" elements="12" coveredelements="0"/>
+        <metrics loc="62" ncloc="28" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="5" elements="12" coveredelements="6"/>
       </file>
     </package>
-    <metrics files="23" loc="2255" ncloc="1037" classes="21" methods="87" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="269" coveredstatements="0" elements="356" coveredelements="0"/>
+    <metrics files="23" loc="2259" ncloc="1041" classes="21" methods="87" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="272" coveredstatements="5" elements="359" coveredelements="6"/>
   </project>
 </coverage>

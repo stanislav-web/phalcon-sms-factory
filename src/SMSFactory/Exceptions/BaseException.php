@@ -15,7 +15,7 @@ namespace SMSFactory\Exceptions;
 class BaseException extends \Exception {
 
     /**
-     * Service Unavailable for each throwed errors
+     * Service Unavailable for each trowed errors
      */
     const CODE = 503;
 
@@ -26,7 +26,11 @@ class BaseException extends \Exception {
      * @param string $message error message
      * @param int $code error code
      */
-    public function __construct($provider, $message, $code = self::CODE) {
+    public function __construct($provider, $message, $code = null) {
+
+        if(null === $code) {
+            $code = self::CODE;
+        }
         parent::__construct($provider.': '.$message, $code);
     }
 }

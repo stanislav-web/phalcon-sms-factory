@@ -1,6 +1,72 @@
 <?php
 $coverage = new PHP_CodeCoverage;
 $coverage->setData(array (
+  '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Aware/Provider.php' => 
+  array (
+  ),
+  '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Sender.php' => 
+  array (
+    29 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testConstructor',
+      1 => 'Test\\SMSFactory\\SenderTest::testException',
+      2 => 'Test\\SMSFactory\\SenderTest::testCallException',
+    ),
+    30 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testConstructor',
+      1 => 'Test\\SMSFactory\\SenderTest::testCallException',
+    ),
+    31 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testConstructor',
+      1 => 'Test\\SMSFactory\\SenderTest::testCallException',
+    ),
+    32 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testException',
+    ),
+    34 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testConstructor',
+      1 => 'Test\\SMSFactory\\SenderTest::testCallException',
+    ),
+    51 => 
+    array (
+    ),
+    52 => 
+    array (
+    ),
+    54 => 
+    array (
+    ),
+    57 => 
+    array (
+    ),
+    58 => NULL,
+    59 => 
+    array (
+    ),
+    61 => NULL,
+  ),
+  '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Exceptions/BaseException.php' => 
+  array (
+    31 => 
+    array (
+    ),
+    32 => 
+    array (
+    ),
+    33 => 
+    array (
+    ),
+    34 => 
+    array (
+    ),
+    35 => 
+    array (
+    ),
+  ),
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Aware/ClientProviders/CurlTrait.php' => 
   array (
     33 => 
@@ -28,9 +94,6 @@ $coverage->setData(array (
     array (
     ),
     46 => NULL,
-  ),
-  '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Aware/Provider.php' => 
-  array (
   ),
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Aware/ProviderConfigInterface.php' => 
   array (
@@ -365,15 +428,6 @@ $coverage->setData(array (
     array (
     ),
     112 => NULL,
-  ),
-  '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Exceptions/BaseException.php' => 
-  array (
-    30 => 
-    array (
-    ),
-    31 => 
-    array (
-    ),
   ),
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/BulkSMS.php' => 
   array (
@@ -936,48 +990,17 @@ $coverage->setData(array (
     ),
     131 => NULL,
   ),
-  '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Sender.php' => 
-  array (
-    29 => 
-    array (
-    ),
-    30 => 
-    array (
-    ),
-    31 => 
-    array (
-    ),
-    32 => 
-    array (
-    ),
-    34 => 
-    array (
-    ),
-    51 => 
-    array (
-    ),
-    52 => 
-    array (
-    ),
-    54 => 
-    array (
-    ),
-    57 => 
-    array (
-    ),
-    58 => NULL,
-    59 => 
-    array (
-    ),
-    61 => NULL,
-  ),
 ));
 $coverage->setTests(array (
+  'Test\\SMSFactory\\SenderTest::testConstructor' => 0,
+  'Test\\SMSFactory\\SenderTest::testException' => 0,
+  'Test\\SMSFactory\\SenderTest::testCallException' => 0,
   'UNCOVERED_FILES_FROM_WHITELIST' => NULL,
 ));
 
 $filter = $coverage->filter();
 $filter->setBlacklistedFiles(array (
+  '/tmp/ide-phpunit.php' => true,
 ));
 $filter->setWhitelistedFiles(array (
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Aware/ClientProviders/CurlTrait.php' => true,
