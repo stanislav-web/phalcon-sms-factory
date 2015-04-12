@@ -29,7 +29,8 @@
   },
   "autoload": {
     "psr-4": {
-      "SMSFactory\\": "src/SMSFactory"
+      "SMSFactory\\": "src/SMSFactory",
+      "Test\\SMSFactory\\": "phpunit/src/SMSFactory"
     }
   },
   "suggest": {

@@ -40,243 +40,249 @@ $coverage->setData(array (
   ),
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/BulkSMS.php' => 
   array (
-    78 => 
+    58 => 
     array (
     ),
-    79 => 
+    59 => 
     array (
     ),
-    89 => 
+    69 => 
     array (
     ),
-    90 => 
+    70 => 
     array (
     ),
-    91 => NULL,
-    101 => 
+    71 => NULL,
+    81 => 
     array (
     ),
-    102 => 
+    82 => 
     array (
     ),
-    103 => NULL,
-    113 => 
+    83 => NULL,
+    93 => 
     array (
     ),
-    114 => 
+    94 => 
     array (
     ),
-    115 => NULL,
-    125 => 
+    95 => NULL,
+    105 => 
     array (
     ),
-    126 => 
+    106 => 
     array (
     ),
-    127 => NULL,
-    128 => 
-    array (
-    ),
-    130 => NULL,
-    141 => 
-    array (
-    ),
-    142 => 
-    array (
-    ),
-    143 => NULL,
-  ),
-  '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/Clickatell.php' => 
-  array (
-    113 => 
-    array (
-    ),
-    114 => 
-    array (
-    ),
-    124 => 
-    array (
-    ),
-    125 => 
-    array (
-    ),
-    126 => NULL,
-    136 => 
-    array (
-    ),
-    137 => 
-    array (
-    ),
-    138 => NULL,
-    148 => 
-    array (
-    ),
-    149 => 
-    array (
-    ),
-    150 => NULL,
-    160 => 
-    array (
-    ),
-    161 => 
-    array (
-    ),
-    162 => NULL,
-    163 => 
-    array (
-    ),
-    165 => NULL,
-    176 => 
-    array (
-    ),
-    177 => 
-    array (
-    ),
-    178 => NULL,
-  ),
-  '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/MessageBird.php' => 
-  array (
-    73 => 
-    array (
-    ),
-    74 => 
-    array (
-    ),
-    84 => 
-    array (
-    ),
-    85 => 
-    array (
-    ),
-    86 => NULL,
-    96 => 
-    array (
-    ),
-    97 => 
-    array (
-    ),
-    98 => NULL,
+    107 => NULL,
     108 => 
     array (
     ),
-    109 => 
+    110 => NULL,
+  ),
+  '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/Clickatell.php' => 
+  array (
+    58 => 
+    array (
+    ),
+    59 => 
+    array (
+    ),
+    69 => 
+    array (
+    ),
+    70 => 
+    array (
+    ),
+    71 => NULL,
+    81 => 
+    array (
+    ),
+    82 => 
+    array (
+    ),
+    83 => NULL,
+    93 => 
+    array (
+    ),
+    94 => 
+    array (
+    ),
+    95 => NULL,
+    105 => 
+    array (
+    ),
+    106 => 
+    array (
+    ),
+    107 => NULL,
+    108 => 
     array (
     ),
     110 => NULL,
-    120 => 
+  ),
+  '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/MessageBird.php' => 
+  array (
+    58 => 
     array (
     ),
-    121 => 
+    59 => 
     array (
     ),
-    122 => NULL,
-    123 => 
+    68 => 
     array (
     ),
-    125 => NULL,
-    136 => 
+    69 => 
     array (
     ),
-    137 => 
+    70 => NULL,
+    80 => 
     array (
     ),
-    138 => NULL,
+    81 => 
+    array (
+    ),
+    82 => NULL,
+    92 => 
+    array (
+    ),
+    93 => 
+    array (
+    ),
+    94 => NULL,
+    104 => 
+    array (
+    ),
+    105 => 
+    array (
+    ),
+    106 => NULL,
+    107 => 
+    array (
+    ),
+    109 => NULL,
   ),
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/Nexmo.php' => 
   array (
+    58 => 
+    array (
+    ),
+    59 => 
+    array (
+    ),
+    69 => 
+    array (
+    ),
+    70 => 
+    array (
+    ),
+    71 => NULL,
+    81 => 
+    array (
+    ),
+    82 => 
+    array (
+    ),
+    83 => NULL,
+    93 => 
+    array (
+    ),
+    94 => 
+    array (
+    ),
+    95 => NULL,
+    105 => 
+    array (
+    ),
+    106 => 
+    array (
+    ),
+    107 => NULL,
+    108 => 
+    array (
+    ),
+    110 => NULL,
+  ),
+  '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/SMSC.php' => 
+  array (
+    58 => 
+    array (
+    ),
+    59 => 
+    array (
+    ),
+    69 => 
+    array (
+    ),
+    70 => 
+    array (
+    ),
+    71 => NULL,
+    81 => 
+    array (
+    ),
+    82 => 
+    array (
+    ),
+    83 => NULL,
+    93 => 
+    array (
+    ),
+    94 => 
+    array (
+    ),
+    95 => NULL,
+    105 => 
+    array (
+    ),
+    106 => 
+    array (
+    ),
+    107 => NULL,
+    108 => 
+    array (
+    ),
+    110 => NULL,
+  ),
+  '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/SMSRu.php' => 
+  array (
+    83 => 
+    array (
+    ),
     84 => 
     array (
     ),
-    85 => 
+    94 => 
     array (
     ),
     95 => 
     array (
     ),
-    96 => 
+    96 => NULL,
+    106 => 
     array (
     ),
-    97 => NULL,
     107 => 
     array (
     ),
-    108 => 
+    108 => NULL,
+    118 => 
     array (
     ),
-    109 => NULL,
     119 => 
     array (
     ),
-    120 => 
+    120 => NULL,
+    130 => 
     array (
     ),
-    121 => NULL,
     131 => 
     array (
     ),
-    132 => 
+    132 => NULL,
+    133 => 
     array (
     ),
-    133 => NULL,
-    134 => 
-    array (
-    ),
-    136 => NULL,
-    147 => 
-    array (
-    ),
-    148 => 
-    array (
-    ),
-    149 => NULL,
-  ),
-  '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/SMSC.php' => 
-  array (
-    75 => 
-    array (
-    ),
-    76 => 
-    array (
-    ),
-    86 => 
-    array (
-    ),
-    87 => 
-    array (
-    ),
-    88 => NULL,
-    98 => 
-    array (
-    ),
-    99 => 
-    array (
-    ),
-    100 => NULL,
-    110 => 
-    array (
-    ),
-    111 => 
-    array (
-    ),
-    112 => NULL,
-    122 => 
-    array (
-    ),
-    123 => 
-    array (
-    ),
-    124 => NULL,
-    125 => 
-    array (
-    ),
-    127 => NULL,
-    138 => 
-    array (
-    ),
-    139 => 
-    array (
-    ),
-    140 => NULL,
+    135 => NULL,
   ),
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/SmsAero.php' => 
   array (
@@ -318,74 +324,56 @@ $coverage->setData(array (
     array (
     ),
     127 => NULL,
-    138 => 
-    array (
-    ),
-    139 => 
-    array (
-    ),
-    140 => NULL,
   ),
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/SmsUkraine.php' => 
   array (
-    86 => 
+    60 => 
     array (
     ),
-    87 => 
+    61 => 
     array (
     ),
-    97 => 
+    71 => 
     array (
     ),
-    98 => 
+    72 => 
     array (
     ),
-    99 => NULL,
-    109 => 
+    73 => NULL,
+    83 => 
     array (
     ),
+    84 => 
+    array (
+    ),
+    85 => NULL,
+    95 => 
+    array (
+    ),
+    96 => 
+    array (
+    ),
+    97 => NULL,
+    107 => 
+    array (
+    ),
+    108 => 
+    array (
+    ),
+    109 => NULL,
     110 => 
     array (
     ),
-    111 => NULL,
-    121 => 
-    array (
-    ),
-    122 => 
-    array (
-    ),
-    123 => NULL,
-    133 => 
-    array (
-    ),
-    134 => 
-    array (
-    ),
-    135 => NULL,
-    136 => 
-    array (
-    ),
-    138 => NULL,
-    149 => 
-    array (
-    ),
-    150 => 
-    array (
-    ),
-    151 => NULL,
+    112 => NULL,
   ),
-  '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Helpers/String.php' => 
+  '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Exceptions/BaseException.php' => 
   array (
-    26 => 
+    30 => 
     array (
     ),
-    27 => 
+    31 => 
     array (
     ),
-    28 => 
-    array (
-    ),
-    29 => NULL,
   ),
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/BulkSMS.php' => 
   array (
@@ -412,25 +400,26 @@ $coverage->setData(array (
     81 => 
     array (
     ),
+    83 => 
+    array (
+    ),
     84 => 
     array (
     ),
-    85 => 
+    85 => NULL,
+    87 => 
     array (
     ),
-    86 => 
+    88 => NULL,
+    100 => 
     array (
     ),
-    88 => 
+    101 => 
     array (
     ),
-    89 => 
+    102 => 
     array (
     ),
-    90 => 
-    array (
-    ),
-    91 => NULL,
     103 => 
     array (
     ),
@@ -440,29 +429,20 @@ $coverage->setData(array (
     105 => 
     array (
     ),
-    106 => 
-    array (
-    ),
-    107 => 
-    array (
-    ),
     108 => 
     array (
     ),
-    111 => 
+    109 => NULL,
+    120 => 
     array (
     ),
-    112 => NULL,
-    123 => 
+    121 => 
     array (
     ),
     124 => 
     array (
     ),
-    127 => 
-    array (
-    ),
-    128 => NULL,
+    125 => NULL,
   ),
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/Clickatell.php' => 
   array (
@@ -489,63 +469,49 @@ $coverage->setData(array (
     81 => 
     array (
     ),
-    83 => 
+    84 => 
     array (
     ),
     86 => 
     array (
     ),
-    87 => 
-    array (
-    ),
-    88 => 
-    array (
-    ),
+    87 => NULL,
     89 => 
     array (
     ),
-    91 => 
+    90 => NULL,
+    102 => 
     array (
     ),
-    92 => 
+    103 => 
     array (
     ),
-    93 => 
+    104 => 
     array (
     ),
-    94 => NULL,
+    105 => 
+    array (
+    ),
     106 => 
     array (
     ),
     107 => 
     array (
     ),
-    108 => 
-    array (
-    ),
-    109 => 
-    array (
-    ),
     110 => 
     array (
     ),
-    111 => 
+    111 => NULL,
+    122 => 
     array (
     ),
-    114 => 
+    123 => 
     array (
     ),
-    115 => NULL,
     126 => 
     array (
     ),
-    127 => 
-    array (
-    ),
-    130 => 
-    array (
-    ),
-    131 => NULL,
+    127 => NULL,
   ),
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/MessageBird.php' => 
   array (
@@ -562,76 +528,59 @@ $coverage->setData(array (
     array (
     ),
     63 => NULL,
+    75 => 
+    array (
+    ),
     76 => 
     array (
     ),
-    77 => 
-    array (
-    ),
-    78 => NULL,
-    81 => 
+    77 => NULL,
+    80 => 
     array (
     ),
     82 => 
     array (
     ),
-    84 => 
+    83 => 
     array (
     ),
-    87 => 
+    84 => NULL,
+    86 => 
     array (
     ),
-    88 => 
+    87 => NULL,
+    99 => 
     array (
     ),
-    89 => 
+    100 => 
     array (
     ),
-    90 => 
+    101 => 
     array (
     ),
-    92 => 
+    102 => 
     array (
     ),
-    93 => 
+    103 => 
     array (
     ),
-    94 => 
+    104 => 
     array (
     ),
-    95 => NULL,
     107 => 
     array (
     ),
-    108 => 
+    108 => NULL,
+    120 => 
     array (
     ),
-    109 => 
+    121 => 
     array (
     ),
-    110 => 
+    124 => 
     array (
     ),
-    111 => 
-    array (
-    ),
-    112 => 
-    array (
-    ),
-    115 => 
-    array (
-    ),
-    116 => NULL,
-    128 => 
-    array (
-    ),
-    129 => 
-    array (
-    ),
-    132 => 
-    array (
-    ),
-    133 => NULL,
+    125 => NULL,
   ),
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/Nexmo.php' => 
   array (
@@ -648,73 +597,65 @@ $coverage->setData(array (
     array (
     ),
     63 => NULL,
+    75 => 
+    array (
+    ),
     76 => 
     array (
     ),
-    77 => 
-    array (
-    ),
-    78 => NULL,
+    77 => NULL,
     81 => 
     array (
     ),
     83 => 
     array (
     ),
-    86 => 
+    84 => 
     array (
     ),
+    85 => 
+    array (
+    ),
+    86 => NULL,
     87 => 
-    array (
-    ),
-    88 => 
     array (
     ),
     89 => 
     array (
     ),
-    91 => 
+    90 => NULL,
+    102 => 
     array (
     ),
-    92 => 
+    103 => 
     array (
     ),
-    93 => 
+    104 => 
     array (
     ),
-    94 => NULL,
+    105 => 
+    array (
+    ),
     106 => 
     array (
     ),
     107 => 
     array (
     ),
-    108 => 
-    array (
-    ),
-    109 => 
-    array (
-    ),
     110 => 
     array (
     ),
-    111 => 
+    111 => NULL,
+    123 => 
     array (
     ),
-    114 => 
+    124 => 
     array (
     ),
-    115 => NULL,
     127 => 
     array (
     ),
-    128 => 
-    array (
-    ),
-    131 => 
-    array (
-    ),
-    132 => NULL,
+    128 => NULL,
   ),
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/SMSC.php' => 
   array (
@@ -731,76 +672,125 @@ $coverage->setData(array (
     array (
     ),
     63 => NULL,
+    75 => 
+    array (
+    ),
     76 => 
     array (
     ),
-    77 => 
-    array (
-    ),
-    78 => NULL,
-    81 => 
+    77 => NULL,
+    80 => 
     array (
     ),
     82 => 
     array (
     ),
-    84 => 
+    83 => 
     array (
     ),
-    87 => 
+    84 => NULL,
+    86 => 
     array (
     ),
-    88 => 
+    87 => NULL,
+    99 => 
     array (
     ),
-    89 => 
+    100 => 
     array (
     ),
-    90 => 
+    101 => 
     array (
     ),
-    92 => 
+    102 => 
     array (
     ),
-    93 => 
+    103 => 
     array (
     ),
-    94 => 
+    104 => 
     array (
     ),
-    95 => NULL,
     107 => 
     array (
     ),
-    108 => 
+    108 => NULL,
+    120 => 
     array (
     ),
-    109 => 
+    121 => 
     array (
     ),
-    110 => 
+    124 => 
     array (
     ),
-    111 => 
+    125 => NULL,
+  ),
+  '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/SMSRu.php' => 
+  array (
+    49 => 
     array (
     ),
-    112 => 
+    50 => 
     array (
     ),
-    115 => 
+    60 => 
     array (
     ),
-    116 => NULL,
-    128 => 
+    62 => 
     array (
     ),
-    129 => 
+    63 => NULL,
+    74 => 
     array (
     ),
-    132 => 
+    75 => 
     array (
     ),
-    133 => NULL,
+    76 => NULL,
+    78 => 
+    array (
+    ),
+    80 => 
+    array (
+    ),
+    81 => NULL,
+    83 => 
+    array (
+    ),
+    84 => NULL,
+    95 => 
+    array (
+    ),
+    96 => 
+    array (
+    ),
+    97 => 
+    array (
+    ),
+    98 => 
+    array (
+    ),
+    99 => 
+    array (
+    ),
+    100 => 
+    array (
+    ),
+    103 => 
+    array (
+    ),
+    104 => NULL,
+    116 => 
+    array (
+    ),
+    117 => 
+    array (
+    ),
+    120 => 
+    array (
+    ),
+    121 => NULL,
   ),
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/SmsAero.php' => 
   array (
@@ -817,76 +807,56 @@ $coverage->setData(array (
     array (
     ),
     63 => NULL,
+    75 => 
+    array (
+    ),
     76 => 
     array (
     ),
-    77 => 
+    77 => NULL,
+    79 => 
     array (
     ),
-    78 => NULL,
-    81 => 
+    80 => 
     array (
     ),
+    81 => NULL,
     83 => 
     array (
     ),
-    84 => 
+    84 => NULL,
+    96 => 
     array (
     ),
-    85 => 
+    97 => 
     array (
     ),
-    88 => 
+    98 => 
     array (
     ),
-    89 => 
+    99 => 
     array (
     ),
-    90 => 
+    100 => 
     array (
     ),
-    93 => 
+    101 => 
     array (
     ),
-    94 => 
+    104 => 
     array (
     ),
-    95 => 
+    105 => NULL,
+    117 => 
     array (
     ),
-    96 => NULL,
-    108 => 
+    118 => 
     array (
     ),
-    109 => 
+    121 => 
     array (
     ),
-    110 => 
-    array (
-    ),
-    111 => 
-    array (
-    ),
-    112 => 
-    array (
-    ),
-    113 => 
-    array (
-    ),
-    116 => 
-    array (
-    ),
-    117 => NULL,
-    129 => 
-    array (
-    ),
-    130 => 
-    array (
-    ),
-    133 => 
-    array (
-    ),
-    134 => NULL,
+    122 => NULL,
   ),
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/SmsUkraine.php' => 
   array (
@@ -919,78 +889,52 @@ $coverage->setData(array (
     84 => 
     array (
     ),
-    85 => 
-    array (
-    ),
+    85 => NULL,
     87 => 
     array (
     ),
-    89 => 
+    89 => NULL,
+    101 => 
     array (
     ),
-    92 => 
+    102 => 
     array (
     ),
-    93 => 
+    103 => 
     array (
     ),
-    94 => 
+    104 => 
     array (
     ),
-    95 => 
+    105 => 
     array (
     ),
-    98 => 
+    106 => 
     array (
     ),
-    99 => 
+    107 => 
     array (
     ),
-    100 => 
+    110 => 
     array (
     ),
-    101 => NULL,
-    113 => 
+    111 => NULL,
+    123 => 
     array (
     ),
-    114 => 
+    124 => 
     array (
     ),
-    115 => 
+    126 => 
     array (
     ),
-    116 => 
+    127 => 
     array (
     ),
-    117 => 
+    130 => 
     array (
     ),
-    118 => 
-    array (
-    ),
-    119 => 
-    array (
-    ),
-    122 => 
-    array (
-    ),
-    123 => NULL,
-    135 => 
-    array (
-    ),
-    136 => 
-    array (
-    ),
-    138 => 
-    array (
-    ),
-    139 => 
-    array (
-    ),
-    142 => 
-    array (
-    ),
-    143 => NULL,
+    131 => NULL,
   ),
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Sender.php' => 
   array (
@@ -1046,14 +990,16 @@ $filter->setWhitelistedFiles(array (
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/MessageBird.php' => true,
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/Nexmo.php' => true,
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/SMSC.php' => true,
+  '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/SMSRu.php' => true,
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/SmsAero.php' => true,
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/SmsUkraine.php' => true,
-  '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Helpers/String.php' => true,
+  '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Exceptions/BaseException.php' => true,
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/BulkSMS.php' => true,
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/Clickatell.php' => true,
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/MessageBird.php' => true,
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/Nexmo.php' => true,
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/SMSC.php' => true,
+  '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/SMSRu.php' => true,
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/SmsAero.php' => true,
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/SmsUkraine.php' => true,
   '/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Sender.php' => true,
