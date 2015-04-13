@@ -4,7 +4,6 @@ namespace Test\SMSFactory;
 use Phalcon\Config;
 use Phalcon\DI\FactoryDefault;
 use SMSFactory\Sender;
-use SMSFactory\Exceptions\BaseException;
 
 /**
  * Class SenderTest
@@ -20,29 +19,23 @@ class SenderTest extends \PHPUnit_Framework_TestCase
     /**
      * DependencyInjector service
      *
-     * @var \Phalcon\DI\FactoryDefault
+     * @var \Phalcon\DI\FactoryDefault $di
      */
     private $di;
 
     /**
      * Configuration file
      *
-     * @var \Phalcon\Config
+     * @var \Phalcon\Config $config
      */
     private $config;
 
     /**
-     * Initialize DI
+     * Configuration file
+     *
+     * @var \Reflection
      */
-    public function __construct() {
-        $this->di = new FactoryDefault();
-
-        $this->di->set('config', function() {
-            return new Config(
-                require './phpunit/data/config.php'
-            );
-        });
-    }
+    private $reflection;
 
     /**
      * Initialize testing object
@@ -52,7 +45,46 @@ class SenderTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
+        $this->di = new FactoryDefault();
+
+        $this->di->set('config', function() {
+            return new Config(
+                require './phpunit/data/config.php'
+            );
+        });
+
         $this->config = $this->di->get('config');
+        $this->reflection = new \ReflectionClass('\SMSFactory\Sender');
+    }
+
+    /**
+     * Call protected/private method of a class.
+     *
+     * @param object &$object    Instantiated object that we will run method on.
+     * @param string $methodName Method name to call
+     * @param array  $parameters Array of parameters to pass into method.
+     * @example <code>
+     *                           $this->invokeMethod($user, 'cryptPassword', array('passwordToCrypt'));
+     *                           </code>
+     * @return mixed Method return.
+     */
+    protected function invokeMethod(&$object, $methodName, array $parameters = array())
+    {
+        $method = $this->reflection->getMethod($methodName);
+        $method->setAccessible(true);
+        return $method->invokeArgs($object, $parameters);
+    }
+    /**
+     * Setup accessible any private (protected) property
+     *
+     * @param $name
+     * @return \ReflectionMethod
+     */
+    protected function getProperty($name)
+    {
+        $prop = $this->reflection->getProperty($name);
+        $prop->setAccessible(true);
+        return $prop;
     }
 
     /**
@@ -79,15 +111,54 @@ class SenderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test exceptions
-     *
-     * @covers \SMSFactory\Sender::__construct()
+     * @covers SMSFactory\Sender::call
      * @expectedException     \SMSFactory\Exceptions\BaseException
      * @expectedExceptionCode 500
      */
     public function testCallException()
     {
-        $sms = (new Sender($this->di))->call('Undefined');
+        (new Sender($this->di))->call('Undefined');
+    }
+
+    /**
+     * @dataProvider additionProvider
+     * @covers SMSFactory\Sender::call
+     */
+    public function testCall($provider)
+    {
+        // check modifier before run
+        $modifiers = (new \ReflectionMethod('SMSFactory\Sender', 'call'))->getModifiers();
+        $this->assertEquals(['final', 'public'], \Reflection::getModifierNames($modifiers),
+            "[-] call method must be as final public"
+        );
+
+        $providerClass = "SMSFactory\\Providers\\$provider";
+
+        $this->assertEquals(true, class_exists($providerClass), "[-] Provider ".$providerClass." doesn't exist");
+
+        $callInstance = (new Sender($this->di))->call($provider);
+
+        $this->assertInstanceOf($providerClass, $callInstance, "[-] Provider instance error");
+    }
+
+    /**
+     * Get SMS Providers
+     *
+     * @return array
+     */
+    public function additionProvider()
+    {
+        $this->config = new Config(
+            require './phpunit/data/config.php'
+        );
+
+        $data = [];
+        $providers = array_keys($this->config->sms->toArray());
+
+        foreach($providers as $provider) {
+            $data[] = array($provider);
+        }
+        return $data;
     }
 }
 

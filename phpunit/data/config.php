@@ -1,4 +1,12 @@
 <?php
 return [
-    'sms' => []
+    'sms' => [
+        'BulkSMS'       => [],
+        'Clickatell'    => [],
+        'MessageBird'   => [],
+        'Nexmo'         => [],
+        'SmsAero'       => [],
+        'SMSC'          => [],
+        'SMSRu'         => [],
+    ]
 ];

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1428801309">
-  <project timestamp="1428801309">
+<coverage generated="1428967760">
+  <project timestamp="1428967760">
     <package name="SMSFactory\Aware\ClientProviders">
       <file name="/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Aware/ClientProviders/CurlTrait.php">
         <class name="CurlTrait" namespace="SMSFactory\Aware\ClientProviders" fullPackage="SMSFactory.SMSFactory" package="SMSFactory" subpackage="SMSFactory">
@@ -487,23 +487,23 @@
     <package name="SMSFactory">
       <file name="/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Sender.php">
         <class name="Sender" namespace="SMSFactory" fullPackage="SMSFactory.SMSFactory" package="SMSFactory" subpackage="SMSFactory">
-          <metrics methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="5" elements="12" coveredelements="6"/>
+          <metrics methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
         </class>
-        <line num="27" type="method" name="__construct" crap="2" count="3"/>
-        <line num="29" type="stmt" count="3"/>
-        <line num="30" type="stmt" count="2"/>
-        <line num="31" type="stmt" count="2"/>
-        <line num="32" type="stmt" count="1"/>
-        <line num="34" type="stmt" count="2"/>
-        <line num="48" type="method" name="call" crap="6" count="0"/>
-        <line num="51" type="stmt" count="0"/>
-        <line num="52" type="stmt" count="0"/>
-        <line num="54" type="stmt" count="0"/>
-        <line num="57" type="stmt" count="0"/>
-        <line num="59" type="stmt" count="0"/>
-        <metrics loc="62" ncloc="28" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="5" elements="12" coveredelements="6"/>
+        <line num="26" type="method" name="__construct" crap="2" count="2"/>
+        <line num="28" type="stmt" count="2"/>
+        <line num="29" type="stmt" count="1"/>
+        <line num="30" type="stmt" count="1"/>
+        <line num="31" type="stmt" count="1"/>
+        <line num="33" type="stmt" count="1"/>
+        <line num="47" type="method" name="call" crap="2" count="8"/>
+        <line num="50" type="stmt" count="8"/>
+        <line num="51" type="stmt" count="8"/>
+        <line num="53" type="stmt" count="8"/>
+        <line num="56" type="stmt" count="7"/>
+        <line num="58" type="stmt" count="1"/>
+        <metrics loc="61" ncloc="27" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
       </file>
     </package>
-    <metrics files="23" loc="2259" ncloc="1041" classes="21" methods="87" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="272" coveredstatements="5" elements="359" coveredelements="6"/>
+    <metrics files="23" loc="2258" ncloc="1040" classes="21" methods="87" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="272" coveredstatements="10" elements="359" coveredelements="12"/>
   </project>
 </coverage>

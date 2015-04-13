@@ -1,7 +1,6 @@
 <?php
 namespace SMSFactory;
 
-use Phalcon\Exception;
 use SMSFactory\Exceptions\BaseException;
 use SMSFactory\Aware\Provider;
 
@@ -42,7 +41,7 @@ class Sender extends Provider
      * @uses    ProviderInterface::send()
      * @uses    ProviderInterface::balance()
      *
-     * @throws \Phalcon\Exception
+     * @throws BaseException
      * @return mixed
      */
     final public function call($providerName)
