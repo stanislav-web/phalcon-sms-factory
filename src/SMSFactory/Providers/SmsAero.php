@@ -73,14 +73,14 @@ class SmsAero implements ProviderInterface
     {
         // check response status
         if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new \Exception('The server is not responding: ' . $response->header->statusMessage);
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), 'The server is not responding: ' . $response->header->statusMessage);
         }
 
-        if(stripos($response->body, 'accepted') === false) {
+        if(stripos($response->body, 'accepted') === false && stripos($response->body, 'balance') === false) {
             throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $response->body);
         }
 
-        return ($this->debug === true) ? [$response->header, $response] : $response;
+        return ($this->debug === true) ? [$response->header, $response] : $response->body;
     }
 
     /**

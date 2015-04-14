@@ -73,17 +73,18 @@ class SMSC implements ProviderInterface
     {
         // check response status
         if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new \Exception('The server is not responding: ' . $response->header->statusMessage);
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), 'The server is not responding: ' . $response->header->statusMessage);
         }
 
         // get server response status
-        $response = json_decode($response->body, true);
+        $data = json_decode($response->body, true);
 
-        if(isset($response['error_code'])) {
-            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $response['error']);
+        if(isset($data['error_code'])) {
+
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $data['error']);
         }
 
-        return ($this->debug === true) ? [$response->header, $response] : $response;
+        return ($this->debug === true) ? [$response->header, $data] : $data;
     }
 
     /**
@@ -99,7 +100,7 @@ class SMSC implements ProviderInterface
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
                 $this->config->getProviderConfig(), [
                 'phones' => $this->recipient,   //  SMS Receipient
-                'mes' => $message,           //  Message
+                'mes' => $message,              //  Message
             ])
         );
 

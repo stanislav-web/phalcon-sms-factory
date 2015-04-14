@@ -73,19 +73,20 @@ class Nexmo implements ProviderInterface
     {
         // check response status
         if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new \Exception('The server is not responding: ' . $response->header->statusMessage);
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), 'The server is not responding: ' . $response->header->statusMessage);
         }
 
         // parse json response
 
         $response = json_decode($response->body, true);
 
-        foreach($response['messages'] as $message) {
-            if(isset($message['error-text'])) {
-                throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $message['error-text']);
+        if(isset($response['messages']) === true) {
+            foreach($response['messages'] as $message) {
+                if(isset($message['error-text'])) {
+                    throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $message['error-text']);
+                }
             }
         }
-
         return ($this->debug === true) ? [$response->header, $response] : $response;
     }
 

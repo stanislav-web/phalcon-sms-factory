@@ -74,7 +74,7 @@ class Clickatell implements ProviderInterface
     {
         // check response status
         if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new \Exception('The server is not responding: ' . $response->header->statusMessage);
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), 'The server is not responding: ' . $response->header->statusMessage);
         }
 
         // get server response status
@@ -86,7 +86,7 @@ class Clickatell implements ProviderInterface
             throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $matches[2]);
         }
 
-        return ($this->debug === true) ? [$response->header, $response] : $response;
+        return ($this->debug === true) ? [$response->header, $response] : $response->body;
     }
 
     /**

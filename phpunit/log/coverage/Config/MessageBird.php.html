@@ -2,7 +2,7 @@
 <html lang="en">
  <head>
   <meta charset="UTF-8">
-  <title>Code Coverage for /var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/MessageBird.php</title>
+  <title>Code Coverage for /Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/MessageBird.php</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../css/bootstrap.min.css" rel="stylesheet">
   <link href="../css/style.css" rel="stylesheet">
@@ -17,7 +17,7 @@
     <div class="row">
      <div class="col-md-12">
       <ol class="breadcrumb">
-        <li><a href="../index.html">/var/www/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory</a></li>
+        <li><a href="../index.html">/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory</a></li>
         <li><a href="index.html">Config</a></li>
         <li class="active">MessageBird.php</li>
 
@@ -213,7 +213,7 @@
      <tr><td><div align="right"><a name="2"></a><a href="#2">2</a></div></td><td class="codeLine"><span class="keyword">namespace</span><span class="default">&nbsp;</span><span class="default">SMSFactory</span><span class="default">\</span><span class="default">Config</span><span class="keyword">;</span></td></tr>
      <tr><td><div align="right"><a name="3"></a><a href="#3">3</a></div></td><td class="codeLine"></td></tr>
      <tr><td><div align="right"><a name="4"></a><a href="#4">4</a></div></td><td class="codeLine"><span class="keyword">use</span><span class="default">&nbsp;</span><span class="default">SMSFactory</span><span class="default">\</span><span class="default">Aware</span><span class="default">\</span><span class="default">ProviderConfigInterface</span><span class="keyword">;</span></td></tr>
-     <tr><td><div align="right"><a name="5"></a><a href="#5">5</a></div></td><td class="codeLine"><span class="keyword">use</span><span class="default">&nbsp;</span><span class="default">Phalcon</span><span class="default">\</span><span class="default">Exception</span><span class="keyword">;</span></td></tr>
+     <tr><td><div align="right"><a name="5"></a><a href="#5">5</a></div></td><td class="codeLine"><span class="keyword">use</span><span class="default">&nbsp;</span><span class="default">SMSFactory</span><span class="default">\</span><span class="default">Exceptions</span><span class="default">\</span><span class="default">BaseException</span><span class="keyword">;</span></td></tr>
      <tr><td><div align="right"><a name="6"></a><a href="#6">6</a></div></td><td class="codeLine"></td></tr>
      <tr><td><div align="right"><a name="7"></a><a href="#7">7</a></div></td><td class="codeLine"><span class="comment">/**</span></td></tr>
      <tr><td><div align="right"><a name="8"></a><a href="#8">8</a></div></td><td class="codeLine"><span class="comment">&nbsp;*&nbsp;Class&nbsp;MessageBird.&nbsp;Configuration&nbsp;for&nbsp;MessageBird&nbsp;provider</span></td></tr>
@@ -315,7 +315,7 @@
      <tr class="danger"><td><div align="right"><a name="104"></a><a href="#104">104</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">if</span><span class="default">&nbsp;</span><span class="keyword">(</span><span class="keyword">empty</span><span class="keyword">(</span><span class="default">$this</span><span class="default">-&gt;</span><span class="default">config</span><span class="keyword">)</span><span class="default">&nbsp;</span><span class="default">===</span><span class="default">&nbsp;</span><span class="default">false</span><span class="keyword">)</span><span class="default">&nbsp;</span><span class="keyword">{</span></td></tr>
      <tr class="danger"><td><div align="right"><a name="105"></a><a href="#105">105</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">return</span><span class="default">&nbsp;</span><span class="default">$this</span><span class="default">-&gt;</span><span class="default">config</span><span class="keyword">;</span></td></tr>
      <tr class="warning"><td><div align="right"><a name="106"></a><a href="#106">106</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">}</span><span class="default">&nbsp;</span><span class="keyword">else</span><span class="default">&nbsp;</span><span class="keyword">{</span></td></tr>
-     <tr class="danger"><td><div align="right"><a name="107"></a><a href="#107">107</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">throw</span><span class="default">&nbsp;</span><span class="keyword">new</span><span class="default">&nbsp;</span><span class="default">Exception</span><span class="keyword">(</span><span class="default">'Empty&nbsp;provider&nbsp;config'</span><span class="keyword">)</span><span class="keyword">;</span></td></tr>
+     <tr class="danger"><td><div align="right"><a name="107"></a><a href="#107">107</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">throw</span><span class="default">&nbsp;</span><span class="keyword">new</span><span class="default">&nbsp;</span><span class="default">BaseException</span><span class="keyword">(</span><span class="keyword">(</span><span class="keyword">new</span><span class="default">&nbsp;</span><span class="default">\</span><span class="default">ReflectionClass</span><span class="keyword">(</span><span class="default">$this</span><span class="default">-&gt;</span><span class="default">config</span><span class="keyword">)</span><span class="keyword">)</span><span class="default">-&gt;</span><span class="default">getShortName</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span><span class="default">&nbsp;</span><span class="default">'Empty&nbsp;provider&nbsp;config'</span><span class="keyword">,</span><span class="default">&nbsp;</span><span class="default">500</span><span class="keyword">)</span><span class="keyword">;</span></td></tr>
      <tr><td><div align="right"><a name="108"></a><a href="#108">108</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">}</span></td></tr>
      <tr class="warning"><td><div align="right"><a name="109"></a><a href="#109">109</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">}</span></td></tr>
      <tr><td><div align="right"><a name="110"></a><a href="#110">110</a></div></td><td class="codeLine"><span class="keyword">}</span></td></tr>
@@ -331,7 +331,7 @@
      <span class="warning"><strong>Dead Code</strong></span>
     </p>
     <p>
-     <small>Generated by <a href="http://github.com/sebastianbergmann/php-code-coverage" target="_top">PHP_CodeCoverage 2.0.16</a> using <a href="http://php.net/" target="_top">PHP 5.5.9-1ubuntu4.7</a> and <a href="http://phpunit.de/">PHPUnit 4.6.4</a> at Mon Apr 13 23:29:20 UTC 2015.</small>
+     <small>Generated by <a href="http://github.com/sebastianbergmann/php-code-coverage" target="_top">PHP_CodeCoverage 2.0.13</a> using <a href="http://php.net/" target="_top">PHP 5.5.20</a> and <a href="http://phpunit.de/">PHPUnit 4.4.0</a> at Tue Apr 14 13:34:58 UTC 2015.</small>
     </p>
     <a title="Back to the top" id="toplink" href="#"><span class="glyphicon glyphicon-arrow-up"></span></a>
    </footer>

@@ -2,7 +2,7 @@
 namespace SMSFactory\Config;
 
 use SMSFactory\Aware\ProviderConfigInterface;
-use Phalcon\Exception;
+use SMSFactory\Exceptions\BaseException;
 
 /**
  * Class Clickatell. Configuration for Clickatell provider
@@ -105,7 +105,7 @@ class Clickatell implements ProviderConfigInterface
         if (empty($this->config) === false) {
             return $this->config;
         } else {
-            throw new Exception('Empty provider config');
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), 'Empty provider config', 500);
         }
     }
 }

@@ -16,6 +16,21 @@ use SMSFactory\Sender;
  */
 class SenderTest extends \PHPUnit_Framework_TestCase
 {
+
+    /**
+     * Recipient test phone number
+     *
+     * @var int $phone
+     */
+    private $phone = 380990000000;
+
+    /**
+     * Message
+     *
+     * @var string $message
+     */
+    private $message = 'PHPUnit Send tester';
+
     /**
      * DependencyInjector service
      *
@@ -55,6 +70,46 @@ class SenderTest extends \PHPUnit_Framework_TestCase
 
         $this->config = $this->di->get('config');
         $this->reflection = new \ReflectionClass('\SMSFactory\Sender');
+    }
+
+    /**
+     * Get SMS Providers
+     *
+     * @return array
+     */
+    public function additionDataProvider()
+    {
+        $this->config = new Config(
+            require './phpunit/data/config.php'
+        );
+
+        $data = [];
+        $providers = array_keys($this->config->sms->toArray());
+
+        foreach($providers as $provider) {
+            $data[] = array($provider);
+        }
+        return $data;
+    }
+
+    /**
+     * Get SMS Providers with error data
+     *
+     * @return array
+     */
+    public function additionErrorsDataProvider()
+    {
+        $this->config = new Config(
+            require './phpunit/data/config.php'
+        );
+
+        $data = [];
+        $providers = array_keys($this->config->smsError->toArray());
+
+        foreach($providers as $provider) {
+            $data[] = array($provider);
+        }
+        return $data;
     }
 
     /**
@@ -121,8 +176,9 @@ class SenderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider additionProvider
+     * @dataProvider additionDataProvider
      * @covers SMSFactory\Sender::call
+     * @covers SMSFactory\Sender<extended>
      */
     public function testCall($provider)
     {
@@ -142,23 +198,31 @@ class SenderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Get SMS Providers
-     *
-     * @return array
+     * @dataProvider additionErrorsDataProvider
+     * @expectedException     \SMSFactory\Exceptions\BaseException
+     * @expectedExceptionCode 503
      */
-    public function additionProvider()
+    public function testSendCatchExceptions($provider)
     {
-        $this->config = new Config(
-            require './phpunit/data/config.php'
-        );
+        $callInstance = new Sender($this->di);
 
-        $data = [];
-        $providers = array_keys($this->config->sms->toArray());
+        $this->assertInstanceOf('SMSFactory\Sender', $callInstance, "[-] Provider instance error");
 
-        foreach($providers as $provider) {
-            $data[] = array($provider);
-        }
-        return $data;
+        $callInstance->call($provider)->debug(true)->setRecipient($this->phone)->send($this->message);
+    }
+
+    /**
+     * @dataProvider additionDataProvider
+     */
+    public function testBalance($provider)
+    {
+        $callInstance = new Sender($this->di);
+
+        $this->assertInstanceOf('SMSFactory\Sender', $callInstance, "[-] Provider instance error");
+
+        $result = $callInstance->call($provider)->debug(false)->balance();
+
+        $this->assertNotEmpty($result, "[-] Result can not be empty");
     }
 }
 

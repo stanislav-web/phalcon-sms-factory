@@ -2,7 +2,7 @@
 namespace SMSFactory\Config;
 
 use SMSFactory\Aware\ProviderConfigInterface;
-use Phalcon\Exception;
+use SMSFactory\Exceptions\BaseException;
 
 /**
  * Class SmsAero. Configuration for SmsAero provider
@@ -38,22 +38,6 @@ class SmsAero implements ProviderConfigInterface
      * @var array $httpSuccessCode
      */
     public $httpSuccessCode = [200];
-
-    /**
-     * Acceptable provider statuses
-     *
-     * @var array $statuses
-     */
-    public $statuses = [
-        'accepted' => 'Сообщение принято сервисом.',
-        'empty field. reject' => 'Не все обязательные поля заполнены.',
-        'incorrect user or password. reject' => 'Ошибка авторизации',
-        'no credits' => 'Недостаточно sms на балансе.',
-        'incorrect sender name. reject' => 'Неверная (незарегистрированная) подпись отправителя.',
-        'incorrect destination adress. reject' => 'Неверно задан номер телефона (формат 71234567890).',
-        'incorrect date. reject' => 'Неправильный формат даты',
-        'in blacklist. reject' => 'Телефон находится в черном списке.',
-    ];
 
     /**
      * Provider config container
@@ -120,9 +104,10 @@ class SmsAero implements ProviderConfigInterface
     {
 
         if (empty($this->config) === false) {
+            $this->config['password'] = md5($this->config['password']);
             return $this->config;
         } else {
-            throw new Exception('Empty provider config');
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), 'Empty provider config', 500);
         }
     }
 }

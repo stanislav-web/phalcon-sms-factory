@@ -74,7 +74,7 @@ class BulkSMS implements ProviderInterface
     {
         // check response status
         if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new \Exception('The server is not responding: ' . $response->header->statusMessage);
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), 'The server is not responding: ' . $response->header->statusMessage);
         }
 
         // get server response status
@@ -84,7 +84,7 @@ class BulkSMS implements ProviderInterface
             throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $part[1]);
         }
 
-        return ($this->debug === true) ? [$response->header, $response] : $response;
+        return ($this->debug === true) ? [$response->header, $response] : $response->body;
     }
 
     /**

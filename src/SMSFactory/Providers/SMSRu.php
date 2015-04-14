@@ -72,15 +72,15 @@ class SMSRu implements ProviderInterface
     {
         // check response status
         if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new \Exception('The server is not responding: ' . $response->header->statusMessage);
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), 'The server is not responding: ' . $response->header->statusMessage);
         }
 
         if($response->body > 100) {
 
             throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $this->config->statuses[$response->body]);
         }
-
-        return ($this->debug === true) ? [$response->header, $response] : $this->config->statuses[$response->body];
+        return (($this->debug === true) ? [$response->header, $response] :
+            (isset($this->config->statuses[$response->body])) ? $this->config->statuses[$response->body] : $response->body);
     }
 
     /**
