@@ -32,13 +32,6 @@ class MessageBird implements ProviderConfigInterface
     const GET_BALANCE_URI = 'https://rest.messagebird.com/balance';
 
     /**
-     * Success HTTP codes responding
-     *
-     * @var array $httpSuccessCode
-     */
-    public $httpSuccessCode = [200, 201];
-
-    /**
      * Provider config container
      *
      * @access static

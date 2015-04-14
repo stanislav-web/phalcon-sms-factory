@@ -32,15 +32,6 @@ class SmsUkraine implements ProviderConfigInterface
     const GET_BALANCE_URI = 'http://smsukraine.com.ua/api/http.php';
 
     /**
-     * Success HTTP codes responding
-     *
-     * @var array $httpSuccessCode
-     */
-    public $httpSuccessCode = [200];
-
-
-
-    /**
      * Provider config container
      *
      * @access static

@@ -33,13 +33,6 @@ class SmsAero implements ProviderConfigInterface
     const GET_BALANCE_URI = 'http://gate.smsaero.ru/balance/?answer=json';
 
     /**
-     * Success HTTP codes responding
-     *
-     * @var array $httpSuccessCode
-     */
-    public $httpSuccessCode = [200];
-
-    /**
      * Provider config container
      *
      * @access static

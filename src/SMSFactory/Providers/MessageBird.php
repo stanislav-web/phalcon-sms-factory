@@ -72,18 +72,19 @@ class MessageBird implements ProviderInterface
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
         // check response status
-        if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
+        if ($response->header->statusCode > self::MAX_SUCCESS_CODE) {
             throw new BaseException((new \ReflectionClass($this->config))->getShortName(), 'The server is not responding: ' . $response->header->statusMessage);
         }
 
         // parse json response
-        $response = json_decode($response->body, true);
+        $data = json_decode($response->body, true);
 
-        if (isset($response['errors']) === true) {
-            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $response['errors'][0]['description']);
+        if (isset($data['errors']) === true) {
+
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $data['errors'][0]['description']);
         }
 
-        return ($this->debug === true) ? [$response->header, $response] : $response;
+        return ($this->debug === true) ? [$response->header, $data] : $data;
     }
 
     /**

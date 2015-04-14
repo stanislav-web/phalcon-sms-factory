@@ -32,13 +32,6 @@ class SMSC implements ProviderConfigInterface
     const GET_BALANCE_URI = 'https://smsc.ru/sys/balance.php?fmt=3';
 
     /**
-     * Success HTTP codes responding
-     *
-     * @var array $httpSuccessCode
-     */
-    public $httpSuccessCode = [200];
-
-    /**
      * Provider config container
      *
      * @access static

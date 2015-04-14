@@ -41,13 +41,6 @@ class SenderTest extends \PHPUnit_Framework_TestCase
     /**
      * Configuration file
      *
-     * @var \Phalcon\Config $config
-     */
-    private $config;
-
-    /**
-     * Configuration file
-     *
      * @var \Reflection
      */
     private $reflection;
@@ -61,14 +54,6 @@ class SenderTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->di = new FactoryDefault();
-
-        $this->di->set('config', function() {
-            return new Config(
-                require './phpunit/data/config.php'
-            );
-        });
-
-        $this->config = $this->di->get('config');
         $this->reflection = new \ReflectionClass('\SMSFactory\Sender');
     }
 
@@ -79,12 +64,10 @@ class SenderTest extends \PHPUnit_Framework_TestCase
      */
     public function additionDataProvider()
     {
-        $this->config = new Config(
-            require './phpunit/data/config.php'
-        );
-
         $data = [];
-        $providers = array_keys($this->config->sms->toArray());
+        $providers = array_keys((new Config(
+            require './phpunit/data/config.php'
+        ))->sms->toArray());
 
         foreach($providers as $provider) {
             $data[] = array($provider);
@@ -99,47 +82,15 @@ class SenderTest extends \PHPUnit_Framework_TestCase
      */
     public function additionErrorsDataProvider()
     {
-        $this->config = new Config(
-            require './phpunit/data/config.php'
-        );
-
         $data = [];
-        $providers = array_keys($this->config->smsError->toArray());
+        $providers = array_keys((new Config(
+            require './phpunit/data/error.php'
+        ))->sms->toArray());
 
         foreach($providers as $provider) {
             $data[] = array($provider);
         }
         return $data;
-    }
-
-    /**
-     * Call protected/private method of a class.
-     *
-     * @param object &$object    Instantiated object that we will run method on.
-     * @param string $methodName Method name to call
-     * @param array  $parameters Array of parameters to pass into method.
-     * @example <code>
-     *                           $this->invokeMethod($user, 'cryptPassword', array('passwordToCrypt'));
-     *                           </code>
-     * @return mixed Method return.
-     */
-    protected function invokeMethod(&$object, $methodName, array $parameters = array())
-    {
-        $method = $this->reflection->getMethod($methodName);
-        $method->setAccessible(true);
-        return $method->invokeArgs($object, $parameters);
-    }
-    /**
-     * Setup accessible any private (protected) property
-     *
-     * @param $name
-     * @return \ReflectionMethod
-     */
-    protected function getProperty($name)
-    {
-        $prop = $this->reflection->getProperty($name);
-        $prop->setAccessible(true);
-        return $prop;
     }
 
     /**
@@ -149,7 +100,17 @@ class SenderTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructor()
     {
-        new Sender($this->di);
+
+        $this->di->set('config', function() {
+            return new Config(
+                require './phpunit/data/config.php'
+            );
+        });
+
+        $sender = new Sender($this->di);
+
+        $this->assertInstanceOf('SMSFactory\Sender', $sender, "[-] Provider instance error");
+
     }
 
     /**
@@ -172,6 +133,12 @@ class SenderTest extends \PHPUnit_Framework_TestCase
      */
     public function testCallException()
     {
+        $this->di->set('config', function() {
+            return new Config(
+                require './phpunit/data/error.php'
+            );
+        });
+
         (new Sender($this->di))->call('Undefined');
     }
 
@@ -182,6 +149,12 @@ class SenderTest extends \PHPUnit_Framework_TestCase
      */
     public function testCall($provider)
     {
+        $this->di->set('config', function() {
+            return new Config(
+                require './phpunit/data/config.php'
+            );
+        });
+
         // check modifier before run
         $modifiers = (new \ReflectionMethod('SMSFactory\Sender', 'call'))->getModifiers();
         $this->assertEquals(['final', 'public'], \Reflection::getModifierNames($modifiers),
@@ -204,6 +177,12 @@ class SenderTest extends \PHPUnit_Framework_TestCase
      */
     public function testSendCatchExceptions($provider)
     {
+        $this->di->set('config', function() {
+            return new Config(
+                require './phpunit/data/error.php'
+            );
+        });
+
         $callInstance = new Sender($this->di);
 
         $this->assertInstanceOf('SMSFactory\Sender', $callInstance, "[-] Provider instance error");
@@ -216,6 +195,13 @@ class SenderTest extends \PHPUnit_Framework_TestCase
      */
     public function testBalance($provider)
     {
+
+        $this->di->set('config', function() {
+            return new Config(
+                require './phpunit/data/config.php'
+            );
+        });
+
         $callInstance = new Sender($this->di);
 
         $this->assertInstanceOf('SMSFactory\Sender', $callInstance, "[-] Provider instance error");

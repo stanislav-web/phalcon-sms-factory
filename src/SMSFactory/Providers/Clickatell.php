@@ -73,7 +73,7 @@ class Clickatell implements ProviderInterface
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
         // check response status
-        if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
+        if ($response->header->statusCode > self::MAX_SUCCESS_CODE) {
             throw new BaseException((new \ReflectionClass($this->config))->getShortName(), 'The server is not responding: ' . $response->header->statusMessage);
         }
 

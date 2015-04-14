@@ -32,13 +32,6 @@ class Clickatell implements ProviderConfigInterface
     const GET_BALANCE_URI = 'http://api.clickatell.com/http/getbalance';
 
     /**
-     * Success HTTP codes responding
-     *
-     * @var array $httpSuccessCode
-     */
-    public $httpSuccessCode = [200];
-
-    /**
      * Provider config container
      *
      * @access static
