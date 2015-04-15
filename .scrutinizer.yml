@@ -17,6 +17,10 @@ build:
             - cd /home/scrutinizer/build
             - composer install --profile -o
 
+    tests:
+      override:
+        - phpunit
+
 filter:
     paths: [src/*]
     excluded_paths: [api/*, build/*, phpunit/*]
