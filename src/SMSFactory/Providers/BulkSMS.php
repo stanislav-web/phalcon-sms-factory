@@ -66,7 +66,7 @@ class BulkSMS implements ProviderInterface
      * Get server response info
      *
      * @param \Phalcon\Http\Client\Response $response
-     * @return \Phalcon\Http\Client\Response|array|string
+     * @return array|string
      * @throws BaseException
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
@@ -78,7 +78,7 @@ class BulkSMS implements ProviderInterface
             throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $part[1]);
         }
 
-        return ($this->debug === true) ? [$response->header, $response] : $response->body;
+        return ($this->debug === true) ? [$response->header, $response] : (string)$response->body;
     }
 
     /**
