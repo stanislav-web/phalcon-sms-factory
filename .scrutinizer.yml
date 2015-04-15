@@ -26,8 +26,6 @@ filter:
     excluded_paths: [api/*, build/*, phpunit/*, vendor/*]
 
 tools:
-    external_code_coverage:
-            timeout: 36000    # Timeout in seconds.
     php_mess_detector: true
     php_code_sniffer:
             config:
