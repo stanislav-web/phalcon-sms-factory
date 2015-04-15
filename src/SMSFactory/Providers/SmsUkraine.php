@@ -71,12 +71,6 @@ class SmsUkraine implements ProviderInterface
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
-
-        // check response status
-        if ($response->header->statusCode > self::MAX_SUCCESS_CODE) {
-            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), 'The server is not responding: ' . $response->header->statusMessage);
-        }
-
         // this is not json response, parse as string
         if (stripos($response->body, 'errors') !== false) {
 
@@ -84,12 +78,6 @@ class SmsUkraine implements ProviderInterface
             preg_match_all('/errors:([\w].*)/iu', $response->body, $matches);
 
             $matches = array_filter($matches);
-
-            if(empty($matches) === true) {
-
-                $errors = json_decode($response->body, true);
-                $matches[0] = $errors['errors'];
-            }
 
             throw new BaseException((new \ReflectionClass($this->config))->getShortName(), implode('.', $matches[0]));
         }
@@ -123,8 +111,8 @@ class SmsUkraine implements ProviderInterface
     /**
      * Final check balance function
      *
-     * @throws \Phalcon\Http\Response\Exception
      * @return \Phalcon\Http\Client\Response|string|void
+     * @throws BaseException
      */
     final public function balance()
     {

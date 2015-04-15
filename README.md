@@ -13,13 +13,14 @@ At the moment, provides an interface to send and check your balance for the next
     - SmsAero
     - SMSC
     - SmsUkraine
+    - SMS.ru
 
 ## Change Log
 
 #### In Future
     - Support SMS mass mailing
     
-#### [v 1.2.3-stable] 2015-04-11
+#### [v 1.2.3-stable] 2015-04-15
     - Add single error handler
     - Add SMS.ru provider
     - Send SMS Unit Tests
@@ -80,46 +81,54 @@ if you will be making their to global application config. See example:
 <?php
     // add to your app config and write down your settings .The key 'sms' is required
     'sms'   =>  [
-        'BulkSMS'   =>  [
-            'username'  => '',
-            'password'  => '',
-        ],
-        'Clickatell'    =>  [
-            'api_id'    => '',
-            'user'      => '',
-            'password'  => '',
-            'form'      => ''
-        ],
-        'MessageBird'   => [
-            'originator'   => '',
-            'access_key'   => '',
-        ],
-        'Nexmo'         =>  [
-            'from'          => '',
-            'api_key'       => '',
-            'api_secret'    => '',
-            'type'          => ''
-        ],
-        'SmsAero'       =>  [
-            'from'          => '',
-            'user'          => '',
-            'password'      => '',
-        ],
-        'SMSC'       =>  [
-            'login'     => '',
-            'psw'       => '',
-            'charset'   => '',
-            'sender'    => '',
-            'translit'  => '',
-            'fmt'       => '',
-        ],
-        'SmsUkraine'       =>  [
-            'from'          => '',
-            'login'         => '',
-            'password'      => '',
-            'version'       => '',
-             'flash'        => '',
-        ],
+    
+                'Nexmo'         =>  [
+                    'from'      => '',
+                    'api_key'   => '',
+                    'api_secret'=> '',
+                    'type'      => '',
+                    'request_method' => ''
+                ],
+                'BulkSMS'   =>  [
+                    'username'  => '',
+                    'password'  => '',
+                ],
+                'SmsAero' => [
+                    'from'          => '',
+                    'user'          => '',
+                    'password'      => '',
+                ],
+                
+                'SmsUkraine'       =>  [
+                    'from'          => '',
+                    'login'         => '',
+                    'password'      => '',
+                    'version'       => '',
+                ],
+                
+                'SMSC'       =>  [
+                    'login'     => '',
+                    'psw'       => '',
+                    'charset'   => '',
+                    'sender'    => '',
+                ],
+        
+                'SMSRu' => [
+                    'api_id'    => ''
+                ],
+                
+                'Clickatell'    => [
+                    'api_id'    => '',
+                    'user'      => '',
+                    'password'  => '',
+                    'from'      => '',
+                    'request_method' => ''
+                ],
+                'MessageBird'   => [
+                    'originator'   => '',
+                    'access_key'   => '',
+                    'request_method' => ''
+                ]           
     ];
 ```
 
@@ -145,7 +154,10 @@ Now you can call your created service of sending sms.
 ```
 
 ## Unit Test
-_Currently under TDD_
+Also available in /phpunit directory. Run command to start
+```php
+phpunit --configuration phpunit.xml.dist --coverage-text
+```
 
 ##[Change Log](https://github.com/stanislav-web/phalcon-sms-factory/blob/master/CHANGELOG.md "Change Log")
 

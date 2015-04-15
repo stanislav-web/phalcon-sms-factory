@@ -17,7 +17,6 @@ use SMSFactory\Exceptions\BaseException;
 class SmsAero implements ProviderConfigInterface
 {
 
-
     /**
      * Message uri
      *
@@ -91,16 +90,17 @@ class SmsAero implements ProviderConfigInterface
     /**
      * Get provider configurations
      *
+     * @throws BaseException
      * @return void
      */
     public function getProviderConfig()
     {
-
         if (empty($this->config) === false) {
             $this->config['password'] = md5($this->config['password']);
             return $this->config;
         } else {
-            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), 'Empty provider config', 500);
+
+            throw new BaseException((new \ReflectionClass(get_class()))->getShortName(), 'Empty provider config', 500);
         }
     }
 }

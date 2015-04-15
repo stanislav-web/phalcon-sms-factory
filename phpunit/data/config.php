@@ -3,6 +3,7 @@ return [
     // True SMS sending data
 
     'sms' => [
+
         'Nexmo'         =>  [
             'from'      => 'Phalcon Dev',
             'api_key'   => '90c8f84f',
@@ -10,6 +11,7 @@ return [
             'type'      => 'unicode',
             'request_method' => 'GET'
         ],
+
         'BulkSMS'   =>  [
             'username'  => 'SWEB',
             'password'  => 'e7e15653',
@@ -19,12 +21,14 @@ return [
             'user'          => 'stanisov@gmail.com',
             'password'      => 'e7e15653',
         ],
+
         'SmsUkraine'       =>  [
             'from'          => 'Stanislav',
             'login'         => '380954916517',
             'password'      => 'e7e15653',
             'version'       => 'http',
         ],
+
         'SMSC'       =>  [
             'login'     => 'SwebTester',
             'psw'       => 'e7e15653',
@@ -36,6 +40,7 @@ return [
         'SMSRu' => [
             'api_id'    => '66bf9913-5cda-2654-9980-f440a1f293eb'
         ],
+
         'Clickatell'    => [
             'api_id'    => 3537200,
             'user'      => 'SWEBTEST',
@@ -44,12 +49,10 @@ return [
             'request_method' => 'GET'
         ],
 
-//        'MessageBird'   => [
-//            'originator'   => '434',
-//            'access_key'   => 'test_UHaeiTLfAe3avOULhawXvn7iR',
-//            'request_method' => 'GET'
-//        ],
-
-
+        'MessageBird'   => [
+            'originator'   => '434',
+            'access_key'   => 'test_UHaeiTLfAe3avOULhawXvn7iR',
+            'request_method' => 'GET'
+        ],
     ]
 ];

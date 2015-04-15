@@ -71,21 +71,16 @@ class Nexmo implements ProviderInterface
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
-        // check response status
-        if ($response->header->statusCode > self::MAX_SUCCESS_CODE) {
-            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), 'The server is not responding: ' . $response->header->statusMessage);
-        }
-
         // parse json response
 
         $response = json_decode($response->body, true);
 
-        if(isset($response['messages']) === true) {
-            foreach($response['messages'] as $message) {
-                if(isset($message['error-text'])) {
-                    throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $message['error-text']);
-                }
-            }
+        if(isset($response['messages'][0]['error-text']) === true) {
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $response['messages'][0]['error-text']);
+        }
+
+        if(isset($response['error-code']) === true) {
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $response['error-code-label']);
         }
         return ($this->debug === true) ? [$response->header, $response] : $response;
     }
@@ -114,8 +109,8 @@ class Nexmo implements ProviderInterface
     /**
      * Final check balance function
      *
-     * @throws \Phalcon\Http\Response\Exception
      * @return \Phalcon\Http\Client\Response|string|void
+     * @throws BaseException
      */
     final public function balance()
     {

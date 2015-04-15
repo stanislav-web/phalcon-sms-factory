@@ -70,11 +70,6 @@ class SMSRu implements ProviderInterface
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
-        // check response status
-        if ($response->header->statusCode > self::MAX_SUCCESS_CODE) {
-            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), 'The server is not responding: ' . $response->header->statusMessage);
-        }
-
         if($response->body > 100) {
 
             throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $this->config->statuses[$response->body]);
@@ -106,8 +101,8 @@ class SMSRu implements ProviderInterface
     /**
      * Final check balance function
      *
-     * @throws \Phalcon\Http\Response\Exception
      * @return \Phalcon\Http\Client\Response|string|void
+     * @throws BaseException
      */
     final public function balance()
     {

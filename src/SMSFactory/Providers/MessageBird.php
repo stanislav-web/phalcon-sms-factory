@@ -71,15 +71,10 @@ class MessageBird implements ProviderInterface
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
-        // check response status
-        if ($response->header->statusCode > self::MAX_SUCCESS_CODE) {
-            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), 'The server is not responding: ' . $response->header->statusMessage);
-        }
-
         // parse json response
         $data = json_decode($response->body, true);
 
-        if (isset($data['errors']) === true) {
+        if (isset($data['errors']) === true || $response->header->statusCode > self::MAX_SUCCESS_CODE) {
 
             throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $data['errors'][0]['description']);
         }
@@ -111,14 +106,15 @@ class MessageBird implements ProviderInterface
     /**
      * Final check balance function
      *
-     * @throws \Phalcon\Http\Response\Exception
      * @return \Phalcon\Http\Client\Response|string|void
+     * @throws BaseException
      */
     final public function balance()
     {
-
         // check balance
-        $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getBalanceUri(),
+        $client = $this->client();
+        $client->setOption(CURLOPT_HTTPHEADER, ['Authorization : '.$this->config->getProviderConfig()['access_key']]);
+        $response = $client->{$this->config->getRequestMethod()}($this->config->getBalanceUri(),
             $this->config->getProviderConfig());
 
         // return response

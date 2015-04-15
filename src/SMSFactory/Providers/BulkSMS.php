@@ -72,11 +72,6 @@ class BulkSMS implements ProviderInterface
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
-        // check response status
-        if ($response->header->statusCode > self::MAX_SUCCESS_CODE) {
-            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), 'The server is not responding: ' . $response->header->statusMessage);
-        }
-
         // get server response status
         $part = explode('|', $response->body);
 
@@ -112,6 +107,7 @@ class BulkSMS implements ProviderInterface
      * Final check balance function
      *
      * @return \Phalcon\Http\Client\Response|string|void
+     * @throws BaseException
      */
     final public function balance()
     {

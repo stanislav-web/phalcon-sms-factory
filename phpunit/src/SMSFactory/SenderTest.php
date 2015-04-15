@@ -62,6 +62,24 @@ class SenderTest extends \PHPUnit_Framework_TestCase
      *
      * @return array
      */
+    public function additionEmptyDataProvider()
+    {
+        $data = [];
+        $providers = array_keys((new Config(
+            require './phpunit/data/empty.php'
+        ))->sms->toArray());
+
+        foreach($providers as $provider) {
+            $data[] = array($provider);
+        }
+        return $data;
+    }
+
+    /**
+     * Get SMS Providers
+     *
+     * @return array
+     */
     public function additionDataProvider()
     {
         $data = [];
@@ -206,9 +224,29 @@ class SenderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('SMSFactory\Sender', $callInstance, "[-] Provider instance error");
 
-        $result = $callInstance->call($provider)->debug(false)->balance();
+        $result = $callInstance->call($provider)->balance();
 
         $this->assertNotEmpty($result, "[-] Result can not be empty");
+    }
+
+    /**
+     * @dataProvider additionEmptyDataProvider
+     * @expectedException     \SMSFactory\Exceptions\BaseException
+     * @expectedExceptionCode 500
+     */
+    public function testSendCatchExceptionsForNotConfiguredProviders($provider)
+    {
+        $this->di->set('config', function() {
+            return new Config(
+                require './phpunit/data/empty.php'
+            );
+        });
+
+        $callInstance = new Sender($this->di);
+
+        $this->assertInstanceOf('SMSFactory\Sender', $callInstance, "[-] Provider instance error");
+
+        $callInstance->call($provider)->setRecipient($this->phone)->send($this->message);
     }
 }
 

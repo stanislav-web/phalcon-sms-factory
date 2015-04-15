@@ -89,6 +89,7 @@ class MessageBird implements ProviderConfigInterface
     /**
      * Get provider configurations
      *
+     * @throws BaseException
      * @return void
      */
     public function getProviderConfig()
@@ -97,7 +98,8 @@ class MessageBird implements ProviderConfigInterface
         if (empty($this->config) === false) {
             return $this->config;
         } else {
-            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), 'Empty provider config', 500);
+
+            throw new BaseException((new \ReflectionClass(get_class()))->getShortName(), 'Empty provider config', 500);
         }
     }
 }

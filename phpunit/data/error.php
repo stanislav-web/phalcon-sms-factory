@@ -5,10 +5,11 @@ return [
 
     'sms' => [
         'Nexmo'         =>  [
-            'from'      => 'Phalcon Dev',
-            'api_key'   => '11111111',
-            'api_secret'=> '11111111',
-            'type'      => '11111111'
+            'from'      => '',
+            'api_key'   => '',
+            'api_secret'=> '',
+            'type'      => '',
+            'request_method' => 'GET'
         ],
         'BulkSMS'   =>  [
             'username'  => 'SWEB',
@@ -41,7 +42,7 @@ return [
         'SmsUkraine'       =>  [
             'from'          => 'Stanislav',
             'login'         => '11111111',
-            'password'      => '1111111111',
+            'password'      => '11111111',
             'version'       => 'http',
         ],
         'SMSRu' => [
