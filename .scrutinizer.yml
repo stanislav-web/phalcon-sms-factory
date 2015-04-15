@@ -21,6 +21,9 @@ build:
       override:
         -
             command: 'phpunit --coverage-clover=./phpunit/log/coverage.php'
+            coverage:
+                file: './phpunit/log/coverage.php'
+                format: 'php-clover'
 
 filter:
     paths: [src/*]

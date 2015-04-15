@@ -74,7 +74,7 @@ class SMSC implements ProviderInterface
         // get server response status
         $data = json_decode($response->body, true);
 
-        if(isset($data['error_code'])) {
+        if (isset($data['error_code'])) {
 
             throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $data['error']);
         }

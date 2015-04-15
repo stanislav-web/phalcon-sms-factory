@@ -20,15 +20,15 @@ class Sender extends AbstractProvider
     /**
      * Inject of Phalcon dependency container
      *
-     * @param \Phalcon\DI\FactoryDefault $di
+     * @param \Phalcon\DI\FactoryDefault $dependency
      * @throws BaseException
      */
-    public function __construct(\Phalcon\DI\FactoryDefault $di)
+    public function __construct(\Phalcon\DI\FactoryDefault $dependency)
     {
-        if ($di->has('config') === true) {
-            $this->config = $di->get('config')->sms->toArray();
+        if ($dependency->has('config') === true) {
+            $this->config = $dependency->get('config')->sms->toArray();
         } else {
-            throw new BaseException('SMS', 'Please setup your configuration to $di', 500);
+            throw new BaseException('SMS', 'Please setup your configuration to $dependency', 500);
         }
     }
 

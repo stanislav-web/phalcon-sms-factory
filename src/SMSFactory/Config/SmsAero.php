@@ -90,7 +90,7 @@ class SmsAero implements ProviderConfigInterface
      * Get provider configurations
      *
      * @throws BaseException
-     * @return array
+     * @return array<string,string>
      */
     public function getProviderConfig()
     {

@@ -71,7 +71,7 @@ class SMSRu implements ProviderInterface
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
-        if($response->body > 100) {
+        if ($response->body > 100) {
 
             throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $this->config->statuses[$response->body]);
         }

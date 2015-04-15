@@ -71,7 +71,7 @@ class SmsAero implements ProviderInterface
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
-        if(stripos($response->body, 'accepted') === false && stripos($response->body, 'balance') === false) {
+        if (stripos($response->body, 'accepted') === false && stripos($response->body, 'balance') === false) {
             throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $response->body);
         }
 

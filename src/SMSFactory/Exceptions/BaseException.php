@@ -24,11 +24,11 @@ class BaseException extends \Exception {
      *
      * @param string $provider SMS Provider
      * @param string $message error message
-     * @param int $code error code
+     * @param integer|null $code error code
      */
     public function __construct($provider, $message, $code = null) {
 
-        if(null === $code) {
+        if (null === $code) {
             $code = self::CODE;
         }
         parent::__construct($provider.': '.$message, $code);

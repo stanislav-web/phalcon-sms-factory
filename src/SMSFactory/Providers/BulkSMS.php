@@ -74,7 +74,7 @@ class BulkSMS implements ProviderInterface
         // get server response status
         $part = explode('|', $response->body);
 
-        if($part[0] > 1) {
+        if ($part[0] > 1) {
             throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $part[1]);
         }
 

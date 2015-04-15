@@ -75,11 +75,11 @@ class Nexmo implements ProviderInterface
 
         $response = json_decode($response->body, true);
 
-        if(isset($response['messages'][0]['error-text']) === true) {
+        if (isset($response['messages'][0]['error-text']) === true) {
             throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $response['messages'][0]['error-text']);
         }
 
-        if(isset($response['error-code']) === true) {
+        if (isset($response['error-code']) === true) {
             throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $response['error-code-label']);
         }
         return ($this->debug === true) ? [$response->header, $response] : $response;
