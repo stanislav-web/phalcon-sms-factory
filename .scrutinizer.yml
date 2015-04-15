@@ -17,13 +17,10 @@ build:
             - cd /home/scrutinizer/build
             - composer install --profile -o
 
-#    tests:
-#      override:
-#        -
-#            command: 'phpunit --coverage-php=./phpunit/log/coverage.php'
-#            coverage:
-#                file: './phpunit/log/coverage.php'
-#                format: 'php-clover'
+    tests:
+      override:
+        -
+            command: 'phpunit --coverage-clover=coverage0'
 
 filter:
     paths: [src/*]
@@ -41,5 +38,4 @@ tools:
         enabled: true
         excluded_dirs: [api, buil, phpunit, vendor]
     php_cpd:
-        enabled: true
-        excluded_dirs: [api, build, phpunit, vendor]
+        enabled: false
