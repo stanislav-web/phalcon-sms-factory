@@ -76,7 +76,8 @@ class MessageBird implements ProviderInterface
 
         if (isset($data['errors']) === true || $response->header->statusCode > self::MAX_SUCCESS_CODE) {
 
-            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $data['errors'][0]['description']);
+            $error = $data['errors'][0]['description'];
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $error);
         }
 
         return ($this->debug === true) ? [$response->header, $data] : $data;
