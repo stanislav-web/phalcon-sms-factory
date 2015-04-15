@@ -36,11 +36,6 @@
       "Test\\SMSFactory\\": "phpunit/src/SMSFactory"
     }
   },
-  "extra": {
-        "branch-alias": {
-            "dev-master": "1.*-stable"
-        }
-  },
   "suggest": {
     "stanislav-web/phalcon-translate": "Phalcon Translate Service. Simple way to translate your costom part of templates :-)",
     "stanislav-web/phalcon-searcher": "Phalcon Database Searcher. This is the search service is designed to search multiple SQL tables. Convenient to use autocomplete, search documents, search the whole site.",
