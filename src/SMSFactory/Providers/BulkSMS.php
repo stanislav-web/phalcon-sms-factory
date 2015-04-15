@@ -66,7 +66,7 @@ class BulkSMS implements ProviderInterface
      * Get server response info
      *
      * @param \Phalcon\Http\Client\Response $response
-     * @return \Phalcon\Http\Client\Response|string
+     * @return array|string
      * @throws BaseException
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
