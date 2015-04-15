@@ -1,4 +1,7 @@
 # Required to run your project under the correct environment.
+
+sudo: false
+
 # see http://about.travis-ci.org/docs/user/languages/php/ for more hints
 language: php
 
@@ -16,4 +19,3 @@ before_script:
   - composer self-update
   - phpenv rehash
   - sh ./build/phalcon.sh
-  - php -m | grep -i Phalcon
