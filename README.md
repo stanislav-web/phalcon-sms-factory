@@ -1,6 +1,6 @@
 # Multiple SMS Sender factory
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/badges/build.png?b=master)](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/build-status/master) [![Total Downloads](https://poser.pugx.org/stanislav-web/phalcon-sms-factory/downloads.svg)](https://packagist.org/packages/stanislav-web/phalcon-sms-factory) [![Latest Stable Version](https://poser.pugx.org/stanislav-web/phalcon-sms-factory/v/stable.svg)](https://packagist.org/packages/stanislav-web/phalcon-sms-factory) [![License](https://poser.pugx.org/stanislav-web/phalcon-sms-factory/license.svg)](https://packagist.org/packages/stanislav-web/phalcon-sms-factory)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/badges/build.png?b=master)](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/build-status/master) [![Total Downloads](https://poser.pugx.org/stanislav-web/phalcon-sms-factory/downloads.svg)](https://packagist.org/packages/stanislav-web/phalcon-sms-factory) [![Latest Stable Version](https://poser.pugx.org/stanislav-web/phalcon-sms-factory/v/stable.svg)](https://packagist.org/packages/stanislav-web/phalcon-sms-factory) [![Phalconist](http://phalconist.com/stanislav-web/phalcon-sms-factory/default.svg)](http://phalconist.com/stanislav-web/phalcon-sms-factory) [![License](https://poser.pugx.org/stanislav-web/phalcon-sms-factory/license.svg)](https://packagist.org/packages/stanislav-web/phalcon-sms-factory)
 
 ## Description
 This service makes SMS through a variety of providers. You can easily implement your own providers using the interface design. _(Currently under TDD)_
@@ -58,7 +58,7 @@ php composer.phar install
 ```
 or just
 ```
-php composer.phar require stanislav-web/phalcon-sms-factory 1.*
+php composer.phar require stanislav-web/phalcon-sms-factory 1.2.*@stable
 ```
 _(Do not forget to include the composer autoloader)_
 
