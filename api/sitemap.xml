@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>https://github.com/stanislav-web/index.html</loc>
+</url>
+<url>
+	<loc>https://github.com/stanislav-web/namespace-PHP.html</loc>
+</url>
+<url>
+	<loc>https://github.com/stanislav-web/namespace-SMSFactory.html</loc>
+</url>
+<url>
+	<loc>https://github.com/stanislav-web/namespace-SMSFactory.Aware.html</loc>
+</url>
+<url>
+	<loc>https://github.com/stanislav-web/namespace-SMSFactory.Aware.ClientProviders.html</loc>
+</url>
+<url>
+	<loc>https://github.com/stanislav-web/namespace-SMSFactory.Config.html</loc>
+</url>
+<url>
+	<loc>https://github.com/stanislav-web/namespace-SMSFactory.Exceptions.html</loc>
+</url>
+<url>
+	<loc>https://github.com/stanislav-web/namespace-SMSFactory.Providers.html</loc>
+</url>
+
+
+<url>
+	<loc>https://github.com/stanislav-web/class-SMSFactory.Providers.BulkSMS.html</loc>
+</url>
+<url>
+	<loc>https://github.com/stanislav-web/class-SMSFactory.Providers.Clickatell.html</loc>
+</url>
+<url>
+	<loc>https://github.com/stanislav-web/class-SMSFactory.Providers.MessageBird.html</loc>
+</url>
+<url>
+	<loc>https://github.com/stanislav-web/class-SMSFactory.Providers.Nexmo.html</loc>
+</url>
+<url>
+	<loc>https://github.com/stanislav-web/class-SMSFactory.Providers.SmsAero.html</loc>
+</url>
+<url>
+	<loc>https://github.com/stanislav-web/class-SMSFactory.Providers.SMSC.html</loc>
+</url>
+<url>
+	<loc>https://github.com/stanislav-web/class-SMSFactory.Providers.SMSRu.html</loc>
+</url>
+<url>
+	<loc>https://github.com/stanislav-web/class-SMSFactory.Providers.SmsUkraine.html</loc>
+</url>
+</urlset>
