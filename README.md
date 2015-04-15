@@ -1,4 +1,4 @@
-# Multiple gateway SMS Sender factory
+# Multiple SMS Sender factory
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/stanislav-web/phalcon-sms-factory/?branch=master) [![Build Status](https://travis-ci.org/stanislav-web/phalcon-sms-factory.svg?branch=master)](https://travis-ci.org/stanislav-web/phalcon-sms-factory) [![Total Downloads](https://poser.pugx.org/stanislav-web/phalcon-sms-factory/downloads.svg)](https://packagist.org/packages/stanislav-web/phalcon-sms-factory) [![Latest Stable Version](https://poser.pugx.org/stanislav-web/phalcon-sms-factory/v/stable.svg)](https://packagist.org/packages/stanislav-web/phalcon-sms-factory) [![License](https://poser.pugx.org/stanislav-web/phalcon-sms-factory/license.svg)](https://packagist.org/packages/stanislav-web/phalcon-sms-factory)
 
