@@ -15,6 +15,11 @@ interface ProviderInterface
 {
 
     /**
+     * Max success code response
+     */
+    const MAX_SUCCESS_CODE = 304;
+
+    /**
      * Set the recipient of the message
      *
      * @param int $recipient

@@ -1,7 +1,7 @@
 <?php
 namespace SMSFactory\Providers;
 
-use Phalcon\Http\Response\Exception;
+use SMSFactory\Exceptions\BaseException;
 use SMSFactory\Aware\ProviderInterface;
 use SMSFactory\Aware\ClientProviders\CurlTrait;
 
@@ -39,13 +39,6 @@ class Clickatell implements ProviderInterface
     private $config;
 
     /**
-     * Response status
-     *
-     * @var boolean|string
-     */
-    private $responseStatus = false;
-
-    /**
      * Init configuration
      *
      * @param \SMSFactory\Config\Clickatell $config
@@ -73,38 +66,28 @@ class Clickatell implements ProviderInterface
      * Get server response info
      *
      * @param \Phalcon\Http\Client\Response $response
-     * @throws \Phalcon\Http\Response\Exception
-     * @return string|boolean
+     * @return array|mixed
+     * @throws BaseException
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
-
-        // check response status
-        if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new Exception('The server is not responding: ' . $response->header->statusMessage);
-        }
-
         // get server response status
         if (stripos($response->body, 'ERR') !== false) {
-            // have an error
-            preg_match('/(\d{3})/', $response->body, $matches);
 
-            // if status exist
-            $this->responseStatus = (array_key_exists($matches[0], $this->config->statuses))
-                ? $this->config->getResponseStatus($matches[0])
-                : false;
+            // have an error
+            preg_match('/([\d]{3}).\s([a-z\s]+)$/i', $response->body, $matches);
+
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $matches[2]);
         }
 
-        return ($this->debug === true) ? [
-            $response, ($this->responseStatus !== false) ? $this->responseStatus : $response->body
-        ] : ($this->responseStatus !== false) ? $this->responseStatus : $response->body;
+        return ($this->debug === true) ? [$response->header, $response] : $response->body;
     }
 
     /**
      * Final send function
      *
      * @param string $message
-     * @return string|boolean
+     * @return string
      */
     final public function send($message)
     {
@@ -112,9 +95,9 @@ class Clickatell implements ProviderInterface
         // send message
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
                 $this->config->getProviderConfig(), [
-                'to' => $this->recipient, //  SMS Recipient
-                'text' => $message, //  Message
-            ])
+                    'to' => $this->recipient,      //  SMS Recipient
+                    'text' => $message,   //  Message
+                ])
         );
 
         // return response
@@ -124,7 +107,8 @@ class Clickatell implements ProviderInterface
     /**
      * Final check balance function
      *
-     * @return string|boolean
+     * @return \Phalcon\Http\Client\Response|string|void
+     * @throws BaseException
      */
     final public function balance()
     {

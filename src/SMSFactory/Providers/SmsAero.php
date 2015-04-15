@@ -1,9 +1,9 @@
 <?php
 namespace SMSFactory\Providers;
 
-use Phalcon\Http\Response\Exception;
 use SMSFactory\Aware\ProviderInterface;
 use SMSFactory\Aware\ClientProviders\CurlTrait;
+use SMSFactory\Exceptions\BaseException;
 
 /**
  * Class SmsAero. SmsAero Provider
@@ -30,13 +30,6 @@ class SmsAero implements ProviderInterface
      * @var null|int
      */
     private $recipient = null;
-
-    /**
-     * Response status
-     *
-     * @var boolean|string
-     */
-    private $responseStatus = false;
 
     /**
      * Provider config object
@@ -73,35 +66,23 @@ class SmsAero implements ProviderInterface
      * Get server response info
      *
      * @param \Phalcon\Http\Client\Response $response
-     * @throws \Phalcon\Http\Response\Exception
-     * @return array|string
+     * @return array|mixed
+     * @throws BaseException
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
-
-        // check response status
-        if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new Exception('The server is not responding: ' . $response->header->statusMessage);
+        if(stripos($response->body, 'accepted') === false && stripos($response->body, 'balance') === false) {
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $response->body);
         }
 
-        // parse json response
-        $responseArray = \SMSFactory\Helpers\String::parseJson($response->body);
-
-        // if status exist
-        $this->responseStatus = (array_key_exists($response->body, $this->config->statuses))
-            ? $this->config->getResponseStatus($response->body)
-                : $response->body;
-
-        return ($this->debug === true) ? [
-            $response, ($this->responseStatus !== false) ? $this->responseStatus : $responseArray
-        ] : ($this->responseStatus !== false) ? $this->responseStatus : $responseArray;
+        return ($this->debug === true) ? [$response->header, $response] : $response->body;
     }
 
     /**
      * Final send function
      *
      * @param string $message
-     * @return array|string
+     * @return \Phalcon\Http\Client\Response|string|void
      */
     final public function send($message)
     {
@@ -109,9 +90,9 @@ class SmsAero implements ProviderInterface
         // send message
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
                 $this->config->getProviderConfig(), [
-                'to' => $this->recipient, //  SMS Receipient
-                'text' => $message, //  Message
-            ])
+                    'to' => $this->recipient,       //  SMS Receipient
+                    'text' => $message,           //  Message
+                ])
         );
 
         // return response
@@ -121,11 +102,11 @@ class SmsAero implements ProviderInterface
     /**
      * Final check balance function
      *
-     * @return array|string
+     * @return \Phalcon\Http\Client\Response|string|void
+     * @throws BaseException
      */
     final public function balance()
     {
-
         // check balance
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getBalanceUri(),
             $this->config->getProviderConfig());

@@ -47,12 +47,4 @@ interface ProviderConfigInterface
      * @return void
      */
     public function getProviderConfig();
-
-    /**
-     * Get provider response status
-     *
-     * @param int $status
-     * @return void
-     */
-    public function getResponseStatus($status);
 }

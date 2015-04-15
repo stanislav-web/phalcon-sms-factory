@@ -1,9 +1,9 @@
 <?php
 namespace SMSFactory\Providers;
 
-use Phalcon\Http\Response\Exception;
 use SMSFactory\Aware\ProviderInterface;
 use SMSFactory\Aware\ClientProviders\CurlTrait;
+use SMSFactory\Exceptions\BaseException;
 
 /**
  * Class Nexmo. Nexmo Provider
@@ -39,13 +39,6 @@ class Nexmo implements ProviderInterface
     private $config;
 
     /**
-     * Response status
-     *
-     * @var boolean|string
-     */
-    private $responseStatus = false;
-
-    /**
      * Init configuration
      *
      * @param \SMSFactory\Config\Nexmo $config
@@ -73,38 +66,30 @@ class Nexmo implements ProviderInterface
      * Get server response info
      *
      * @param \Phalcon\Http\Client\Response $response
-     * @throws \Phalcon\Http\Response\Exception
-     * @return array|string
+     * @return array|mixed
+     * @throws BaseException
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
-
-        // check response status
-        if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new Exception('The server is not responding: ' . $response->header->statusMessage);
-        }
-
         // parse json response
-        $respArray = json_decode($response->body, true);
 
-        if (isset($respArray['messages'][0]['status']) === true) {
+        $response = json_decode($response->body, true);
 
-            // if status exist.
-            $this->responseStatus = (array_key_exists($respArray['messages'][0]['status'], $this->config->statuses))
-                ? $this->config->getResponseStatus($respArray['messages'][0]['status'])
-                : false;
+        if(isset($response['messages'][0]['error-text']) === true) {
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $response['messages'][0]['error-text']);
         }
 
-        return ($this->debug === true) ? [
-            $response, ($this->responseStatus === true) ? $this->responseStatus : json_decode($response->body, true)
-        ] : ($this->responseStatus === false) ? json_decode($response->body, true) : $this->responseStatus;
+        if(isset($response['error-code']) === true) {
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $response['error-code-label']);
+        }
+        return ($this->debug === true) ? [$response->header, $response] : $response;
     }
 
     /**
      * Final send function
      *
      * @param string $message
-     * @return array|string
+     * @return \Phalcon\Http\Client\Response|string|void
      */
     final public function send($message)
     {
@@ -112,9 +97,9 @@ class Nexmo implements ProviderInterface
         // send message
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
                 $this->config->getProviderConfig(), [
-                'to' => $this->recipient, //  SMS Recipient
-                'text' => $message, //  Message
-            ])
+                    'to' => $this->recipient,      //  SMS Recipient
+                    'text' => $message,   //  Message
+                ])
         );
 
         // return response
@@ -124,7 +109,8 @@ class Nexmo implements ProviderInterface
     /**
      * Final check balance function
      *
-     * @return array|string
+     * @return \Phalcon\Http\Client\Response|string|void
+     * @throws BaseException
      */
     final public function balance()
     {

@@ -2,7 +2,7 @@
 namespace SMSFactory\Config;
 
 use SMSFactory\Aware\ProviderConfigInterface;
-use Phalcon\Exception;
+use SMSFactory\Exceptions\BaseException;
 
 /**
  * Class SMSC. Configuration for SMSC provider
@@ -22,38 +22,14 @@ class SMSC implements ProviderConfigInterface
      *
      * @const string SEND_MESSAGE_URI
      */
-    const SEND_MESSAGE_URI = 'https://smsc.ru/sys/send.php';
+    const SEND_MESSAGE_URI = 'https://smsc.ru/sys/send.php?fmt=3';
 
     /**
      * Balance uri
      *
      * @const string GET_BALANCE_URI
      */
-    const GET_BALANCE_URI = 'https://smsc.ru/sys/balance.php';
-
-    /**
-     * Success HTTP codes responding
-     *
-     * @var array $httpSuccessCode
-     */
-    public $httpSuccessCode = [200];
-
-    /**
-     * Acceptable provider statuses
-     *
-     * @var array $statuses
-     */
-    public $statuses = [
-        '1' => 'Ошибка в параметрах.',
-        '2' => 'Неверный логин или пароль.',
-        '3' => 'Недостаточно средств на счете Клиента.',
-        '4' => 'IP-адрес временно заблокирован из-за частых ошибок в запросах.',
-        '5' => 'Неверный формат даты.',
-        '6' => 'Сообщение запрещено (по тексту или по имени отправителя).',
-        '7' => 'Неверный формат номера телефона.',
-        '8' => 'Сообщение на указанный номер не может быть доставлено.',
-        '9' => 'Отправка более одного одинакового запроса на передачу SMS-сообщения либо более пяти одинаковых запросов на получение стоимости сообщения в течение минуты.',
-    ];
+    const GET_BALANCE_URI = 'https://smsc.ru/sys/balance.php?fmt=3';
 
     /**
      * Provider config container
@@ -67,9 +43,11 @@ class SMSC implements ProviderConfigInterface
      * Setup injected configuration
      *
      * @param array $config
+     * @return void
      */
     public function __construct(array $config)
     {
+
         $this->config = $config;
     }
 
@@ -112,8 +90,8 @@ class SMSC implements ProviderConfigInterface
     /**
      * Get provider configurations
      *
-     * @throws \Phalcon\Exception
-     * @return array
+     * @throws BaseException
+     * @return void
      */
     public function getProviderConfig()
     {
@@ -121,20 +99,8 @@ class SMSC implements ProviderConfigInterface
         if (empty($this->config) === false) {
             return $this->config;
         } else {
-            throw new Exception('Empty provider config');
+
+            throw new BaseException((new \ReflectionClass(get_class()))->getShortName(), 'Empty provider config', 500);
         }
-    }
-
-    /**
-     * Get provider response status
-     *
-     * @param int $code
-     * @return string
-     */
-    public function getResponseStatus($code)
-    {
-
-        return (isset($this->statuses[$code]) === true) ? $this->statuses[$code]
-            : 'Unknown provider response error';
     }
 }

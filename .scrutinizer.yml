@@ -6,6 +6,7 @@ build:
             ini:
                 'date.timezone': 'UTC'
         redis: false
+        mysql: false
 
     dependencies:
 

@@ -1,9 +1,9 @@
 <?php
 namespace SMSFactory\Providers;
 
-use Phalcon\Http\Response\Exception;
 use SMSFactory\Aware\ProviderInterface;
 use SMSFactory\Aware\ClientProviders\CurlTrait;
+use SMSFactory\Exceptions\BaseException;
 
 /**
  * Class SmsUkraine. SmsUkraine Provider
@@ -39,13 +39,6 @@ class SmsUkraine implements ProviderInterface
     private $config;
 
     /**
-     * Response status
-     *
-     * @var boolean|string
-     */
-    private $responseStatus = false;
-
-    /**
      * Init configuration
      *
      * @param \SMSFactory\Config\SmsUkraine $config
@@ -73,41 +66,31 @@ class SmsUkraine implements ProviderInterface
      * Get server response info
      *
      * @param \Phalcon\Http\Client\Response $response
-     * @throws \Phalcon\Http\Response\Exception
-     * @return array|string
+     * @return array|mixed
+     * @throws BaseException
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
-
-        // check response status
-        if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new Exception('The server is not responding: ' . $response->header->statusMessage);
-        }
-
-        // parse json response
-        $responseArray = \SMSFactory\Helpers\String::parseJson($response->body);
-
         // this is not json response, parse as string
         if (stripos($response->body, 'errors') !== false) {
-            // have an error
-            preg_match('/^([errors]+):(.*)/', $response->body, $matches);
 
-            // if status exist
-            $this->responseStatus = (array_key_exists($matches[0], $this->config->statuses))
-                ? $this->config->getResponseStatus($matches[0])
-                    : $matches[2];
+            // have an error
+            preg_match_all('/errors:([\w].*)/iu', $response->body, $matches);
+
+            $matches = array_filter($matches);
+
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), implode('.', $matches[0]));
         }
 
-        return ($this->debug === true) ? [
-            $response, ($this->responseStatus !== false) ? $this->responseStatus : $responseArray
-        ] : ($this->responseStatus !== false) ? $this->responseStatus : $responseArray;
+        return ($this->debug === true) ? [$response->header, $response] : $response->body;
+
     }
 
     /**
      * Final send function
      *
      * @param string $message
-     * @return array|string
+     * @return \Phalcon\Http\Client\Response|string|void
      */
     final public function send($message)
     {
@@ -115,10 +98,10 @@ class SmsUkraine implements ProviderInterface
         // send message
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
                 $this->config->getProviderConfig(), [
-                'command' => 'send',
-                'to' => $this->recipient, //  SMS Receipient
-                'message' => $message, //  Message
-            ])
+                    'command' => 'send',
+                    'to' => $this->recipient,   //  SMS Receipient
+                    'message' => $message,           //  Message
+                ])
         );
 
         // return response
@@ -128,7 +111,8 @@ class SmsUkraine implements ProviderInterface
     /**
      * Final check balance function
      *
-     * @return array|string
+     * @return \Phalcon\Http\Client\Response|string|void
+     * @throws BaseException
      */
     final public function balance()
     {
@@ -136,8 +120,8 @@ class SmsUkraine implements ProviderInterface
         // check balance
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getBalanceUri(), array_merge(
                 $this->config->getProviderConfig(), [
-                'command' => 'balance'
-            ])
+                    'command' => 'balance'
+                ])
         );
 
         // return response

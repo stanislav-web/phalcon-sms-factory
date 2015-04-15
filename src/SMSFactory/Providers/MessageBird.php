@@ -1,7 +1,7 @@
 <?php
 namespace SMSFactory\Providers;
 
-use Phalcon\Http\Response\Exception;
+use SMSFactory\Exceptions\BaseException;
 use SMSFactory\Aware\ProviderInterface;
 use SMSFactory\Aware\ClientProviders\CurlTrait;
 
@@ -39,13 +39,6 @@ class MessageBird implements ProviderInterface
     private $config;
 
     /**
-     * Response status
-     *
-     * @var boolean|string
-     */
-    private $responseStatus = false;
-
-    /**
      * Init configuration
      *
      * @param \SMSFactory\Config\MessageBird $config
@@ -73,38 +66,27 @@ class MessageBird implements ProviderInterface
      * Get server response info
      *
      * @param \Phalcon\Http\Client\Response $response
-     * @throws \Phalcon\Http\Response\Exception
-     * @return array|string
+     * @return array|mixed
+     * @throws BaseException
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
-
-        // check response status
-        if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new Exception('The server is not responding: ' . $response->header->statusMessage);
-        }
-
         // parse json response
-        $respArray = json_decode($response->body, true);
+        $data = json_decode($response->body, true);
 
-        if (isset($respArray['errors']) === true) {
+        if (isset($data['errors']) === true || $response->header->statusCode > self::MAX_SUCCESS_CODE) {
 
-            // if status exist.
-            $this->responseStatus = (array_key_exists($respArray['errors'][0]['code'], $this->config->statuses))
-                ? $this->config->getResponseStatus($respArray['errors'][0]['code']) . ' ' . $respArray['errors'][0]['description']
-                : false;
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $data['errors'][0]['description']);
         }
 
-        return ($this->debug === true) ? [
-            $response, ($this->responseStatus === false ? $respArray : $this->responseStatus)
-        ] : ($this->responseStatus === false ? $respArray : $this->responseStatus);
+        return ($this->debug === true) ? [$response->header, $data] : $data;
     }
 
     /**
      * Final send function
      *
      * @param string $message
-     * @return array|string
+     * @return \Phalcon\Http\Client\Response|string|void
      */
     final public function send($message)
     {
@@ -112,9 +94,9 @@ class MessageBird implements ProviderInterface
         // send message
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
                 $this->config->getProviderConfig(), [
-                'recipients' => $this->recipient, //  SMS Recipient
-                'body' => $message, //  Message
-            ])
+                    'recipients' => $this->recipient,      //  SMS Recipient
+                    'body' => $message,   //  Message
+                ])
         );
 
         // return response
@@ -124,13 +106,15 @@ class MessageBird implements ProviderInterface
     /**
      * Final check balance function
      *
-     * @return array|string
+     * @return \Phalcon\Http\Client\Response|string|void
+     * @throws BaseException
      */
     final public function balance()
     {
-
         // check balance
-        $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getBalanceUri(),
+        $client = $this->client();
+        $client->setOption(CURLOPT_HTTPHEADER, ['Authorization : '.$this->config->getProviderConfig()['access_key']]);
+        $response = $client->{$this->config->getRequestMethod()}($this->config->getBalanceUri(),
             $this->config->getProviderConfig());
 
         // return response

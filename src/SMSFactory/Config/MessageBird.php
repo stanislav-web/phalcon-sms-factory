@@ -2,7 +2,7 @@
 namespace SMSFactory\Config;
 
 use SMSFactory\Aware\ProviderConfigInterface;
-use Phalcon\Exception;
+use SMSFactory\Exceptions\BaseException;
 
 /**
  * Class MessageBird. Configuration for MessageBird provider
@@ -32,28 +32,6 @@ class MessageBird implements ProviderConfigInterface
     const GET_BALANCE_URI = 'https://rest.messagebird.com/balance';
 
     /**
-     * Success HTTP codes responding
-     *
-     * @var array $httpSuccessCode
-     */
-    public $httpSuccessCode = [200, 201, 422];
-
-    /**
-     * Acceptable provider statuses
-     *
-     * @var array $statuses
-     */
-    public $statuses = [
-        '2' => 'Request not allowed',
-        '9' => 'Missing params',
-        '10' => 'Invalid params',
-        '20' => 'Not found',
-        '25' => 'Not enough balance',
-        '98' => 'API not found',
-        '99' => 'Internal error',
-    ];
-
-    /**
      * Provider config container
      *
      * @access static
@@ -65,9 +43,11 @@ class MessageBird implements ProviderConfigInterface
      * Setup injected configuration
      *
      * @param array $config
+     * @return void
      */
     public function __construct(array $config)
     {
+
         $this->config = $config;
     }
 
@@ -78,7 +58,6 @@ class MessageBird implements ProviderConfigInterface
      */
     public function getMessageUri()
     {
-
         return (isset($this->config['message_uri']) === true) ? $this->config['message_uri']
             : self::SEND_MESSAGE_URI;
     }
@@ -110,8 +89,8 @@ class MessageBird implements ProviderConfigInterface
     /**
      * Get provider configurations
      *
-     * @throws \Phalcon\Exception
-     * @return array
+     * @throws BaseException
+     * @return void
      */
     public function getProviderConfig()
     {
@@ -119,20 +98,8 @@ class MessageBird implements ProviderConfigInterface
         if (empty($this->config) === false) {
             return $this->config;
         } else {
-            throw new Exception('Empty provider config');
+
+            throw new BaseException((new \ReflectionClass(get_class()))->getShortName(), 'Empty provider config', 500);
         }
-    }
-
-    /**
-     * Get provider response status
-     *
-     * @param int $code
-     * @return string
-     */
-    public function getResponseStatus($code)
-    {
-
-        return (isset($this->statuses[$code]) === true) ? $this->statuses[$code]
-            : 'Unknown provider response error';
     }
 }

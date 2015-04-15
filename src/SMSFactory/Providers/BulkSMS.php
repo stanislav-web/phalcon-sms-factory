@@ -1,7 +1,7 @@
 <?php
 namespace SMSFactory\Providers;
 
-use Phalcon\Http\Response\Exception;
+use SMSFactory\Exceptions\BaseException;
 use SMSFactory\Aware\ProviderInterface;
 use SMSFactory\Aware\ClientProviders\CurlTrait;
 
@@ -39,13 +39,6 @@ class BulkSMS implements ProviderInterface
     private $config;
 
     /**
-     * Response status
-     *
-     * @var boolean|string
-     */
-    private $responseStatus = false;
-
-    /**
      * Init configuration
      *
      * @param \SMSFactory\Config\BulkSMS $config
@@ -73,35 +66,26 @@ class BulkSMS implements ProviderInterface
      * Get server response info
      *
      * @param \Phalcon\Http\Client\Response $response
-     * @throws \Phalcon\Http\Response\Exception
-     * @return array|string
+     * @return array|mixed
+     * @throws BaseException
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
-
-        // check response status
-        if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new Exception('The server is not responding: ' . $response->header->statusMessage);
-        }
-
         // get server response status
         $part = explode('|', $response->body);
 
-        // if status exist. If response is 0 - that meant OK
-        $this->responseStatus = (array_key_exists($part[0], $this->config->statuses) && $part[0] > 0)
-            ? $this->config->getResponseStatus($part[0])
-            : $part[1];
+        if($part[0] > 1) {
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $part[1]);
+        }
 
-        return ($this->debug === true) ? [
-            $response, $this->responseStatus
-        ] : $this->responseStatus;
+        return ($this->debug === true) ? [$response->header, $response] : $response->body;
     }
 
     /**
      * Final send function
      *
      * @param string $message
-     * @return array|string
+     * @return \Phalcon\Http\Client\Response|string|void
      */
     final public function send($message)
     {
@@ -109,9 +93,9 @@ class BulkSMS implements ProviderInterface
         // send message
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
                 $this->config->getProviderConfig(), [
-                'msisdn' => $this->recipient, //  SMS Recipient
-                'message' => $message, //  Message
-            ])
+                    'msisdn' => $this->recipient,       //  SMS Recipient
+                    'message' => $message,    //  Message
+                ])
         );
 
         // return response
@@ -121,7 +105,8 @@ class BulkSMS implements ProviderInterface
     /**
      * Final check balance function
      *
-     * @return array|string
+     * @return \Phalcon\Http\Client\Response|string|void
+     * @throws BaseException
      */
     final public function balance()
     {

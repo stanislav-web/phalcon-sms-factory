@@ -2,7 +2,7 @@
 namespace SMSFactory\Config;
 
 use SMSFactory\Aware\ProviderConfigInterface;
-use Phalcon\Exception;
+use SMSFactory\Exceptions\BaseException;
 
 /**
  * Class SmsUkraine. Configuration for SmsUkraine provider
@@ -29,42 +29,7 @@ class SmsUkraine implements ProviderConfigInterface
      *
      * @const string GET_BALANCE_URI
      */
-    const GET_BALANCE_URI = 'http://smsukraine.com.ua/api/json.php';
-
-    /**
-     * Success HTTP codes responding
-     *
-     * @var array $httpSuccessCode
-     */
-    public $httpSuccessCode = [200];
-
-    /**
-     * Acceptable provider statuses
-     *
-     * @var array $statuses
-     */
-    public $statuses = [
-        '100' => 'The message is scheduled. Delivery has not yet been initiated.',
-        '101' => 'The message is in enroute state.',
-        '102' => 'Message is delivered to destination',
-        '103' => 'Message validity period has expired.',
-        '104' => 'Message has been deleted.',
-        '105' => 'Message is undeliverable.',
-        '106' => 'Message is in accepted state (i.e. has been manually read on behalf of the subscriber by customer service)',
-        '107' => 'Message is in invalid state The message state is unknown.',
-        '108' => 'Message is in a rejected state The message has been rejected by a delivery interface.',
-        '109' => 'Message discarded',
-        '110' => 'Message in process of transferring to mobile network',
-        '200' => 'Неизвестная ошибка',
-        '201' => 'Неправильный ID сообщения',
-        '202' => 'Неправильный идентификатор отправителя',
-        '203' => 'Неправильный номер получателя',
-        '204' => 'Слишком длинное или пустое сообщение',
-        '205' => 'Пользователь отключен',
-        '206' => 'Ошибка биллинга',
-        '207' => 'Превышение лимита выделенных сообщений',
-        '208' => 'Сообщение с указанным ID уже существует',
-    ];
+    const GET_BALANCE_URI = 'http://smsukraine.com.ua/api/http.php';
 
     /**
      * Provider config container
@@ -78,9 +43,11 @@ class SmsUkraine implements ProviderConfigInterface
      * Setup injected configuration
      *
      * @param array $config
+     * @return void
      */
     public function __construct(array $config)
     {
+
         $this->config = $config;
     }
 
@@ -123,8 +90,8 @@ class SmsUkraine implements ProviderConfigInterface
     /**
      * Get provider configurations
      *
-     * @throws \Phalcon\Exception
-     * @return array
+     * @throws BaseException
+     * @return void
      */
     public function getProviderConfig()
     {
@@ -132,20 +99,8 @@ class SmsUkraine implements ProviderConfigInterface
         if (empty($this->config) === false) {
             return $this->config;
         } else {
-            throw new Exception('Empty provider config');
+
+            throw new BaseException((new \ReflectionClass(get_class()))->getShortName(), 'Empty provider config', 500);
         }
-    }
-
-    /**
-     * Get provider response status
-     *
-     * @param int $code
-     * @return string
-     */
-    public function getResponseStatus($code)
-    {
-
-        return (isset($this->statuses[$code]) === true) ? $this->statuses[$code]
-            : 'Unknown provider response error';
     }
 }

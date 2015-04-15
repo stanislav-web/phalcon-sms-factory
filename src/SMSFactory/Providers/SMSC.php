@@ -1,9 +1,9 @@
 <?php
 namespace SMSFactory\Providers;
 
-use Phalcon\Http\Response\Exception;
 use SMSFactory\Aware\ProviderInterface;
 use SMSFactory\Aware\ClientProviders\CurlTrait;
+use SMSFactory\Exceptions\BaseException;
 
 /**
  * Class SMSC. SMSC Provider
@@ -39,13 +39,6 @@ class SMSC implements ProviderInterface
     private $config;
 
     /**
-     * Response status
-     *
-     * @var boolean|string
-     */
-    private $responseStatus = false;
-
-    /**
      * Init configuration
      *
      * @param \SMSFactory\Config\SMSC $config
@@ -73,38 +66,27 @@ class SMSC implements ProviderInterface
      * Get server response info
      *
      * @param \Phalcon\Http\Client\Response $response
-     * @throws \Phalcon\Http\Response\Exception
-     * @return array|string
+     * @return array|mixed
+     * @throws BaseException
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
     {
+        // get server response status
+        $data = json_decode($response->body, true);
 
-        // check response status
-        if (in_array($response->header->statusCode, $this->config->httpSuccessCode) === false) {
-            throw new Exception('The server is not responding: ' . $response->header->statusMessage);
+        if(isset($data['error_code'])) {
+
+            throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $data['error']);
         }
 
-        // parse json response
-        $respArray = json_decode($response->body, true);
-
-        if (isset($respArray['error_code']) === true) {
-
-            // if status exist.
-            $this->responseStatus = (array_key_exists($respArray['error_code'], $this->config->statuses))
-                ? $this->config->getResponseStatus($respArray['error_code'])
-                : false;
-        }
-
-        return ($this->debug === true) ? [
-            $response, ($this->responseStatus === false ? $respArray : $this->responseStatus)
-        ] : ($this->responseStatus === false ? $respArray : $this->responseStatus);
+        return ($this->debug === true) ? [$response->header, $data] : $data;
     }
 
     /**
      * Final send function
      *
      * @param string $message
-     * @return array|string
+     * @return \Phalcon\Http\Client\Response|string|void
      */
     final public function send($message)
     {
@@ -112,9 +94,9 @@ class SMSC implements ProviderInterface
         // send message
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
                 $this->config->getProviderConfig(), [
-                'phones' => $this->recipient, //  SMS Receipient
-                'mes' => $message, //  Message
-            ])
+                    'phones' => $this->recipient,   //  SMS Receipient
+                    'mes' => $message,              //  Message
+                ])
         );
 
         // return response
@@ -124,7 +106,8 @@ class SMSC implements ProviderInterface
     /**
      * Final check balance function
      *
-     * @return array|string
+     * @return \Phalcon\Http\Client\Response|string|void
+     * @throws BaseException
      */
     final public function balance()
     {

@@ -2,7 +2,7 @@
 namespace SMSFactory\Config;
 
 use SMSFactory\Aware\ProviderConfigInterface;
-use Phalcon\Exception;
+use SMSFactory\Exceptions\BaseException;
 
 /**
  * Class SmsAero. Configuration for SmsAero provider
@@ -16,7 +16,6 @@ use Phalcon\Exception;
  */
 class SmsAero implements ProviderConfigInterface
 {
-
 
     /**
      * Message uri
@@ -33,29 +32,6 @@ class SmsAero implements ProviderConfigInterface
     const GET_BALANCE_URI = 'http://gate.smsaero.ru/balance/?answer=json';
 
     /**
-     * Success HTTP codes responding
-     *
-     * @var array $httpSuccessCode
-     */
-    public $httpSuccessCode = [200];
-
-    /**
-     * Acceptable provider statuses
-     *
-     * @var array $statuses
-     */
-    public $statuses = [
-        'accepted' => 'Сообщение принято сервисом.',
-        'empty field. reject' => 'Не все обязательные поля заполнены.',
-        'incorrect user or password. reject' => 'Ошибка авторизации',
-        'no credits' => 'Недостаточно sms на балансе.',
-        'incorrect sender name. reject' => 'Неверная (незарегистрированная) подпись отправителя.',
-        'incorrect destination adress. reject' => 'Неверно задан номер телефона (формат 71234567890).',
-        'incorrect date. reject' => 'Неправильный формат даты',
-        'in blacklist. reject' => 'Телефон находится в черном списке.',
-    ];
-
-    /**
      * Provider config container
      *
      * @access static
@@ -67,9 +43,11 @@ class SmsAero implements ProviderConfigInterface
      * Setup injected configuration
      *
      * @param array $config
+     * @return void
      */
     public function __construct(array $config)
     {
+
         $this->config = $config;
     }
 
@@ -112,29 +90,17 @@ class SmsAero implements ProviderConfigInterface
     /**
      * Get provider configurations
      *
-     * @throws \Phalcon\Exception
-     * @return array
+     * @throws BaseException
+     * @return void
      */
     public function getProviderConfig()
     {
-
         if (empty($this->config) === false) {
+            $this->config['password'] = md5($this->config['password']);
             return $this->config;
         } else {
-            throw new Exception('Empty provider config');
+
+            throw new BaseException((new \ReflectionClass(get_class()))->getShortName(), 'Empty provider config', 500);
         }
-    }
-
-    /**
-     * Get provider response status
-     *
-     * @param int $code
-     * @return string
-     */
-    public function getResponseStatus($code)
-    {
-
-        return (isset($this->statuses[$code]) === true) ? $this->statuses[$code]
-            : 'Unknown provider response error';
     }
 }
