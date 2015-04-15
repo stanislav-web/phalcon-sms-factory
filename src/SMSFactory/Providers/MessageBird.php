@@ -91,15 +91,13 @@ class MessageBird implements ProviderInterface
     final public function send($message)
     {
 
-        // send message
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
                 $this->config->getProviderConfig(), [
-                    'recipients' => $this->recipient,      //  SMS Recipient
-                    'body' => $message,   //  Message
+                    'recipients' => $this->recipient,
+                    'body' => $message,
                 ])
         );
 
-        // return response
         return $this->getResponse($response);
     }
 
@@ -111,13 +109,11 @@ class MessageBird implements ProviderInterface
      */
     final public function balance()
     {
-        // check balance
         $client = $this->client();
         $client->setOption(CURLOPT_HTTPHEADER, ['Authorization : '.$this->config->getProviderConfig()['access_key']]);
         $response = $client->{$this->config->getRequestMethod()}($this->config->getBalanceUri(),
             $this->config->getProviderConfig());
 
-        // return response
         return $this->getResponse($response);
     }
 }

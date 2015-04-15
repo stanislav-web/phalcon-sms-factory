@@ -90,15 +90,13 @@ class BulkSMS implements ProviderInterface
     final public function send($message)
     {
 
-        // send message
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
                 $this->config->getProviderConfig(), [
-                    'msisdn' => $this->recipient,       //  SMS Recipient
-                    'message' => $message,    //  Message
+                    'msisdn' => $this->recipient,
+                    'message' => $message,
                 ])
         );
 
-        // return response
         return $this->getResponse($response);
     }
 
@@ -111,11 +109,9 @@ class BulkSMS implements ProviderInterface
     final public function balance()
     {
 
-        // check balance
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getBalanceUri(),
             $this->config->getProviderConfig());
 
-        // return response
         return $this->getResponse($response);
     }
 }

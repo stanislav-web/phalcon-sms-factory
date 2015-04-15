@@ -2,7 +2,7 @@
 namespace SMSFactory\Aware;
 
 /**
- * Class Provider
+ * Class AbstractProvider
  *
  * @since     PHP >=5.4
  * @version   1.0
@@ -11,7 +11,7 @@ namespace SMSFactory\Aware;
  * @package SMSFactory\Aware
  * @subpackage SMSFactory
  */
-abstract class Provider
+abstract class AbstractProvider
 {
 
     /**

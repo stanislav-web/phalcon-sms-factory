@@ -92,15 +92,13 @@ class Clickatell implements ProviderInterface
     final public function send($message)
     {
 
-        // send message
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
                 $this->config->getProviderConfig(), [
-                    'to' => $this->recipient,      //  SMS Recipient
-                    'text' => $message,   //  Message
+                    'to' => $this->recipient,
+                    'text' => $message,
                 ])
         );
 
-        // return response
         return $this->getResponse($response);
     }
 
@@ -113,11 +111,9 @@ class Clickatell implements ProviderInterface
     final public function balance()
     {
 
-        // check balance
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getBalanceUri(),
             $this->config->getProviderConfig());
 
-        // return response
         return $this->getResponse($response);
     }
 }

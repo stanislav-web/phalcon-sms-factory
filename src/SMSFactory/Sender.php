@@ -1,7 +1,7 @@
 <?php
 namespace SMSFactory;
 
-use SMSFactory\Aware\Provider;
+use SMSFactory\Aware\AbstractProvider;
 use SMSFactory\Exceptions\BaseException;
 
 /**
@@ -14,7 +14,7 @@ use SMSFactory\Exceptions\BaseException;
  * @package SMSFactory
  * @subpackage SMSFactory
  */
-class Sender extends Provider
+class Sender extends AbstractProvider
 {
 
     /**

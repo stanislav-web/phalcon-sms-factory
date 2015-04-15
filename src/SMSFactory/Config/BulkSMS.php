@@ -43,7 +43,6 @@ class BulkSMS implements ProviderConfigInterface
      * Setup injected configuration
      *
      * @param array $config
-     * @return void
      */
     public function __construct(array $config)
     {
@@ -91,7 +90,7 @@ class BulkSMS implements ProviderConfigInterface
      * Get provider configurations
      *
      * @throws BaseException
-     * @return void
+     * @return array
      */
     public function getProviderConfig()
     {

@@ -302,7 +302,7 @@ $coverage->setData(array (
     ),
     60 => NULL,
   ),
-  '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Aware/Provider.php' => 
+  '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Aware/AbstractProvider.php' => 
   array (
   ),
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Exceptions/BaseException.php' => 
@@ -389,68 +389,68 @@ $coverage->setData(array (
   ),
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/Nexmo.php' => 
   array (
+    50 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #0',
+      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #0',
+      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #0',
+    ),
     51 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #0',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #0',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #0',
     ),
-    52 => 
+    61 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #0',
-      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #0',
-      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #0',
+      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #0',
     ),
     62 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #0',
       1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #0',
     ),
-    63 => 
+    63 => NULL,
+    73 => 
     array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #0',
-      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #0',
+      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #0',
     ),
-    64 => NULL,
     74 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #0',
     ),
-    75 => 
+    75 => NULL,
+    85 => 
     array (
-      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #0',
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #0',
+      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #0',
+      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #0',
     ),
-    76 => NULL,
     86 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #0',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #0',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #0',
     ),
-    87 => 
+    87 => NULL,
+    98 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #0',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #0',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #0',
     ),
-    88 => NULL,
     99 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #0',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #0',
-      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #0',
     ),
-    100 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #0',
-      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #0',
-    ),
-    101 => NULL,
-    103 => 
+    100 => NULL,
+    102 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #0',
     ),
-    105 => NULL,
+    104 => NULL,
   ),
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Aware/ClientProviders/CurlTrait.php' => 
   array (
@@ -565,6 +565,11 @@ $coverage->setData(array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #0',
     ),
     86 => NULL,
+    97 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #0',
+      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #0',
+    ),
     98 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #0',
@@ -573,7 +578,6 @@ $coverage->setData(array (
     99 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #0',
-      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #0',
     ),
     100 => 
     array (
@@ -587,93 +591,89 @@ $coverage->setData(array (
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #0',
     ),
-    103 => 
+    104 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #0',
     ),
-    106 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #0',
-    ),
-    107 => NULL,
-    119 => 
+    105 => NULL,
+    117 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #0',
     ),
-    120 => 
+    118 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #0',
     ),
-    123 => 
+    121 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #0',
     ),
-    124 => NULL,
+    122 => NULL,
   ),
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/BulkSMS.php' => 
   array (
+    50 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
+      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #1',
+      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #1',
+    ),
     51 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #1',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #1',
     ),
-    52 => 
+    61 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
-      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #1',
-      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #1',
+      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #1',
     ),
     62 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
       1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #1',
     ),
-    63 => 
+    63 => NULL,
+    73 => 
     array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
-      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #1',
+      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #1',
     ),
-    64 => NULL,
     74 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #1',
     ),
-    75 => 
+    75 => NULL,
+    85 => 
     array (
-      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #1',
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
+      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #1',
+      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #1',
     ),
-    76 => NULL,
     86 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #1',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #1',
     ),
-    87 => 
+    87 => NULL,
+    98 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #1',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #1',
     ),
-    88 => NULL,
     99 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #1',
-      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #1',
     ),
-    100 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
-      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #1',
-    ),
-    101 => NULL,
-    103 => 
+    100 => NULL,
+    102 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #1',
     ),
-    105 => NULL,
+    104 => NULL,
   ),
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/BulkSMS.php' => 
   array (
@@ -700,7 +700,12 @@ $coverage->setData(array (
       1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #1',
     ),
     63 => NULL,
-    76 => 
+    75 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
+      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #1',
+    ),
+    77 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #1',
@@ -708,27 +713,30 @@ $coverage->setData(array (
     78 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
-      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #1',
     ),
-    79 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
-    ),
-    80 => NULL,
-    82 => 
+    79 => NULL,
+    81 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #1',
     ),
-    83 => NULL,
-    95 => 
+    82 => NULL,
+    93 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
       1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #1',
+    ),
+    94 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
+      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #1',
+    ),
+    95 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
     ),
     96 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
-      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #1',
     ),
     97 => 
     array (
@@ -738,102 +746,94 @@ $coverage->setData(array (
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
     ),
-    99 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
-    ),
     100 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
     ),
-    103 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #1',
-    ),
-    104 => NULL,
-    116 => 
+    101 => NULL,
+    112 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #1',
     ),
-    117 => 
+    113 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #1',
     ),
-    120 => 
+    115 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #1',
     ),
-    121 => NULL,
+    116 => NULL,
   ),
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/SmsAero.php' => 
   array (
+    50 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #4',
+      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #2',
+      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #4',
+    ),
     51 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #4',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #2',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #4',
     ),
-    52 => 
+    61 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #4',
-      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #2',
-      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #4',
+      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #4',
     ),
     62 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #4',
       1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #4',
     ),
-    63 => 
+    63 => NULL,
+    73 => 
     array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #4',
-      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #4',
+      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #2',
     ),
-    64 => NULL,
     74 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #2',
     ),
-    75 => 
+    75 => NULL,
+    85 => 
     array (
-      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #2',
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #4',
+      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #2',
+      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #4',
     ),
-    76 => NULL,
     86 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #4',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #2',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #4',
     ),
-    87 => 
+    87 => NULL,
+    97 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #4',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #2',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #4',
     ),
-    88 => NULL,
     98 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #4',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #2',
-      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #4',
     ),
     99 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #4',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #2',
     ),
-    100 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #4',
-      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #2',
-    ),
-    101 => NULL,
-    103 => 
+    100 => NULL,
+    102 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #4',
     ),
-    105 => NULL,
+    104 => NULL,
   ),
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/SmsAero.php' => 
   array (
@@ -875,6 +875,11 @@ $coverage->setData(array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #2',
     ),
     79 => NULL,
+    90 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #4',
+      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #4',
+    ),
     91 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #4',
@@ -883,7 +888,6 @@ $coverage->setData(array (
     92 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #4',
-      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #4',
     ),
     93 => 
     array (
@@ -897,16 +901,16 @@ $coverage->setData(array (
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #4',
     ),
-    96 => 
+    97 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #4',
     ),
-    99 => 
+    98 => NULL,
+    109 => 
     array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #4',
+      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #2',
     ),
-    100 => NULL,
-    111 => 
+    110 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #2',
     ),
@@ -914,11 +918,7 @@ $coverage->setData(array (
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #2',
     ),
-    115 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #2',
-    ),
-    116 => NULL,
+    113 => NULL,
   ),
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/SmsUkraine.php' => 
   array (
@@ -968,6 +968,11 @@ $coverage->setData(array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #3',
     ),
     87 => NULL,
+    98 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #6',
+      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #6',
+    ),
     99 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #6',
@@ -976,7 +981,6 @@ $coverage->setData(array (
     100 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #6',
-      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #6',
     ),
     101 => 
     array (
@@ -994,15 +998,19 @@ $coverage->setData(array (
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #6',
     ),
-    105 => 
+    106 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #6',
     ),
-    108 => 
+    107 => NULL,
+    118 => 
     array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #6',
+      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #3',
     ),
-    109 => NULL,
+    119 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #3',
+    ),
     121 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #3',
@@ -1015,80 +1023,72 @@ $coverage->setData(array (
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #3',
     ),
-    125 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #3',
-    ),
-    128 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #3',
-    ),
-    129 => NULL,
+    125 => NULL,
   ),
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/SmsUkraine.php' => 
   array (
+    50 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #6',
+      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #3',
+      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #6',
+    ),
     51 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #6',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #3',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #6',
     ),
-    52 => 
+    61 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #6',
-      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #3',
-      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #6',
+      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #6',
     ),
     62 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #6',
       1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #6',
     ),
-    63 => 
+    63 => NULL,
+    73 => 
     array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #6',
-      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #6',
+      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #3',
     ),
-    64 => NULL,
     74 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #3',
     ),
-    75 => 
+    75 => NULL,
+    85 => 
     array (
-      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #3',
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #6',
+      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #3',
+      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #6',
     ),
-    76 => NULL,
     86 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #6',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #3',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #6',
     ),
-    87 => 
+    87 => NULL,
+    98 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #6',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #3',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #6',
     ),
-    88 => NULL,
     99 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #6',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #3',
-      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #6',
     ),
-    100 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #6',
-      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #3',
-    ),
-    101 => NULL,
-    103 => 
+    100 => NULL,
+    102 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #6',
     ),
-    105 => NULL,
+    104 => NULL,
   ),
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/SMSC.php' => 
   array (
@@ -1135,6 +1135,11 @@ $coverage->setData(array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #4',
     ),
     83 => NULL,
+    94 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #5',
+      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #5',
+    ),
     95 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #5',
@@ -1143,7 +1148,6 @@ $coverage->setData(array (
     96 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #5',
-      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #5',
     ),
     97 => 
     array (
@@ -1157,93 +1161,89 @@ $coverage->setData(array (
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #5',
     ),
-    100 => 
+    101 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #5',
     ),
-    103 => 
+    102 => NULL,
+    113 => 
     array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #5',
+      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #4',
     ),
-    104 => NULL,
+    114 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #4',
+    ),
     116 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #4',
     ),
-    117 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #4',
-    ),
-    120 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #4',
-    ),
-    121 => NULL,
+    117 => NULL,
   ),
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/SMSC.php' => 
   array (
+    50 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #5',
+      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #4',
+      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #5',
+    ),
     51 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #5',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #4',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #5',
     ),
-    52 => 
+    61 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #5',
-      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #4',
-      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #5',
+      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #5',
     ),
     62 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #5',
       1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #5',
     ),
-    63 => 
+    63 => NULL,
+    73 => 
     array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #5',
-      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #5',
+      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #4',
     ),
-    64 => NULL,
     74 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #4',
     ),
-    75 => 
+    75 => NULL,
+    85 => 
     array (
-      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #4',
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #5',
+      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #4',
+      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #5',
     ),
-    76 => NULL,
     86 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #5',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #4',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #5',
     ),
-    87 => 
+    87 => NULL,
+    98 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #5',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #4',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #5',
     ),
-    88 => NULL,
     99 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #5',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #4',
-      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #5',
     ),
-    100 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #5',
-      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #4',
-    ),
-    101 => NULL,
-    103 => 
+    100 => NULL,
+    102 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #5',
     ),
-    105 => NULL,
+    104 => NULL,
   ),
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/SMSRu.php' => 
   array (
@@ -1270,25 +1270,25 @@ $coverage->setData(array (
       1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #7',
     ),
     63 => NULL,
-    73 => 
+    74 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #7',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #5',
     ),
-    75 => 
+    76 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #7',
     ),
-    76 => NULL,
-    77 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #5',
-    ),
+    77 => NULL,
     78 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #5',
     ),
-    79 => NULL,
+    79 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #5',
+    ),
+    80 => NULL,
     90 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #7',
@@ -1315,12 +1315,16 @@ $coverage->setData(array (
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #7',
     ),
-    98 => 
+    97 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #7',
     ),
-    99 => NULL,
-    111 => 
+    98 => NULL,
+    109 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #5',
+    ),
+    110 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #5',
     ),
@@ -1328,141 +1332,137 @@ $coverage->setData(array (
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #5',
     ),
-    115 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #5',
-    ),
-    116 => NULL,
+    113 => NULL,
   ),
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/SMSRu.php' => 
   array (
+    75 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #7',
+      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #5',
+      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #7',
+    ),
     76 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #7',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #5',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #7',
     ),
-    77 => 
+    86 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #7',
-      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #5',
-      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #7',
+      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #7',
     ),
     87 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #7',
       1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #7',
     ),
-    88 => 
+    88 => NULL,
+    98 => 
     array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #7',
-      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #7',
+      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #5',
     ),
-    89 => NULL,
     99 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #5',
     ),
-    100 => 
+    100 => NULL,
+    110 => 
     array (
-      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #5',
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #7',
+      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #5',
+      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #7',
     ),
-    101 => NULL,
     111 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #7',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #5',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #7',
     ),
-    112 => 
+    112 => NULL,
+    123 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #7',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #5',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #7',
     ),
-    113 => NULL,
     124 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #7',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #5',
-      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #7',
     ),
-    125 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #7',
-      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #5',
-    ),
-    126 => NULL,
-    128 => 
+    125 => NULL,
+    127 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #7',
     ),
-    130 => NULL,
+    129 => NULL,
   ),
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/Clickatell.php' => 
   array (
+    50 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #2',
+      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #6',
+      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #2',
+    ),
     51 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #2',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #6',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #2',
     ),
-    52 => 
+    61 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #2',
-      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #6',
-      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #2',
+      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #2',
     ),
     62 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #2',
       1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #2',
     ),
-    63 => 
+    63 => NULL,
+    73 => 
     array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #2',
-      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #2',
+      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #6',
     ),
-    64 => NULL,
     74 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #6',
     ),
-    75 => 
+    75 => NULL,
+    85 => 
     array (
-      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #6',
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #2',
+      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #6',
+      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #2',
     ),
-    76 => NULL,
     86 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #2',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #6',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #2',
     ),
-    87 => 
+    87 => NULL,
+    98 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #2',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #6',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #2',
     ),
-    88 => NULL,
     99 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #2',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #6',
-      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #2',
     ),
-    100 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #2',
-      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #6',
-    ),
-    101 => NULL,
-    103 => 
+    100 => NULL,
+    102 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #2',
     ),
-    105 => NULL,
+    104 => NULL,
   ),
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/Clickatell.php' => 
   array (
@@ -1489,34 +1489,42 @@ $coverage->setData(array (
       1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #2',
     ),
     63 => NULL,
-    76 => 
+    75 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #2',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #6',
     ),
-    79 => 
+    78 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #2',
     ),
-    81 => 
+    80 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #2',
     ),
-    82 => NULL,
-    84 => 
+    81 => NULL,
+    83 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #6',
     ),
-    85 => NULL,
-    97 => 
+    84 => NULL,
+    95 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #2',
       1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #2',
+    ),
+    96 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #2',
+      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #2',
+    ),
+    97 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #2',
     ),
     98 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #2',
-      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #2',
     ),
     99 => 
     array (
@@ -1526,97 +1534,89 @@ $coverage->setData(array (
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #2',
     ),
-    101 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #2',
-    ),
     102 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #2',
     ),
-    105 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #2',
-    ),
-    106 => NULL,
-    118 => 
+    103 => NULL,
+    114 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #6',
     ),
-    119 => 
+    115 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #6',
     ),
-    122 => 
+    117 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #6',
     ),
-    123 => NULL,
+    118 => NULL,
   ),
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/MessageBird.php' => 
   array (
+    50 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #3',
+      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #7',
+      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #3',
+    ),
     51 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #3',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #7',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #3',
     ),
-    52 => 
+    60 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #3',
-      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #7',
-      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #3',
+      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #3',
     ),
     61 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #3',
       1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #3',
     ),
-    62 => 
+    62 => NULL,
+    72 => 
     array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #3',
-      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #3',
+      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #7',
     ),
-    63 => NULL,
     73 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #7',
     ),
-    74 => 
+    74 => NULL,
+    84 => 
     array (
-      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #7',
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #3',
+      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #7',
+      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #3',
     ),
-    75 => NULL,
     85 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #3',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #7',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #3',
     ),
-    86 => 
+    86 => NULL,
+    97 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #3',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #7',
       2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #3',
     ),
-    87 => NULL,
     98 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #3',
       1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #7',
-      2 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #3',
     ),
-    99 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #3',
-      1 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #7',
-    ),
-    100 => NULL,
-    102 => 
+    99 => NULL,
+    101 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #3',
     ),
-    104 => NULL,
+    103 => NULL,
   ),
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Providers/MessageBird.php' => 
   array (
@@ -1663,6 +1663,11 @@ $coverage->setData(array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #7',
     ),
     83 => NULL,
+    94 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #3',
+      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #3',
+    ),
     95 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #3',
@@ -1671,7 +1676,6 @@ $coverage->setData(array (
     96 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #3',
-      1 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptionsForNotConfiguredProviders with data set #3',
     ),
     97 => 
     array (
@@ -1685,20 +1689,24 @@ $coverage->setData(array (
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #3',
     ),
-    100 => 
+    101 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #3',
     ),
-    103 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testSendCatchExceptions with data set #3',
-    ),
-    104 => NULL,
-    115 => 
+    102 => NULL,
+    112 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #7',
     ),
-    116 => 
+    113 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #7',
+    ),
+    114 => 
+    array (
+      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #7',
+    ),
+    115 => 
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #7',
     ),
@@ -1706,15 +1714,7 @@ $coverage->setData(array (
     array (
       0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #7',
     ),
-    118 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #7',
-    ),
-    121 => 
-    array (
-      0 => 'Test\\SMSFactory\\SenderTest::testBalance with data set #7',
-    ),
-    122 => NULL,
+    118 => NULL,
   ),
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Aware/ClientProviders/StreamTrait.php' => 
   array (
@@ -2149,9 +2149,9 @@ $filter->setBlacklistedFiles(array (
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/vendor/phpspec/prophecy/src/Prophecy/Util/StringUtil.php' => true,
 ));
 $filter->setWhitelistedFiles(array (
+  '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Aware/AbstractProvider.php' => true,
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Aware/ClientProviders/CurlTrait.php' => true,
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Aware/ClientProviders/StreamTrait.php' => true,
-  '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Aware/Provider.php' => true,
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Aware/ProviderConfigInterface.php' => true,
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Aware/ProviderInterface.php' => true,
   '/Users/stanislavmenshykh/phalcon.local/vendor/stanislav-web/phalcon-sms-factory/src/SMSFactory/Config/BulkSMS.php' => true,

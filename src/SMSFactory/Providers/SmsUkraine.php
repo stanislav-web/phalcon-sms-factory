@@ -95,16 +95,14 @@ class SmsUkraine implements ProviderInterface
     final public function send($message)
     {
 
-        // send message
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getMessageUri(), array_merge(
                 $this->config->getProviderConfig(), [
                     'command' => 'send',
-                    'to' => $this->recipient,   //  SMS Receipient
-                    'message' => $message,           //  Message
+                    'to' => $this->recipient,
+                    'message' => $message,
                 ])
         );
 
-        // return response
         return $this->getResponse($response);
     }
 
@@ -117,14 +115,12 @@ class SmsUkraine implements ProviderInterface
     final public function balance()
     {
 
-        // check balance
         $response = $this->client()->{$this->config->getRequestMethod()}($this->config->getBalanceUri(), array_merge(
                 $this->config->getProviderConfig(), [
                     'command' => 'balance'
                 ])
         );
 
-        // return response
         return $this->getResponse($response);
     }
 }
