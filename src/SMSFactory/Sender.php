@@ -1,8 +1,8 @@
 <?php
 namespace SMSFactory;
 
-use SMSFactory\Exceptions\BaseException;
 use SMSFactory\Aware\Provider;
+use SMSFactory\Exceptions\BaseException;
 
 /**
  * Class Sender. App entry point

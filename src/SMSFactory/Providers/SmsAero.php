@@ -1,8 +1,8 @@
 <?php
 namespace SMSFactory\Providers;
 
-use SMSFactory\Aware\ProviderInterface;
 use SMSFactory\Aware\ClientProviders\CurlTrait;
+use SMSFactory\Aware\ProviderInterface;
 use SMSFactory\Exceptions\BaseException;
 
 /**

@@ -1,9 +1,9 @@
 <?php
 namespace SMSFactory\Providers;
 
-use SMSFactory\Exceptions\BaseException;
-use SMSFactory\Aware\ProviderInterface;
 use SMSFactory\Aware\ClientProviders\CurlTrait;
+use SMSFactory\Aware\ProviderInterface;
+use SMSFactory\Exceptions\BaseException;
 
 /**
  * Class Clickatell. Clickatell Provider
