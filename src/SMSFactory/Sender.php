@@ -42,7 +42,7 @@ class Sender extends AbstractProvider
      * @uses    ProviderInterface::balance()
      *
      * @throws BaseException
-     * @return mixed
+     * @return object
      */
     final public function call($providerName)
     {

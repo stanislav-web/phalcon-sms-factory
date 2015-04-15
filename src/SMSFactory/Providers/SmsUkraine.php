@@ -66,7 +66,7 @@ class SmsUkraine implements ProviderInterface
      * Get server response info
      *
      * @param \Phalcon\Http\Client\Response $response
-     * @return array|mixed
+     * @return \Phalcon\Http\Client\Response|string
      * @throws BaseException
      */
     public function getResponse(\Phalcon\Http\Client\Response $response)
@@ -90,7 +90,7 @@ class SmsUkraine implements ProviderInterface
      * Final send function
      *
      * @param string $message
-     * @return \Phalcon\Http\Client\Response|string|void
+     * @return \Phalcon\Http\Client\Response|string
      */
     final public function send($message)
     {
@@ -109,7 +109,7 @@ class SmsUkraine implements ProviderInterface
     /**
      * Final check balance function
      *
-     * @return \Phalcon\Http\Client\Response|string|void
+     * @return \Phalcon\Http\Client\Response|string
      * @throws BaseException
      */
     final public function balance()

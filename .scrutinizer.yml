@@ -21,6 +21,9 @@ build:
       override:
         -
             command: 'phpunit --coverage-clover=coverage0'
+            coverage:
+                file: 'coverage0'
+                format: 'php-clover'
 
 filter:
     paths: [src/*]
@@ -39,3 +42,8 @@ tools:
         excluded_dirs: [api, buil, phpunit, vendor]
     php_cpd:
         enabled: false
+
+checks:
+    php:
+        code_rating: true
+        duplication: false
