@@ -78,7 +78,7 @@ class BulkSMS implements ProviderInterface
             throw new BaseException((new \ReflectionClass($this->config))->getShortName(), $part[1]);
         }
 
-        return ($this->debug === true) ? [$response->header, $response] : (string)$response->body;
+        return ($this->debug === true) ? [$response->header, $response] : $response->body;
     }
 
     /**
