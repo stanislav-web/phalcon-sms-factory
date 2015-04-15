@@ -1,8 +1,6 @@
 <?php
 namespace SMSFactory\Aware;
 
-use SMSFactory\Providers;
-
 /**
  * Class Provider
  *
