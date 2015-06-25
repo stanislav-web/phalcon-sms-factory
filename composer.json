@@ -28,7 +28,7 @@
   },
   "require-dev": {
     "phpunit/phpunit": "4.6.*",
-    "phalcon/incubator": ">=1.3.4"
+    "phalcon/incubator": "dev-master"
   },
     "extra": {
         "branch-alias": {
